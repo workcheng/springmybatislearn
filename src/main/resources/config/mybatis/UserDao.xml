@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+<mapper namespace="cn.cheng.mybatis.dao.impl.UserDao">  
+    <select id="queryUsers" parameterType="String" resultType="User" useCache="false">  
+        <![CDATA[ 
+        select id,name from user where name like '%${_parameter}%' 
+        ]]>
+    </select>
+    <insert id="addUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+    	<![CDATA[
+    	INSERT INTO `user`(`name`,`created_time`,`last_modified_time`)
+		VALUES (#{name},now(),now())
+		]]>
+    </insert>
+    <select id="getUserById" parameterType="Integer" resultType="User">
+    	select id,name from user where id = #{_parameter}
+    </select>
+    <update id="updateUserNameById" parameterType="Map" >
+    	update user set name=#{name} where id=${id}
+    </update>
+    <update id="updateNameById" parameterType="User" >
+    	update user set name=#{name} where id=${id}
+    </update>
+    <delete id="deleteUserById" parameterType="integer">
+    	DELETE FROM user WHERE id =#{_parameter}
+    </delete>
+</mapper>
