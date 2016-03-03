@@ -1,0 +1,115 @@
+<div ng-hide="inculdeHtml.loading" ng-controller="johoRightColumnController">
+	<div ng-show="editModuleTag" jef-fixed-directive>
+		<!--joho 名称编辑-->
+		<!--<div class="basic_block" joho-name-directive joho-name="basicInfo.johoName"></div>-->
+		<!--joho 编辑模块状态 -->
+		<div class="basic_block taho_edit_status">
+			<h1 class="taho_edit_status_h1">JoHo编辑</h1>
+			<ul class="taho_edit_status_ul">
+				<li ng-repeat="item in johoModules"
+					ng-class="{'taho_editing ico_img_hasEdited':isEdited(item.tag),'taho_editing ico_img_editing':(editModuleTag==item.tag)}"
+					ng-click="changeEditModuleTag(item.tag,true)">
+					{{item.name}}
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<div ng-hide="editModuleTag">
+		<!--joho 名称编辑-->
+		<!--<div class="basic_block"ng-if="basicInfo.johoStatus==1" joho-name-directive joho-name="basicInfo.johoName"></div>-->
+		<!--joho 名称编辑-->
+		<!--<div id="joho_name" ng-if="basicInfo.johoStatus==2" class="basic_block" style="padding-left: 17px;" title="{{basicInfo.johoName}}">{{basicInfo.johoName}}</div>
+		-->
+		<h2 class="basic_btn basic_block basic_btn_img_12" ng-click="inviteUser()" ng-if="basicInfo.johoStatus==2">邀请候选人</h2>
+		
+		<h2 class="basic_btn basic_block basic_btn_img_1" ng-if="basicInfo.johoStatus==2" ng-click="changeJohoStatus(1)">暂停并编辑</h2>
+		
+		<h2 class="basic_btn basic_block basic_btn_img_3" ng-if="basicInfo.johoStatus==1" ng-click="changeJohoStatus(2)">发布</h2>
+		
+		<h2 class="basic_btn basic_block basic_btn_img_2" ng-if="basicInfo.johoStatus!=3" ng-click="changeJohoStatus(3)">关闭此JOHO</h2>
+		
+		<h2 class="basic_btn basic_block basic_btn_img_7 btn_red" ng-if="basicInfo.johoStatus==3" ng-click="changeJohoStatus(1)">激活此JOHO</h2>
+		
+		<!--必要条件模块-->
+		<div ng-if="basicInfo.johoStatus!=3" ng-controller="johoDealBreakController">
+			<div class="basic_block dealBreakClass">
+				<h2 class="basic_btn no_select">必要条件</h2>
+				<!--编辑图标-->
+				<div ng-show="!dealBreakerEditStatus && basicInfo.johoStatus==1" class="ico_img_edit pointer no_select" title="编辑必要条件" ng-click="dealBreakerEditStatus=true"></div>
+				<div ng-show="dealBreakerEditStatus" class="but_cancel no_select" title="取消编辑" ng-click="dealBreakerEditStatus=false">x</div>
+				<!--<div class="switch fr">
+					<input type="checkbox" name="toggle" ng-model="dealBreakerEditStatus" ng-true-value="true" ng-false-value="false">
+					<label for="toggle"><i></i></label>
+					<span></span>
+				</div>-->
+				<ul class="ul_add_condition cr">
+					<li ng-repeat="db in dealBreaker" ng-if="db.status" title="{{db.value}}">
+						{{db.value}}
+						<div class="pointer tag" ng-show="dealBreakerEditStatus" ng-click="removeDealbreaker(db)">x</div>
+					</li>
+				</ul>
+
+				<div class="edit_deal_breaker" ng-show="dealBreakerEditStatus&& basicInfo.johoStatus==1">
+					<label id="member_search_ico" for="member_search"></label>
+					<select class="input_text member_search" ng-model="choseDealBreaker" 
+						ng-options="db as db.value for db in dealBreaker | dealbreakerFilter">
+					</select>
+					<div class="but_plus" ng-click="addDealbreaker( choseDealBreaker )">+</div>
+				</div>
+			</div>
+			<h2 class="basic_btn basic_block btn_red" style="text-align: center;padding: 0px !important;"  ng-show="dealBreakerEditStatus&& basicInfo.johoStatus==1" ng-click="saveDealbreaker()">确认</h2>
+		</div>
+		
+		<!--团队成员模块-->
+		<div id="team_member" ng-if="basicInfo.johoStatus!=3" ng-controller="johoTeamMemberController">
+			<div class="team_member_show" ng-hide="teamMembers|isEmptyFilter">
+				<h2 class="team_member_title">团队成员</h2>
+				<ul class="ul_member no_select">
+					<li ng-repeat="member in teamMembers">
+						<img class="bradius_50" ng-hide="member.avatar" src="./candidates/style/img/default.png"/>
+						<img class="bradius_50" ng-show="member.avatar" ng-src="{{member.avatar}}" 
+								onerror="javascript:this.src='./candidates/style/img/default.png';this.onerror=null;"/>
+						<p>{{member.business_user_name}}</p>
+						<div class="del_but" ng-show="show_coho_people && member.business_user_id != userInfo.business_user_id" ng-click="delaFromTeamMember(member)">x</div>
+					</li>
+				</ul>
+				<div class="clear"></div>
+			</div>
+			<div class="basic_block team_member_edit" ng-show="basicInfo.johoStatus==1">
+				<h2 class="basic_btn no_select basic_btn_img_6" ng-click="show_coho_people=!show_coho_people"
+					ng-class="{'ico_img_extened_up':show_coho_people}">添加团队成员</h2>
+				<div class="add_team_member" ng-if="show_coho_people">
+					<label id="member_search_ico" for="member_search"></label>
+					<input id="member_search" class="input_text member_search" type="text" ng-model="preSearchValue.business_user_name" placeholder="搜索团队成员"/>
+					<div class="ul_add_member_notice" ng-show="(businessUsers|filter:preSearchValue|isEmptyFilter)">无相关人员</div>
+					<ul class="ul_add_member" ng-show="!(businessUsers|filter:preSearchValue|isEmptyFilter) && !(preSearchValue.business_user_name|isEmptyFilter)">
+						<li ng-repeat="member in businessUsers|filter:preSearchValue">
+							<div class="member_img">
+								<img class="bradius_50" ng-hide="member.avatar" src="./candidates/style/img/default.png"/>
+								<img class="bradius_50" ng-show="member.avatar" ng-src="{{member.avatar}}" 
+								onerror="javascript:this.src='./candidates/style/img/default.png';this.onerror=null;"/>
+							</div>
+							<div class="member_info">
+								<span class="member_name">{{member.business_user_name}}</span></br>
+								<span class="member_position">{{member.position}}</span>
+							</div>
+							<div class="cl add_member_but" ng-click="addToTeamMember(member)">+</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<!--<h2 class="basic_btn basic_block basic_btn_img_4" ng-if="basicInfo.johoStatus!=3" ui-sref=".history({'job_id':basicInfo.johoId})">JOHO历史</h2>-->
+		
+		<h2 class="basic_btn basic_block basic_btn_img_5" ng-if="basicInfo.johoStatus!=3">评论</h2>
+		
+		<!--<h2 class="basic_btn basic_block" ng-if="basicInfo.johoStatus==2">面试回复</h2>-->
+		
+		<!--<h2 class="basic_btn basic_block" ng-if="basicInfo.johoStatus==2">即时消息</h2>-->
+		
+		<!--<h2 class="basic_btn basic_block" ng-if="basicInfo.johoStatus==2">来访的TAHO</h2>-->
+		
+	</div>
+</div>

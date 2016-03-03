@@ -1,0 +1,241 @@
+
+<form name="updateForm" ng-submit="submitFormData()">
+	
+<!--行为模式 begin-->
+<div class="tab-0gmi-group-1">
+  <div class="tab tab-0gmi-create-vt">
+		<div class="tab-header">
+			<div class="tab-title">行为模式</div>
+		</div>
+		<div class="tab-content">
+			<div class="tab-left">
+				<div class="round" deal-break db-click="addDealbreaker('behavior_style_db')" db-value="dealBreaker | selectObjFromObjArr:'name':'behavior_style_db':'status' ">
+				</div>
+				<div class="ui-select">
+					<input  type="text" ng-disabled="true" ng-model="module6formData.behavior_style.behavior_style_name" placeholder="请选择"/>
+					<select ng-model="module6formData.behavior_style"
+						ng-options="behaviorStyle as behaviorStyle.behavior_style_name for behaviorStyle in behaviorStyleList">
+						<option value="">请选择</option>
+					</select>
+					<div class="descripation">
+					{{module6formData.behavior_style.behavior_style_description}}
+					</div>
+				</div>
+				
+			</div>
+			<div class="tab-right">
+				<ul class="ul_drag no_select">
+					<li>
+						<span class="h2">团队角色</span>
+						<div zero-drag-scale
+							zero-drag-scale-min=0
+							zero-drag-left-name="领导者"
+							zero-drag-scale-max=10
+							zero-drag-right-name="跟随者"
+							zero-drag-scale-step=0.5
+							ng-model = "module6formData.behavior_style.roles_in_a_team"
+							fun="getBehaviorStyleValue()"
+							>
+						</div>
+					</li>
+					<li>
+						<span class="h2">人际距离</span>
+						<div zero-drag-scale
+							zero-drag-scale-min=0
+							zero-drag-left-name="亲密"
+							zero-drag-scale-max=10
+							zero-drag-right-name="疏远"
+							zero-drag-scale-step=0.5
+							ng-model = "module6formData.behavior_style.mind_distance"
+							fun="getBehaviorStyleValue()"
+							>
+						</div>
+					</li>
+					<li>
+						<span class="h2">工作导向</span>
+						<div zero-drag-scale
+							zero-drag-scale-min=0
+							zero-drag-left-name="注重流程"
+							zero-drag-scale-max=10
+							zero-drag-right-name="注重结果"
+							zero-drag-scale-step=0.5
+							ng-model = "module6formData.behavior_style.working_orientation"
+							fun="getBehaviorStyleValue()"
+							>
+						</div>
+					</li>
+					<li>
+						<span class="h2">工作结果</span>
+						<div zero-drag-scale
+							zero-drag-scale-min=0
+							zero-drag-left-name="注重质量"
+							zero-drag-scale-max=10
+							zero-drag-right-name="注重效率"
+							zero-drag-scale-step=0.5
+							ng-model = "module6formData.behavior_style.working_result"
+							fun="getBehaviorStyleValue()"
+							>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!--行为模式 end-->
+
+<!--EQ begin-->
+<!--IQ begin-->
+<div class="tab-0gmi-group-1">
+	<div class="tab tab-0gmi-create-IQ">
+		<div class="tab-header">
+			<div class="tab-title">EQ</div>
+		</div>
+		<div class="tab-content">
+			<div class="tab-left">
+				<div class="round"  deal-break db-click="addDealbreaker('eq_db')" db-value="dealBreaker | selectObjFromObjArr:'name':'eq_db':'status' ">
+					<input class="no_out_line" type="text" 
+					 ng-model="module6formData.eq.eq_value"
+					 ng-change="setEqValue()"
+					 maxlength="3"/>
+					<br/>
+					<span class="b">EQ</span>
+				</div>
+			</div>
+			<div class="tab-right">
+				<h2 class="text_color_redSauce b">{{module6formData.eq.eq_level}}</h2>
+			</div>
+		</div>
+	</div>
+</div>
+<!--<div class="tab-0gmi-group-1">
+  <div class="tab tab-0gmi-create-EQ">
+		<div class="tab-header">
+			<div class="tab-title">EQ</div>
+		</div>
+		<div class="tab-content">
+			<div class="tab-left">
+				<h1 class="b text_color_redSauce">沟通者<span class="triangle down"></span></h1>
+				<div class="descripation">
+					细节描述细节描述细节描述细节描述细节描述细节
+					描述细节描述细节描述细节描述细节描述细节描述
+					细节描述细节描述
+				</div>
+			</div>
+			<div class="tab-right">
+				<div class="EQ_module fl">
+					<div class="round">
+						<span>75</span>
+					</div>
+					<span class="text_color_6A f12">能力</span><br/>
+					<span class="text_color_grey mt10">15.9%的人在这个范围内</span>
+					<ul class="ul_drag ul_drag_1">
+						<li>
+							<span class="h2">适应能力</span>
+							<div class="drag">
+								<hr/>
+								<div class="drag_round"></div>
+								<label class="left">0</label>
+								<label class="right">10</label>
+							</div>
+						</li>
+						<li>
+							<span class="h2">情绪解读</span>
+							<div class="drag">
+								<hr/>
+								<div class="drag_round"></div>
+								<label class="left">0</label>
+								<label class="right">10</label>
+							</div>
+						</li>
+						<li>
+							<span class="h2">情绪表达</span>
+							<div class="drag">
+								<hr/>
+								<div class="drag_round"></div>
+								<label class="left">0</label>
+								<label class="right">10</label>
+							</div>
+						</li>
+						<li>
+							<span class="h2">情绪调节</span>
+							<div class="drag">
+								<hr/>
+								<div class="drag_round"></div>
+								<label class="left">0</label>
+								<label class="right">10</label>
+							</div>
+						</li>
+					</ul>
+				</div>
+				
+				<div class="EQ_module fl">
+					<div class="round">
+						<span>75</span>
+					</div>
+					<span class="text_color_6A f12">性格</span><br/>
+					<span class="text_color_grey mt10">15.9%的人在这个范围内</span>
+					<ul class="ul_drag ul_drag_1">
+						<li>
+							<span class="h2">社交性</span>
+							<div class="drag">
+								<hr/>
+								<div class="drag_round"></div>
+								<label class="left">0</label>
+								<label class="right">10</label>
+							</div>
+						</li>
+						<li>
+							<span class="h2">压力承受</span>
+							<div class="drag">
+								<hr/>
+								<div class="drag_round"></div>
+								<label class="left">0</label>
+								<label class="right">10</label>
+							</div>
+						</li>
+						<li>
+							<span class="h2">同情心</span>
+							<div class="drag">
+								<hr/>
+								<div class="drag_round"></div>
+								<label class="left">0</label>
+								<label class="right">10</label>
+							</div>
+						</li>
+						<li>
+							<span class="h2">情绪控制</span>
+							<div class="drag">
+								<hr/>
+								<div class="drag_round"></div>
+								<label class="left">0</label>
+								<label class="right">10</label>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>-->
+<!--EQ end-->
+
+<!--<pre>
+	{{ module6formData }}
+</pre>-->
+
+<!--保存按钮-->
+<button class="save_but" type="submit" ng-show="( !job_id || updateForm.$dirty)">
+	<span class="h2 b">保存</span>
+</button>
+<!--下一页-->
+<div class="save_but" ng-show="( job_id && updateForm.$pristine )"  ui-sref="^.interview_important">
+	<span class="h2 b">下一步</span>
+</div>
+
+
+</form>
+
+
+
+

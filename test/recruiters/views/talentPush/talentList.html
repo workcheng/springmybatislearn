@@ -1,0 +1,113 @@
+<div>
+	<h2 class="text_color_grey b fl"><small>"{{joho_name}}"</small>&nbsp;的人才推送</h2>
+	<div class="switch work_switch fr" style="margin-top: 0px !important;" ng-show="(talentListNew.length+talentListOld.length)>=2">
+		<input type="checkbox" name="toggle" checked="checked" ng-model="selectShowInfo" zero-dialog-compare="selectShowInfo" talentlist=talentlist>
+		<label for="toggle"><i></i></label>
+		<span class="switch_span switch_left b">比较</span>
+	</div>
+	<div class="clear"></div>
+</div>
+
+<p class="f16 text_color_grey loading_data ta_c mt30 cl" ng-if="inculdeHtml.loading">数据加载中...</p>
+<div class="tab-0gmi-group-1 no_data" ng-show="(talentListOld|isEmptyFilter) && (talentListNew|isEmptyFilter) &&!inculdeHtml.loading">
+	<span class="notice">暂无人才推送，完善JOHO即可推送符合的人才</span><br/>
+	<h2 class="common_tag edit_tag" ui-sref="recruiters.joho.edit({'job_id':joho_id})">编辑此JOHO</h2>
+</div>
+
+
+<ul id="talent_push_talent_list" class="talent_push_list">
+	<li class="tab-0gmi-group-1 tab tab-0gmi-position" ng-repeat="talentInfo in talentListNew" ui-sref="recruiters.talentPush.talentDetail({'taho_id':talentInfo.basic.taho_id,'job_id':joho_id})">
+		<!--has data-->
+		<div class="tab-content">
+			<div class="tab-first">
+				<div class="tab-img">
+					<img class="bradius_50" ng-hide="talentInfo.basic.avatar_url" src="./candidates/style/img/default.png"/>
+					<img class="bradius_50" ng-show="talentInfo.basic.avatar_url" ng-src="{{talentInfo.basic.avatar_url}}" 
+						onerror="javascript:this.src='./candidates/style/img/default.png';this.onerror=null;"/>
+				</div>
+				<p class="text_color_999 f16 b">{{talentInfo.basic.name}}</p>
+			</div>
+			<div class="tab-second">
+				<h2 class="postion_title text_color_redSauce">{{talentInfo.basic.positions[0].position_name}}</h2>
+				<ul class="position_tag clearUl">
+					<li class="h3" ng-if="talentInfo.basic.pref_salary|isEmptyFilter">年薪不限</li>
+					<li class="h3" ng-if="talentInfo.basic.pref_salary">年薪{{talentInfo.basic.pref_salary}}万</li>
+					<li class="h3" ng-if="talentInfo.basic.industries[0].industry_name|isEmptyFilter">行业不限</li>
+					<li class="h3" ng-if="talentInfo.basic.industries[0].industry_name">{{talentInfo.basic.industries[0].industry_name}}</li>
+					<li class="h3" ng-if="talentInfo.basic.locations[0].location_name|isEmptyFilter">工作地点不限</li>
+					<li class="h3" ng-if="talentInfo.basic.mobile_number">{{talentInfo.basic.locations[0].location_name}}</li>
+				</ul>
+				<div ng-show="talentInfo.basic.description" class="mt10">
+					<span class="text_color_grey">自我描述：</span>
+					<span style="line-height: 25px;">{{talentInfo.basic.description}}</span>
+				</div>
+			</div>
+			<div class="tab-third ta_c">
+				<p class="show_score">{{talentInfo.score.totalScore|percentFilter}}</p>
+				<p class="text_color_grey f16 b">匹配度</p>
+			</div>
+		</div>
+		<div class="div_transform_rotate">匹配中</div>
+		<div class="clearfix"></div>
+	</li>
+	
+	<li class="tab-0gmi-group-1 tab tab-0gmi-position" ng-repeat="talentInfo in talentListOld" ui-sref="recruiters.talentPush.talentDetail({'taho_id':talentInfo.basic.taho_id,'job_id':joho_id})">
+		<!--has data-->
+		<div class="tab-content">
+			<div class="tab-first">
+				<div class="tab-img">
+					<img class="bradius_50" ng-hide="talentInfo.basic.avatar_url" src="./candidates/style/img/default.png"/>
+					<img class="bradius_50" ng-show="talentInfo.basic.avatar_url" ng-src="{{talentInfo.basic.avatar_url}}"
+						onerror="javascript:this.src='./candidates/style/img/default.png';this.onerror=null;"/>
+				</div>
+				<p class="text_color_999 f16 b">{{talentInfo.basic.name}}</p>
+			</div>
+			<div class="tab-second">
+				<h2 class="postion_title text_color_redSauce">{{talentInfo.basic.positions[0].position_name}}</h2>
+				<ul class="position_tag clearUl">
+					<li class="h3" ng-if="talentInfo.basic.pref_salary|isEmptyFilter">年薪不限</li>
+					<li class="h3" ng-if="talentInfo.basic.pref_salary">年薪{{talentInfo.basic.pref_salary}}万</li>
+					<li class="h3" ng-if="talentInfo.basic.industries[0].industry_name|isEmptyFilter">行业不限</li>
+					<li class="h3" ng-if="talentInfo.basic.industries[0].industry_name">{{talentInfo.basic.industries[0].industry_name}}</li>
+					<li class="h3" ng-if="talentInfo.basic.locations[0].location_name|isEmptyFilter">工作地点不限</li>
+					<li class="h3" ng-if="talentInfo.basic.mobile_number">{{talentInfo.basic.locations[0].location_name}}</li>
+				</ul>
+				<div ng-show="talentInfo.basic.description" class="mt10">
+					<span class="text_color_grey">自我描述：</span>
+					<span style="line-height: 25px;">{{talentInfo.basic.description}}</span>
+				</div>
+			</div>
+			<div class="tab-third ta_c">
+				<p class="show_score">{{talentInfo.score.totalScore|percentFilter}}</p>
+				<p class="text_color_grey f16 b">匹配度</p>
+			</div>
+		</div>
+		<div class="div_transform_rotate" style="background: #A2A2A2 !important;border: none;">历史的</div>
+		<div class="clearfix"></div>
+	</li>
+	
+	<!--<div class="tab">
+		<div class="tab-header">
+			<div class="tab-title">***的评论</div>
+		</div>
+		<ul class="tab-content">
+			<li>
+				<div class="img_ico">
+					<img src="../../../candidates/style/img/default.png"/>
+				</div>
+				<div>王伟</div>
+				<p>这个人不错我感觉很好</p>
+				<div>回复</div>
+			</li>
+			<li>
+				
+			</li>
+		</ul>
+		<div>
+			<textarea>
+				
+			</textarea>
+		</div>
+		<p>关闭</p>
+	</div>-->
+</ul>

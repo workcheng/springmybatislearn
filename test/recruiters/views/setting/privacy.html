@@ -1,0 +1,50 @@
+<div class="tab-0gmi-group-1 tab">
+	<div class="tab-header">
+		<div class="tab-title">
+			<h2 class="b">隐私设置</h2>
+			<p>以下是您的隐私设置，您可以选择人才全息图中展示的内容。</p>
+		</div>
+	</div>
+	<ul class="tab-content setting_ul">
+		<li ng-show="setting.editSetting != 'privacy_setting'">
+			
+			<div class='li_l'>展示内容</div>
+			<ul class='li_r ml5' ng-show="(privacy_1+privacy_2+privacy_3+privacy_4+privacy_5)>0">
+				<li ng-show="privacy_1==1">个人信息</li>
+				<li ng-show="privacy_2==1">工作经验与教育</li>
+				<li ng-show="privacy_3==1">语言能力</li>
+				<li ng-show="privacy_4==1">技能</li>
+				<li ng-show="privacy_5==1">证书</li>
+			</ul>
+			<div class='li_r ml5 text_color_grey'  ng-hide="(privacy_1+privacy_2+privacy_3+privacy_4+privacy_5)>0">隐藏所有信息</div>
+			
+			<div class="clear"></div>
+			<div class="edit" ng-click="setting.editSetting = 'privacy_setting'"></div>
+		</li>
+		<li class="special" ng-show="setting.editSetting == 'privacy_setting'">
+			<div class='li_l'>展示内容</div>
+			<div class='li_r'>
+				<form name="formData" ng-submit="submitForm(true)" novalidate  autocomplete="off">
+					<input type="checkbox" ng-model="update.privacy.privacy_1" id="privacy_1" ng-true-value="1" ng-false-value="0"/><label for='privacy_1'>个人信息</label></br>
+					<input type="checkbox" ng-model="update.privacy.privacy_2" id="privacy_2" ng-true-value="1" ng-false-value="0"/><label for="privacy_2">工作经验与教育</label></br>
+					<input type="checkbox" ng-model="update.privacy.privacy_3" id="privacy_3" ng-true-value="1" ng-false-value="0"/><label for="privacy_3">语言能力</label></br>
+					<input type="checkbox" ng-model="update.privacy.privacy_4" id="privacy_4" ng-true-value="1" ng-false-value="0"/><label for="privacy_4">技能</label></br>
+					<input type="checkbox" ng-model="update.privacy.privacy_5" id="privacy_5" ng-true-value="1" ng-false-value="0"/><label for="privacy_5">证书</label></br>
+					<div class="form_but_group">
+						<input type="submit" id="toho_id_basic_but_submit" class="form_but form_but_submit" value="确认"/>
+						<div class="form_but form_but_cancel" ng-click="cancelForm(formData)">取消</div>
+					</div>
+				</form>
+			</div>
+			<div class="clear"></div>
+		</li>
+	</ul>
+</div>
+
+
+
+
+
+
+
+

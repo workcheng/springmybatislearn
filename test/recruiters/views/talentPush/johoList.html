@@ -1,0 +1,45 @@
+<h2 class="text_color_grey b">人才推送</h2>
+
+<p class="f16 text_color_grey loading_data ta_c mt30" ng-if="inculdeHtml.loading">数据加载中...</p>
+<div class="tab-0gmi-group-1 no_data" ng-show="(johoList|isEmptyFilter)&&!inculdeHtml.loading">
+	<span class="notice">暂无人才推送，发布JOHO即可推送人才</span><br/>
+	<h2 class="common_tag create_tag" ng-click="transformCreation()">创建新JOHO</h2>
+</div>
+
+<ul id="talent_push_joho_list" class="talent_push_list">
+	<li class="tab-0gmi-group-1" ng-repeat="johoInfo in johoList">
+		<div class="fl">
+			<h1 class="m0 text_color_redSauce pointer"  ui-sref="recruiters.talentPush.preTalentList.talentList({'job_id':johoInfo.jobId,'joho_name':johoInfo.joHoName})">{{johoInfo.joHoName}}</h1>
+			<p class="text_color_999 mt10">{{johoInfo.address}}</p>
+			<div class="information">
+				<span class="pointer" ui-sref="recruiters.eventCenter.detail({'job_id':johoInfo.jobId})">
+					<span>消息回复</span>
+					<label ng-class="{'empty':(johoInfo.unCheckedMessage|isEmptyFilter)}">{{johoInfo.unCheckedMessage}}</label>
+				</span>
+				<span class="pointer" ui-sref="recruiters.eventCenter.detail({'job_id':johoInfo.jobId})">
+					<span>面试视频</span>
+					<label ng-class="{'empty':(johoInfo.unCheckedMessage|isEmptyFilter)}">{{johoInfo.unCheckedVideo}}</label>
+				</span>
+			</div>
+		</div>
+		<div class="member_list">
+			<p class="f16 text_color_grey">推送的人才</p>
+			<p class="mt30 text_color_grey ta_c" ng-show="johoInfo.recommondedTaHo|isEmptyFilter">暂无当前匹配的人才</p>
+			<ul class="ul_member" ng-hide="johoInfo.recommondedTaHo|isEmptyFilter">
+				<li ng-repeat="tahoInfo in johoInfo.recommondedTaHo|limitTo:5"  ui-sref="^.talentDetail({'taho_id':tahoInfo.taHoId,'job_id':johoInfo.jobId})">
+					<img class="bradius_50" ng-hide="tahoInfo.avatar" src="./candidates/style/img/default.png"/>
+					<img class="bradius_50" ng-show="tahoInfo.avatar" ng-src="{{tahoInfo.avatar}}" 
+						onerror="javascript:this.src='./candidates/style/img/default.png';this.onerror=null;"/>
+					<p class="break_all">{{tahoInfo.name}}</p>
+					<div class="match_score">{{tahoInfo.score|percentFilter}}</div>
+				</li>
+				<li ng-show="johoInfo.recommondedTaHo.length>5" class="special" title="查看更多" ui-sref="recruiters.talentPush.preTalentList.talentList({'job_id':johoInfo.jobId,'joho_name':johoInfo.joHoName})">
+					<label></label>
+					<label></label>
+					<label></label>
+				</li>
+			</ul>
+		</div>
+	</li>
+	
+</ul>

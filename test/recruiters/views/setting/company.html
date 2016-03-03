@@ -1,0 +1,224 @@
+<div class="tab-0gmi-group-1 tab">
+
+	<style type="text/css">
+		.showValue {
+			width: 100% !important;
+			height: 35px !important;
+			border: none !important;
+			background: #FAFAFA !important;
+			border-radius: 4px !important;
+		}
+		
+		.showValue:focus {
+			border-color: transparent;
+		}
+		
+		.addTag {
+			position: absolute;
+			width: 58.5%;
+			height: 49%;
+			left: 15%;
+			background-size: contain;
+			background-position: center;
+			margin-right: 4px;
+			top: 20% !important;
+		}
+		
+		.preSearch .addTag {
+			width: 82.5% !important;
+			background-position: right !important;
+			margin-top: -0.5% !important;
+			border-radius: 4px !important;
+			top: 20% !important;
+		}
+		
+		.ttt {
+			height: 60%;
+			padding-bottom: 5% !important;
+		}
+		
+		.pop_up {
+			position: absolute;
+			left: 20% !important;
+			top: 15% !important;
+		}
+	</style>
+
+	<div class="tab-header" name="head">
+		<div class="tab-title">
+			<h2 class="b">公司信息</h2>
+			<p>以下是您的公司信息，您可以填写公司必要信息、上传公司logo和公司简介</p>
+		</div>
+	</div>
+
+	<!--*****************edit begin***********************-->
+	<div id="company" class="tab-0gmi-group-1" ng-controller="recrSettingCompanyController" style="border: none;box-shadow: 0px 0px 0px 0px rgba(0,0,0,0);">
+		<form name="formData" ng-submit="submitForm( formData.$valid,formData.$dirty )" ng-show="showEditStatus == true || showEdit == true " novalidate autocomplete="off">
+			<ul class="tab-content setting_ul">
+				<li class="input_div">
+					<span class="tagName"><span style="margin-right: 1%;color: #E24F00;">*</span>公司全称</span>
+					<input type="text" style="margin-left: 3%;width: 60%;border: none;border-radius: 3px;background: #FAFAFA;padding: 1px;text-indent: 5px;" name="company_name" ng-model="comInfoModule.company_name" placeholder="请填写公司全称" required zero-focus/>
+					<span style="left: 74%;background-color: transparent;" class="error" ng-show="warnMessage==1 && (comInfoModule.company_name == '' || comInfoModule.company_name == null)  ">公司全称不能为空</span>
+				</li>
+				<li class="input_div">
+					<span class="tagName"><span style="margin-right: 1%;color: #E24F00;">*</span>公司简称</span>
+					<input type="text" style="margin-left: 3%;width: 60%;border: none;border-radius: 3px;background: #FAFAFA;padding: 1px;text-indent: 5px;" name="short_company_name" ng-model="comInfoModule.short_company_name" placeholder="请填写公司简称" required zero-focus/>
+					<span style="left: 74%;background-color: transparent;" class="error" ng-show="warnMessage==1 && (comInfoModule.short_company_name == '' || comInfoModule.short_company_name == null)  ">公司简称不能为空</span>
+				</li>
+				<li class="input_div ttt">
+					<span class="tagName"><span style="margin-right: 1%;color: #E24F00;">*</span>行业&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<select style="margin-left:5% !important;background:#FAFAFA;height:35px;width:60%;padding-left: 0;text-indent: 3px;" ng-model="comInfoModule.industry_id" title="{{industyList|selectObjFromObjArr:'industry_id':comInfoModule.industry_id:'industry_name'}}" ng-options="industry.industry_id as industry.industry_name for industry in industyList">
+						<option value="" >{{industyList|selectObjFromObjArr:'industry_id':comInfoModule.industry_id:'industry_name'}}</option>
+					</select>
+					</span>
+					<span style="left: 74%;background-color: transparent;" class="error" ng-show="warnMessage==1 && (comInfoModule.industry_id == null || comInfoModule.industry_id == 0 ) ">请选择行业</span>
+				</li>
+				<li class="input_div ttt">
+					<span class="tagName"><span style="margin-right: 1%;color: #E24F00;">*</span>公司地点</span>
+					<span class="span2">
+							<div class="addTag"
+							pre-search = "location"
+							ng-model = "comInfoModule.location_id"
+							edit-pluagin="editPluagin('location_id')"
+							show-from-level  = 1
+							click-from-level = 2
+							input-disable = true
+							></div>
+							<input type="hidden" name="location_id" ng-model="comInfoModule.location_id"/>
+					</span>
+					<span style="left: 74%;background-color: transparent;" class="error" ng-show="warnMessage==1 && (comInfoModule.location_id == null || comInfoModule.location_id == 0) ">请选择公司地点</span>
+				</li>
+				<li class="input_div ttt">
+					<span class="tagName"><span style="margin-right: 1%;color: #E24F00;">*</span>公司规模</span>
+					<select style="margin-left:3% !important;background:#FAFAFA;height:35px;width:60%;padding-left: 0;text-indent: 5px;" name="company_size_type_id" required zero-focus class="input_text" ng-model="comInfoModule.company_size_type_id" title="{{companyTypeSizeList|selectObjFromObjArr:'company_size_type_id':comInfoModule.company_size_type_id:'company_size_type'}}"
+					ng-options="companyTypeSize.company_size_type_id as companyTypeSize.company_size_type for companyTypeSize in companyTypeSizeList">
+					<option value="" >{{companyTypeSizeList|selectObjFromObjArr:'company_size_type_id':comInfoModule.company_size_type_id:'company_size_type'}}</option>
+					</select>
+					<span style="left: 74%;background-color: transparent;" class="error" ng-show="warnMessage==1 && (comInfoModule.company_size_type_id == null || comInfoModule.company_size_type_id == 0 ) ">请选择公司规模</span>
+				</li>
+				<li class="input_div ttt">
+					<span class="tagName"><span style="margin-right: 1%;color: #E24F00;">*</span>公司类型</span>
+					<span class="span2">
+				<select style="margin-left:3% !important;background:#FAFAFA;height:35px;width:60%;padding-left: 0;text-indent: 5px;" name="company_type_id" ng-model="comInfoModule.company_type_id" title="{{companyTypeList|selectObjFromObjArr:'company_type_id':comInfoModule.pref_company_type:'company_type_name'}}"
+					ng-options="company_type.company_type_id as company_type.company_type_name for company_type in companyTypeList">
+					<option value="">{{companyTypeList|selectObjFromObjArr:'company_type_id':comInfoModule.company_type_id:'company_type_name'}}</option>
+				</select>
+			</span>
+					<span style="left: 74%;background-color: transparent;" class="error" ng-show="warnMessage==1 && (comInfoModule.company_type_id == null || comInfoModule.company_type_id == 0) ">请选择公司类型</span>
+				</li>
+
+				<li class="input_div" style="margin-top: 10%;">
+					<span class="tagName"><span style="margin-right: 1%;color: #E24F00;">&nbsp;</span>公司网站</span>
+					<input type="text" style="margin-left: 3%;width: 60%;border: none;border-radius: 3px;background: #FAFAFA;padding: 1px;text-indent: 5px;" name="comInfoModule.company_website" ng-model="comInfoModule.company_website" placeholder="请填写公司网站" required zero-focus/>
+				</li>
+				<li class="input_div" style="margin-bottom: 10%;">
+					<div class="ui-grid-b">
+						<div class="ui-block-a" style="width: 10%;height: 60px;margin-left: 1%;float: left;">
+							<p class="tagName"><span style="margin-right: 1%;color: #E24F00;line-height: 120px;">&nbsp;</span>公司logo</p>
+						</div>
+						<div class="ui-block-b" style="width: 40%;height: 60px;float: left;text-align: center;">
+							<td width="40%">
+								<div select-logo="comInfoModule.company_logo" style="margin-left: 7%;"></div>
+							</td>
+						</div>
+						<div class="ui-block-c" style="width: 48%;height: 70px;float: left;"><span style="margin-right: 1%;line-height: 130px;">建议尺寸为200*200</span></div>
+					</div>
+				</li>
+
+				<li class="input_div" style="margin-top: 20%;" >
+					<div class="ui-grid-a">
+						<div class="ui-block-a" style="width: 10%;height: 70px;margin-left: 1%;float: left;"><span class="tagName"><span style="margin-right: 1%;color: #E24F00;">&nbsp;</span>公司简介</span>
+						</div>
+						<div class="ui-block-b" style="margin-left: 3%;width: 60%;height: 40%;float: left;text-align: center;">
+							<textarea style="width: 100%;height: 150px;background: #FAFAFA;margin-bottom: 10% !important;" placeholder="请填写公司简介" name="comInfoModule.company_introduce" ng-model="comInfoModule.company_introduce"></textarea>
+						</div>
+					</div>
+				</li>
+
+				<div class="form_but_group">
+					<input type="submit" id="toho_id_basic_but_submit" class="form_but form_but_submit" style="margin-left: 20%;width: 15%;" value="完成" />
+					<!--<div class="form_but form_but_cancel" ng-click="showEditStatus = false" style="margin-left: 15%;width: 15%;">取消</div>-->
+					<div class="form_but form_but_cancel" ng-click="cohoCancel()" style="margin-left: 15%;width: 15%;">取消</div>
+				</div>
+
+			</ul>
+
+			<!-- 遮罩层 -->
+			<div ng-if="editPluaginName" class="pop_up_bg"></div>
+			<!-- 职位选择  -->
+			<!--<div
+		 class="position_pop_up"
+		 ng-show="editPluaginName=='position'"
+		 pop-up-layer = "position"
+		 ng-model = "basicModule.position_id"
+		 edit-pluagin="editPluagin('')"
+		 show-name = "职位"
+		 click-level = 2
+		></div>-->
+
+			<!-- 工作地点选择  -->
+			<div ng-show="editPluaginName=='location_id'" pop-up-layer-location ng-model="comInfoModule.location_id" edit-pluagin="editPluagin('')"></div>
+
+		</form>
+
+		<!--*****************显示信息***********************-->
+		<div ng-hide="showEditStatus == true || showEdit == true " style="-moz-box-shadow: 0px 0px 0px transparent !important;-webkit-box-shadow: 0px 0px 0px transparent !important;box-shadow:0px 0px 0px transparent !important;">
+			<div style="width: 100%;position: relative;">
+				<img style="width: 20px;height: 20px;right: 2%;position: absolute;z-index: 100;" src="style/img/ico_edit.png" ng-click="showEditStatus = !showEditStatus" />
+			</div>
+			<ul class="tab-content setting_ul" style="-moz-box-shadow: 0px 0px 0px transparent !important;-webkit-box-shadow: 0px 0px 0px transparent !important;box-shadow:0px 0px 0px transparent !important;">
+				<li class="input_div">
+					<span class="tagName">公司全称</span>
+					<span style="background: transparent !important;margin-left: 4%;width: 60%;border: none;border-radius: 3px;background: #FAFAFA;padding: 1px;">{{comInfo.company_name}}</span>
+				</li>
+				<li class="input_div">
+					<span class="tagName">公司简称</span>
+					<span style="background: transparent !important;margin-left: 4%;width: 60%;border: none;border-radius: 3px;background: #FAFAFA;padding: 1px;">{{comInfo.short_company_name}}</span>
+				</li>
+				<li class="input_div ttt">
+					<span class="tagName">行业&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<span style="background: transparent !important;margin-left: 4%;width: 60%;border: none;border-radius: 3px;background: #FAFAFA;padding: 1px;">{{industyList|selectObjFromObjArr:'industry_id':comInfo.industry_id:'industry_name'}}</span>
+				</li>
+				<li class="input_div ttt">
+					<span class="tagName">公司地点</span>
+					<span style="background: transparent !important;margin-left: 4%;width: 60%;border: none;border-radius: 3px;background: #FAFAFA;padding: 1px;">{{comInfo.location_name}}</span>
+				</li>
+				<li class="input_div ttt">
+					<span class="tagName">公司规模</span>
+					<span style="background: transparent !important;margin-left: 4%;width: 60%;border: none;border-radius: 3px;background: #FAFAFA;padding: 1px;">{{companyTypeSizeList|selectObjFromObjArr:'company_size_type_id':comInfo.company_size_type_id:'company_size_type'}}</span>
+				</li>
+				<li class="input_div ttt">
+					<span class="tagName">公司类型</span>
+					<span style="background: transparent !important;margin-left: 4%;width: 60%;border: none;border-radius: 3px;background: #FAFAFA;padding: 1px;">{{companyTypeList|selectObjFromObjArr:'company_type_id':comInfo.company_type_id:'company_type_name'}}</span>
+				</li>
+
+				<li class="input_div" style="margin-top: 10%;">
+					<span class="tagName">公司网站</span>
+					<span style="background: transparent !important;margin-left: 4%;width: 60%;border: none;border-radius: 3px;background: #FAFAFA;padding: 1px;">{{comInfo.company_website}}</span>
+				</li>
+				<li class="input_div" style="margin-bottom: 10%;">
+					<div class="ui-grid-b">
+						<div class="ui-block-a" style="width: 10%;height: 70px;float: left;line-height: 70px;" float: left; ">
+						<p class="tagName ">公司logo</p>
+					</div>
+					<div class="ui-block-b " style="width: 20%;height: 70px;float: left;text-align: center;margin-left: 1%; "><img src={{comInfo.company_logo}} style="width: 100px;height:100px; " />
+				</div>
+			</li>
+
+			<li class="input_div " style="margin-top: 15%; ">
+				<div class="ui-grid-a ">
+					<div class="ui-block-a " style="width: 10%;height: 70px;float: left; "><span class="tagName ">公司简介</span>
+					</div>
+					<div class="ui-block-b " style="margin-left: 3%;width: 60%;height: 40%;float: left; ">
+						<pre style="white-space: pre-wrap;white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;width: 100%;font-size: 12px;color: darkgray;padding: 0px;margin: 0px;font-size: 16px; ">{{comInfo.company_introduce}}</pre>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<!--</div>-->
+
+	
+
+</div>
+<!--</div>-->

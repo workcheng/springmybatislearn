@@ -1,0 +1,40 @@
+<div>
+	<!--面试邀请-->
+	<div id="interval_message" class="basic_block tab right_standrad">
+		<div class="tab-header">
+			<div class="tab-title">面试邀请</div>
+		</div>
+		<div class="tab-content" ng-show="internalMessageList|isEmptyFilter">
+			<div class="nothing_prompt m10">暂无面试邀请</div>
+		</div>
+		<ul class="ul_member" ng-show="!(internalMessageList|isEmptyFilter)">
+			<li ng-repeat="internalMessage in internalMessageList"  ui-sref="^.detail({'job_id':internalMessage.job_id})">
+				<img class="bradius_50" ng-hide="internalMessage.avatar" src="./candidates/style/img/default.png"/>
+				<img class="bradius_50" ng-show="internalMessage.avatar" ng-src="{{internalMessage.avatar}}" 
+					onerror="javascript:this.src='./candidates/style/img/default.png';this.onerror=null;"/>
+				<p>{{internalMessage.company_name}}</p>
+			</li>
+		</ul>
+	</div>
+	<!--即时消息-->
+	<div id="information_message" class="basic_block tab right_standrad">
+		<div class="tab-header">
+			<div class="tab-title">即时消息</div>
+		</div>
+		<div class="tab-content">
+			<div class="nothing_prompt m10">暂无即时消息</div>
+		</div>
+	</div>
+	
+	<h2 class="basic_btn basic_block basic_btn_img_1">比较其他人</h2>
+	
+	<h2 class="basic_btn basic_block basic_btn_img_1 btn_red">发送面试邀请</h2>
+	
+	<h2 class="basic_btn basic_block basic_btn_img_1">发消息</h2>
+	
+	<h2 class="basic_btn basic_block basic_btn_img_1">拒绝并反馈/h2>
+		
+	<h2 class="basic_btn basic_block basic_btn_img_1">评论</h2>
+	
+	
+</div>	

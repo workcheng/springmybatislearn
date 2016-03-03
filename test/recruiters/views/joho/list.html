@@ -1,0 +1,75 @@
+
+<p class="f16 text_color_grey loading_data ta_c mt30" ng-if="inculdeHtml.loading">数据加载中...</p>
+<div class="tab-0gmi-group-1 no_data" ng-show="!hasJoho&&!inculdeHtml.loading">
+	<span class="notice">暂无JOHO，创建JOHO开启不一样的体验！</span><br/>
+	<h2 class="common_tag create_tag" ng-click="transformCreation()">创建新JOHO</h2>
+</div>
+
+<h2 class="common_tag create_tag" ng-show="hasJoho&&!inculdeHtml.loading" style="margin-top:10px;" ng-click="transformCreation()">创建新JOHO</h2>
+
+<div id="joho_manage_list" class="mt20">
+	<!--发布中-->
+	<p class="text_color_grey f15 b" ng-hide="releaseJohos|isEmptyFilter">发布中的JOHO</p>
+	<ul class="joho_mamage_list release_joho_list mt10">
+		<li class="tab-0gmi-group-1" ng-repeat="joho in releaseJohos"  ui-sref="^.edit({'job_id':joho.jobId})">
+			<div class="jml_l">
+				<div class="title">{{joho.joHoName|isEmptyFilter:"未命名的JOHO"}}</div>
+				<p class="text_color_grey mt10 f16 b">{{joho.locationName}}</p>
+			</div>
+			<div class="jml_r">
+				<div class="click_tag">
+					<div class="circle circle_img_1"><div class="tag" ng-class="{'bg_red':joho.inProgressingTaHoNumber}">{{joho.inProgressingTaHoNumber}}</div></div>
+					<p>流程中的TAHO</p>
+				</div>
+				<div class="click_tag">
+					<div class="circle circle_img_1"><div class="tag" ng-class="{'bg_red':joho.refusedTaHoNumber}">{{joho.refusedTaHoNumber}}</div></div>
+					<p>拒绝的TAHO</p>
+				</div>
+				<div class="click_tag">
+					<div class="circle circle_img_2"><div class="tag" ng-class="{'bg_red':joho.unCheckedVideo}">{{joho.unCheckedVideo}}</div></div>
+					<p>未查看的视频</p>
+				</div>
+				<div class="click_tag">
+					<div class="circle circle_img_3"><div class="tag" ng-class="{'bg_red':joho.unCheckedMessage}">{{joho.unCheckedMessage}}</div></div>
+					<p>未回复的留言</p>
+				</div>
+			</div>
+			<div class="jml_b">{{joho.lastModifiedTime|date:"MM-dd HH:mm"}}</div>
+		</li>
+	</ul>
+	
+	<!--编辑的joho-->
+	<p class="text_color_grey f15 b mt20" ng-hide="editJohos|isEmptyFilter">编辑中的JOHO</p>
+	<ul class="joho_mamage_list edit_close_joho_list mt10">
+		<li class="tab-0gmi-group-1 tab" ng-repeat="joho in editJohos" ui-sref="^.edit({'job_id':joho.jobId})">
+			<div class="jml_l">
+				<div class="title">{{joho.joHoName|isEmptyFilter:"未命名的JOHO"}}</div>
+				<p class="text_color_grey mt10 f16 b">{{joho.locationName}}</p>
+			</div>
+			<div class="jml_r">
+				<div class="click_tag">
+					<div class="circle circle_img_4"><div class="tag" ng-class="{'bg_red':joho.unCheckedComment}">{{joho.unCheckedComment}}</div></div>
+					<p>评论</p>
+				</div>
+			</div>
+			<div class="jml_b">{{joho.lastModifiedTime|date:"MM-dd HH:mm"}}</div>
+		</li>
+	</ul>
+	
+	<!--关闭的joho-->
+	<p class="text_color_grey f15 b mt30 cl" ng-hide="closeJohos|isEmptyFilter">关闭的JOHO</p>
+	<ul class="joho_mamage_list edit_close_joho_list mt10">
+		<li class="tab-0gmi-group-1" ng-repeat="joho in closeJohos" ui-sref="^.edit({'job_id':joho.jobId})">
+			<div class="jml_l">
+				<div class="title">{{joho.joHoName|isEmptyFilter:"未命名的JOHO"}}</div>
+				<p class="text_color_grey mt10 f16 b">{{joho.locationName}}</p>
+			</div>
+			<div class="jml_r">
+				
+			</div>
+			<div class="jml_b">{{joho.lastModifiedTime|date:"MM-dd HH:mm"}}</div>
+		</li>
+	</ul>
+</div>
+
+

@@ -1,0 +1,227 @@
+<!--  =======================================  -->
+<!--  ======== joho motivation&value ========  -->
+<!--  =======================================  -->
+
+<!--********************************show动机&价值观 begin********************************-->
+<div class="tab-0gmi-group-2" ng-show="editModuleTag != 'motivation' && editModuleTag != 'value' " style="background:none;">
+    <!-- 动机 -->
+    <div class="tab tab-0gmi-motivation viewport-flip" ng-class="{'maskLayer': editModuleTag}">
+		<div class="flipper-container" ng-class="{'transFormFilp':transformTag_motivation==1}">
+			<!-- IQ 正面-->
+			<div class="filp front">
+				<!--编辑图标-->
+				<div ng-show="!(motivation|isEmptyFilter) && johoStatus==1" class="tab-tag tab-top ico_img_edit" title="编辑动机信息" ng-click="openEditModuleTag('motivation')"></div>
+				
+				<div class="tab-header">
+					<div class="tab-title">动机</div>
+				</div>
+				<!--no data-->
+				<div class="tab-content" ng-show="motivation|isEmptyFilter">
+					<div class="nothing_prompt mt60" ng-show="johoStatus==1">还未添加</div>
+					<div class="nothing_prompt mt60" ng-show="johoStatus!=1">无条件要求</div>
+					<div class="but_plus" ng-show="johoStatus==1"  ng-click="openEditModuleTag('motivation')">+</div>
+				</div>
+				<!--has data-->
+				<div class="tab-content" ng-show="!(motivation|isEmptyFilter)">
+					<div class="tab-img">
+						<img ng-src="{{motivation.motivation_picture}}"/>
+					</div>
+					<h1 class="text_color_redSauce">{{motivation.motivation_name}}</h1>
+					<div class="motivation_show">
+						<span>{{motivation.motivation_item1_name}}</span>
+						<span>{{motivation.motivation_item2_name}}</span>
+						<span>{{motivation.motivation_item3_name}}</span>
+					</div>
+				</div>
+				<div class="ico_img_information tab-footer tab-tag" ng-click="transformTag_motivation=1"></div>
+			</div>
+		
+			<!-- IQ 反面-->
+			<div class="filp back">
+				<div class="tab-tag tab-top" ng-hide="transformTag_motivation==0" ng-click="transformTag_motivation=0">X</div>
+				<div class="tab-header">
+					<div class="tab-title">动机</div>
+				</div>
+				<div class="tab-content">
+					动机描述了激发员工求职行为和高绩效表现的驱动因子。如果这些驱动因子被组织满足则会促使员工长期并主动处于高绩效状态。相反如长期未被满足则易导致人员流失。
+				</div>
+			</div>
+		</div>
+  	</div>
+	
+  	<!-- 价值观 -->
+  	<div class="tab tab-0gmi-values viewport-flip" ng-class="{'maskLayer': editModuleTag}">
+  		<div class="flipper-container" ng-class="{'transFormFilp Filpborder':transformTag_value==1}">
+			<!-- IQ 正面-->
+			<div class="filp front">
+				<!--编辑图标-->
+				<div ng-show="!(value|isEmptyFilter) && johoStatus==1" class="tab-tag tab-top ico_img_edit" title="编辑价值观信息" ng-click="openEditModuleTag('value')"></div>
+				
+				<div class="tab-header">
+					<div class="tab-title">价值观</div>
+				</div>
+				<!--no data-->
+				<div class="tab-content" ng-show="value|isEmptyFilter">
+					<div class="nothing_prompt mt60" ng-show="johoStatus==1">还未添加</div>
+					<div class="nothing_prompt mt60" ng-show="johoStatus!=1">无条件要求</div>
+					<div class="but_plus" ng-show="johoStatus==1"  ng-click="openEditModuleTag('value')">+</div>
+				</div>
+				<!--has data-->
+				<div class="tab-content" ng-if="!(value|isEmptyFilter)">
+					<div id="valueShow" value-show width="140" height="140" ng-model='value'></div>
+				</div>
+				<div class="ico_img_information tab-tag tab-footer" ng-click="transformTag_value=1"></div>
+			</div>
+			<!-- IQ 反面-->
+			<div class="filp back">
+				<div class="tab-tag tab-top" ng-hide="transformTag_value==0" ng-click="transformTag_value=0">X</div>
+				<div class="tab-header">
+					<div class="tab-title">价值观</div>
+				</div>
+				<div class="tab-content">
+					价值观是人们认识事物、辩定是非的一种思维或价值取向。匹配的价值观会使员工更容易融入组织/团队；差异较大的价值观容易导致理念和观点上的冲突，进而影响员工稳定性。
+				</div>
+			</div>
+		</div>
+				
+	</div>
+  
+</div>
+<!--***********************************show动机&价值观 end ******************************-->
+	
+	
+
+<!--***********************************edit动机&价值观 begin*****************************-->
+<!--动机 begin-->
+<div id="motivation" class="tab-0gmi-group-1" ng-if="editModuleTag == 'motivation'"  ng-controller="johoMotivationController">
+	<form name="formData" ng-submit="submitForm(formData.$valid,formData.$dirty)" novalidate autocomplete="off">
+	<div class="tab tab-0gmi-create-motivation">
+		<div class="but_cancel tab-tag tab-top" title="取消动机编辑" ng-click="openEditModuleTag('')">x</div>
+		<div class="tab-header">
+			<div class="tab-title">动机</div>
+		</div>
+		<div class="tab-content">
+			<div class="tab-left">
+				<div class="tab-img">
+					<img ng-show="motivationModule.motivation_picture" ng-src="{{motivationModule.motivation_picture}}">
+				</div>
+				<div class="ui-select">
+					<input type="text" ng-disabled="true" ng-model="motivationModule.motivation_name" placeholder="请选择"/>
+					<select ng-model="motivationModule"
+						ng-options="motivation as motivation.motivation_name for motivation in motivationsList">
+						<option value="">请选择</option>
+					</select>
+					<div class="descripation mt10">
+						{{motivationModule.motivation_description}}
+					</div>
+				</div>
+			</div>
+			<div class="tab-right">
+				<div class="title" ng-class="{'mt60':((motivationModule.motivation_item1_id|isEmptyFilter)||(motivationModule.motivation_item1_id == 12))}">求职动机一般由1个主动机和2个次级动机组成；次级动机为当前主动机的上级动机和下级动机。</div>
+				<ul class="ul_list" ng-hide="(motivationModule.motivation_item1_id|isEmptyFilter)||(motivationModule.motivation_item1_id == 12)">
+					<li>
+						<span>1.
+							<input type="text" class="input_text_wide" ng-disabled="true" 
+							value="{{motivationItmesList|selectObjFromObjArr:'motivation_item_id':motivationModule.motivation_item1_id:'motivation_item_name'}} "/>
+						</span>
+					</li>
+					<li>
+						<span>2.
+							<input type="text" class="input_text_wide" ng-disabled="true" 
+							value="{{motivationItmesList|selectObjFromObjArr:'motivation_item_id':motivationModule.motivation_item2_id:'motivation_item_name'}} "/>
+						</span>
+					</li>
+					<li>
+						<span>3.
+							<input type="text" class="input_text_wide" ng-disabled="true" 
+							value="{{motivationItmesList|selectObjFromObjArr:'motivation_item_id':motivationModule.motivation_item3_id:'motivation_item_name'}} "/>
+						</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="form_but_group">
+		<input type="submit" class="form_but form_but_submit" value="完成"/>
+		<div class="form_but form_but_cancel" ng-click="openEditModuleTag('')">取消</div>
+	</div>
+	</form>
+</div>
+<!--动机 end-->
+	
+<!--价值观 begin-->
+<div id="value" class="tab-0gmi-group-1" ng-if="editModuleTag == 'value'" ng-controller="johoValueController">
+	<form name="formData" ng-submit="submitForm(formData.$valid,formData.$dirty)" novalidate autocomplete="off">
+		<div class="tab tab-0gmi-create-vt">
+			<div class="but_cancel tab-tag tab-top" title="取消价值观编辑" ng-click="openEditModuleTag('')">x</div>
+			<div class="tab-header">
+				<div class="tab-title">价值观</div>
+			</div>
+			<div class="tab-content">
+				<div class="tab-left">
+					<div class="tab-img">
+						<img ng-src="{{valueModule.value_picture}}">
+					</div>
+					<div class="ui-select">
+						<input type="text" ng-disabled="true" ng-model="valueModule.value_name" placeholder="请选择" />
+						<select ng-model="value_id" ng-change="selectValue()" 
+							ng-options="valueItem.value_id as valueItem.value_name for valueItem in valuesList">
+						</select>
+					</div>
+					<div class="descripation" ng-show="valueModule.value_description">
+						{{valueModule.value_description}}
+					</div>
+					<div class="descripation" ng-hide="valueModule.value_description">
+						价值观是人们认识事物、辩定是非的一种思维或价值取向。匹配的价值观会使员工更容易融入组织/团队；差异较大的价值观容易导致理念和观点上的冲突，进而影响员工稳定性。
+					</div>
+				</div>
+				<div class="tab-right">
+					<ul class="ul_drag ul_drag_1 no_select">
+						<li>
+							<span class="h2">灵活</span>
+							<div zero-drag-scale 
+								zero-drag-scale-min=0 
+								zero-drag-scale-max=10 
+								zero-drag-scale-step=1 
+							ng-model="valueModule.flexible_value" fun="getMotivationValue()">
+							</div>
+						</li>
+						<li>
+							<span class="h2">结构</span>
+							<div zero-drag-scale 
+								zero-drag-scale-min=0 
+								zero-drag-scale-max=10 
+								zero-drag-scale-step=1 
+							ng-model="valueModule.structure_value" fun="getMotivationValue()">
+							</div>
+						</li>
+						<li>
+							<span class="h2">绩效</span>
+							<div zero-drag-scale 
+								zero-drag-scale-min=0 
+								zero-drag-scale-max=10 
+								zero-drag-scale-step=1 
+							ng-model="valueModule.performance_value" fun="getMotivationValue()">
+							</div>
+						</li>
+						<li>
+							<span class="h2">关系</span>
+							<div zero-drag-scale 
+								zero-drag-scale-min=0 
+								zero-drag-scale-max=10 
+								zero-drag-scale-step=1 
+							ng-model="valueModule.relationship_value" fun="getMotivationValue()">
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="form_but_group">
+			<input type="submit" class="form_but form_but_submit" value="完成"/>
+			<div class="form_but form_but_cancel" ng-click="openEditModuleTag('')">取消</div>
+		</div>
+	</form>
+</div>
+<!--********************************edit动机&价值观 end **************************-->
+

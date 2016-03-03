@@ -1,0 +1,62 @@
+<div class="tab-0gmi-group-1 tab">
+	<div class="tab-header">
+		<div class="tab-title">
+			<h2 class="b">个人信息</h2>
+			<p>以下是您的个人信息，您可以修改头像、姓名和个性签名</p>
+		</div>
+	</div>
+	<ul class="tab-content setting_ul">
+		<li class="avatar">
+			<div class='li_l'>头像</div>
+			<div class='li_r'>
+				<img class="bradius_50" ng-hide="userInfo.avatar" src="./candidates/style/img/default.png"/>
+				<img class="bradius_50" ng-show="userInfo.avatar" ng-src="{{userInfo.avatar}}" onerror="javascript:this.src='./candidates/style/img/default.png';this.onerror=null;"/>
+			</div>
+			<div class="clear"></div>
+			<div id="upload_image" upload-image class="edit" upload-avatar="uploadAvatar(avatar)"></div>
+		</li>
+		<li ng-show="setting.editSetting != 'business_user_name'">
+			<div class='li_l'>姓名</div>
+			<div class='li_r pl5'>{{userInfo.business_user_name}}</div>
+			<div class="clear"></div>
+			<div class="edit" ng-click="setting.editSetting = 'business_user_name'"></div>
+		</li>
+		<li class="special"  ng-if="setting.editSetting == 'business_user_name'">
+			<div class='li_l'>姓名</div>
+			<div class='li_r'>
+				<form name="formData" ng-submit="submitForm( formData.$valid )" novalidate  autocomplete="off">
+					<div class="posrel">
+						<input type="text" ng-model="update.editName" name='editName'  zero-focus required placeholder="请输入姓名"  ng-maxlength="6"/>
+						<div class='error' ng-show="formData.editName.$dirty && formData.editName.$error.required && !formData.editName.$focused">请输入姓名</div>
+						<div class='error' ng-show="formData.editName.$dirty && formData.editName.$error.maxlength && !formData.editName.$focused">不超过6个字</div>
+		        	</div>
+					<div class="form_but_group">
+						<input type="submit" id="toho_id_basic_but_submit" class="form_but form_but_submit" value="确认"/>
+						<div class="form_but form_but_cancel" ng-click="cancelForm(formData)">取消</div>
+					</div>
+				</form>
+			</div>
+			<div class="clear"></div>
+		</li>
+		<li>
+			<div class='li_l'>职位名称</div>
+			<div class='li_r ml5'>
+				<span ng-show="userInfo.business_user_position">{{userInfo.business_user_position}}</span>
+				<span ng-hide="userInfo.business_user_position" class="text_color_grey">暂未设定公司职位</span>
+			</div>
+			<div class="clear"></div>
+		</li>
+		<li class="QR_code_li">
+			<div class='li_l'>扫描二维码</div>
+			<div class='li_r'>
+				<img class="QRCode" src="./candidates/style/img/challenge/qrcode.png">扫一扫登录我的APP
+			</div>
+			<div class="clear"></div>
+		</li>
+		<li>
+			<div class='li_l'>注册时间</div>
+			<div class='li_r'>{{userInfo.created_time|date:"yyyy-MM-dd"}}</div>
+			<div class="clear"></div>
+		</li>
+	</ul>
+</div>

@@ -1,0 +1,25 @@
+<p class="f16 text_color_grey loading_data ta_c mt30 cl" ng-if="inculdeHtml.loading">数据加载中...</p>
+<div ng-hide="inculdeHtml.loading" ng-class="{'joho_status_close':johoStatus==3}">
+	<!--工作经验-->
+	<div ui-view="position"></div>
+	<!--教育及工作经历-->
+	<div ui-view="education_work_experience"></div>
+	<!--语言能力&技能&证书-->
+	<div ui-view="languages_skills_certifications"></div>
+	<!--动机&价值观-->
+	<div ui-view="motivation_value"></div>
+	<!--IQ&思维倾向-->
+	<div ui-view="IQ_thinking"></div>
+	<!--行为模式&EQ-->
+	<div ui-view="behaviour_EQ"></div>
+	<!--面试问题-->
+	<div ui-view="interview_questions"></div>
+	<!--选取重要类别-->
+	<div ui-view="category_importance"></div>
+	<!--******************joho评论*******************-->
+	<div class="div_comments tab joho_comments" ng-if="!editModuleTag&&johoStatus!=3" 
+		comments-directives = 'joho'
+		comments-title="JOHO"
+		close-comments = "showCommentsModule('')">
+	</div>
+</div>

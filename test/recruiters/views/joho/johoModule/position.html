@@ -1,0 +1,249 @@
+<!--  ====================================  -->
+<!--  ======== joho 基本信息 module  ========  -->
+<!--  ====================================  -->
+<!--**********************show begin************************-->
+<div class="tab-0gmi-group-1" ng-if="editModuleTag != 'position'">
+	<!-- 展示个人信息 begin -->
+	<div class="tab tab-0gmi-position" ng-class="{'maskLayer': editModuleTag}">
+		<div ng-show="johoStatus==2" class="div_transform_rotate text_color_redSauce">已发布</div>
+		<div ng-show="johoStatus==3" class="div_transform_rotate text_color_redSauce">已关闭</div>
+		<!--编辑图标-->
+		<div ng-show="!(position|isEmptyFilter) && johoStatus==1" class="tab-tag tab-top ico_img_edit" title="编辑职位信息" ng-click="openEditModuleTag('position')"></div>
+		
+		<div class="tab-header">
+			<div class="tab-title">职位</div>
+		</div>
+		
+		<!--no data-->
+		<div class="tab-content" ng-show="position|isEmptyFilter">
+			<div class="nothing_prompt mt60" ng-show="johoStatus==1">还未添加职位信息</div>
+			<div class="nothing_prompt mt60" ng-show="johoStatus!=1">无条件要求</div>
+			<div class="but_plus" ng-show="johoStatus==1"  ng-click="openEditModuleTag('position')">+</div>
+		</div>
+		
+		<!--has data-->
+		<div class="tab-content" ng-show="!(position|isEmptyFilter)">
+			<div class="tab-left">
+				<div class="tab-img">
+					<img ng-hide="company.company_logo" src="./recruiters/style/img/default.png"/>
+					<img ng-show="company.company_logo" ng-src="{{company.company_logo}}" 
+						onerror="javascript:this.src='./recruiters/style/img/default.png';this.onerror=null;"/>
+				</div>
+				<p class="h2 b">{{company.company_name}}</p>
+			</div>
+			<div class="tab-right">
+				<h1 class="postion_title b text_color_redSauce">{{position.joho_name}}</h1>
+				<ul class="position_tag">
+					<li class="h2" ng-if="position.salary">{{position.salary | salaryShowFilter}}</li>
+					<li class="h2" ng-if="company.industry_name">{{company.industry_name}}</li>
+					<li class="h2" ng-if="position.location_name">{{position.location_name}}</li>
+					<li class="clear" style="width:0px;height:0px;float:none;"></li>
+				</ul>
+				<div ng-show="position.job_description" class="mt10">
+					<span class="text_color_grey">工作描述：</span>
+					<span style="line-height: 25px;">{{position.job_description}}</span>
+				</div>
+			</div>
+		</div>
+		<div class="tab-footer tab-tag no_select" ng-click="positionShow = !positionShow" 
+			ng-class="{true:'ico_img_extened_up',false:'ico_img_extened_down'}[positionShow == true]"
+			ng-show="!(position|isEmptyFilter)">
+		</div>
+	</div>
+	<!--show more-->
+	<div class="tab tab-0gmi-position-more" ng-if="positionShow">
+		<table>
+			<tr>
+				<td><span>类型：</span><span>{{company.company_type_name}}</span></td>
+				<td><span>工作类型：</span><span>{{position.employment_type_name}}</span></td>
+				<td><span>性别：</span><span>{{position.gender|genderShowFromTag}}</span></td>
+			</tr>
+			<tr>
+				<td class="pt10"><span>大小：</span><span>{{company.company_size_type}}</span></td>
+				<td class="pt10"><span>出差：</span><span>{{position.travel_type_name}}</span></td>
+				<td class="pt10"><span>年龄：</span><span>{{position.age|addTagFilter:'岁'}}</span></td>
+			</tr>
+			<tr>
+				<td class="pt10" colspan="2"><span>产品与服务：</span><span>{{company.company_introduce}}</span></td>
+				<td class="pt10"></td>
+			</tr>
+		</table>
+	</div>
+	<div class="clearfix"></div>
+</div>
+<!--*******************show end***********************-->
+
+
+
+<!--*****************edit begin***********************-->
+<!--coho begin-->
+<div class="tab-0gmi-group-1 mb40" ng-if="editModuleTag == 'position'" >
+	<!-- coho -->
+	<div class="tab tab-0gmi-CoHo">
+		<div class="tab-header">
+			<div class="tab-title">COHO</div>
+		</div>
+		<div class="tab-content">
+			<div class="tab-left">
+				<div class="tab-img">
+					<img ng-hide="company.company_logo" src="./recruiters/style/img/default.png"/>
+					<img ng-show="company.company_logo" ng-src="{{company.company_logo}}" 
+						onerror="javascript:this.src='./recruiters/style/img/default.png';this.onerror=null;"/>
+				</div>
+				<h2 class="b pl20 pr20">{{company.company_name}}<br/>
+					<small>{{comany.comany_industry}}</small>
+				</h2>
+			</div>
+			<ul class="tab-right table_ul">
+				<li>
+					<span>类型:</span>
+					<span>{{company.company_type_name}}</span>
+				</li>
+				<li>
+					<span>大小:</span>
+					<span>{{company.company_size_type}}</span>
+				</li>
+				<li>
+					<span>产品与服务:</span>
+					<span>{{company.company_introduce}}</span>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!--coho end-->
+
+<div id="position" class="tab-0gmi-group-1" ng-if="editModuleTag == 'position'" ng-controller="johoPositionController">
+	<form name="positionData" ng-submit="submitForm(positionData.$valid,positionData.$dirty)" novalidate  autocomplete="off">
+	  <!-- 职位讯息 -->
+	  <div class="tab tab-0gmi-create-position">
+	  		<div class="but_cancel tab-tag tab-top" title="取消职位编辑" ng-click="openEditModuleTag('')">x</div>
+			<div class="tab-header">
+				<div class="tab-title">职位编辑</div>
+			</div>
+			<div class="tab-content">
+				<ul class="table_ul">
+					<li style="width:100% !important;">
+						<span class="span1 must">职位名称</span>
+						<span class="span2">
+							<input style="width:400px !important;" type="text" name="joho_name" ng-model="positionModule.joho_name" maxlength="100" required/>
+						</span>
+						<span class="error" ng-show="(showError || positionData.joho_name.$dirty) && positionData.joho_name.$error.required">职位不能为空</span>
+					</li>
+					<li>
+						<span class="span1 must">职能名称</span>
+						<span class="span2 input_div">
+							<div
+							pre-search = "position"
+							ng-model = "positionModule.position_id"
+							edit-pluagin="editPluagin('position')"
+							show-from-level  = 1
+							click-from-level = 2
+							show-to-level=2></div>
+						</span>
+						<input type="hidden" name="position_id" ng-model="positionModule.position_id" required/>
+						<span class="error" ng-show="(showError || positionData.position_id.$dirty) && positionData.position_id.$error.required">职能不能为空</span>
+					</li>
+					<li>
+						<span class="span1 must">税前年薪</span>
+						<span class="span2">
+							<input class="input_salary"
+							type="text"
+							name="salary"
+							ng-model="positionModule.salary"
+							ng-pattern="/^([1-9][\d]{0,2})$/"
+							required/>&nbsp;万人民币</span>
+							<!--ng-pattern="/^([1-9][\d]{0,2})((\.[\d]{1})|)$/"-->
+							<span class="error" ng-show="positionData.salary.$dirty && positionData.salary.$error.pattern">年薪建议在1~999万</span>
+							<span class="error" ng-show="(showError || positionData.salary.$dirty) && positionData.salary.$error.required">税前年薪不能为空</span>
+					</li>
+					<li>
+						<span class="span1 must">工作地点</span>
+						<span class="span2">
+							<div
+							pre-search = "location"
+							ng-model = "positionModule.location_id"
+							edit-pluagin="editPluagin('location')"
+							show-from-level  = 1
+							click-from-level = 2
+							input-disable = true
+							></div>
+						</span>
+						<input type="hidden" name="location_id" ng-model="positionModule.location_id" required/>
+						<span class="error" ng-show="(showError || positionData.location_id.$dirty) && positionData.location_id.$error.required">地点不能为空</span>
+					</li>
+					<li>
+						<span class="span1">适合性别</span>
+						<span class="span2">
+							<input id="sex_men"   type="radio" ng-model="positionModule.gender" value="1"><label for="sex_men">男</label>
+  							<input id="sex_women" type="radio" ng-model="positionModule.gender" value="2"><label for="sex_women">女</label>
+  							<input id="sex_all"   type="radio" ng-model="positionModule.gender" value="3"><label for="sex_all">不限</label>
+						</span>
+					</li>
+					<li>
+						<span class="span1">出差比例</span>
+						<span class="span2">
+							<div travel-scale-directive ng-model="positionModule.travel_type_id"></div>
+						</span>
+					</li>
+					<li>
+						<span class="span1">适合年龄</span>
+						<span class="span2">
+							<select ng-model="positionModule.age"  class="input_age"
+								ng-options="age for age in ageList">
+								<position value=""></position>
+							</select>
+						</span>
+					</li>
+					<li>
+						<span class="span1">工作类型</span>
+						<span class="span2 radio">
+							<input type="radio" id="employment_type_id_1" name="employment_type_id" ng-model="positionModule.employment_type_id" value="1"/><label for="employment_type_id_1">全职</label>
+							<input type="radio" id="employment_type_id_2" name="employment_type_id" ng-model="positionModule.employment_type_id" value="2"/><label for="employment_type_id_2">兼职</label>
+							<input type="radio" id="employment_type_id_3" name="employment_type_id" ng-model="positionModule.employment_type_id" value="3"/><label for="employment_type_id_3">实习</label>
+						</span>
+					</li>
+					<li class="special">
+						<span class="span1">工作描述</span>
+						<span class="span2">
+							<textarea ng-model="positionModule.job_description" zero-auto-height maxlength="1000"></textarea>
+							<span class="wordwrap"><var class="word">{{positionModule.job_description.length}}</var>/1000</span>
+						</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--职位讯息 end-->
+		<div class="form_but_group">
+			<input type="submit" class="form_but form_but_submit" value="完成"/>
+			<div class="form_but form_but_cancel" ng-click="openEditModuleTag('')">取消</div>
+		</div>
+		
+		<!-- 遮罩层 -->
+		<div ng-if="editPluaginName" class="pop_up_bg"></div>
+		<!-- 职位选择  -->
+		<div
+		 class="position_pop_up"
+		 ng-show="editPluaginName=='position'"
+		 edit-module = "{{editPluaginName}}"
+		 pop-up-layer = "position"
+		 ng-model = "positionModule.position_id"
+		 edit-pluagin="editPluagin('')"
+		 show-name = "职位"
+		 click-level = 2
+		></div>
+		
+		<!-- 工作地点选择  -->
+		<div
+		 ng-show="editPluaginName=='location'"
+		 pop-up-layer-location
+		 ng-model = "positionModule.location_id"
+		 edit-pluagin="editPluagin('')"
+		></div>
+		
+	</form>
+</div>
+<!--**********************************edit end***********************************-->
+
+
+

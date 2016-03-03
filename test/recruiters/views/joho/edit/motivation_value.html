@@ -1,0 +1,142 @@
+
+<form name="updateForm" ng-submit="submitFormData()">
+	
+<!--动机 begin-->
+<div class="tab-0gmi-group-1">
+	<div class="tab tab-0gmi-create-motivation">
+		<div class="tab-header">
+			<div class="tab-title">动机</div>
+		</div>
+		<div class="tab-content">
+			<div class="tab-left">
+				<div class="round">
+				</div>
+				<div class="ui-select">
+					<input type="text" ng-disabled="true" ng-model="module4formData.motivation.motivation_name" placeholder="请选择"/>
+					<select ng-model="module4formData.motivation"
+						ng-options="motivation as motivation.motivation_name for motivation in motivationList">
+						<option value="">请选择</option>
+					</select>
+					<div class="descripation">
+					{{module4formData.motivation.motivation_description}}
+					</div>
+				</div>
+			</div>
+			<div class="tab-right">
+				<div class="title"></div>
+				<ul class="ul_list">
+					<li>
+						<span>1.
+							<input type="text" class="input_text_wide" ng-disabled="true" value="{{motivationItmeList|selectObjFromObjArr:'motivation_item_id':module4formData.motivation.motivation_item1_id:'motivation_item_name'}} "/>
+						</span>
+					</li>
+					<li>
+						<span>2.
+							<input type="text" class="input_text_wide" ng-disabled="true" value="{{motivationItmeList|selectObjFromObjArr:'motivation_item_id':module4formData.motivation.motivation_item2_id:'motivation_item_name'}} "/>
+						</span>
+					</li>
+					<li>
+						<span>3.
+							<input type="text" class="input_text_wide" ng-disabled="true" value="{{motivationItmeList|selectObjFromObjArr:'motivation_item_id':module4formData.motivation.motivation_item3_id:'motivation_item_name'}} "/>
+						</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!--动机 end-->
+	
+<!--价值观 begin-->
+<div class="tab-0gmi-group-1">
+  <div class="tab tab-0gmi-create-vt">
+		<div class="tab-header">
+			<div class="tab-title" deal-break db-click="addDealbreaker('value_db')" db-value="dealBreaker | selectObjFromObjArr:'name':'value_db':'status' ">价值观</div>
+		</div>
+		<div class="tab-content">
+			<div class="tab-left">
+				<div class="round">
+				</div>
+				<div class="ui-select">
+					<input type="text" ng-disabled="true" ng-model="module4formData.value.value_name" placeholder="请选择"/>
+					<select ng-model="getValueId" ng-change="selectValue('value',getValueId)"
+						ng-options="value.value_id as value.value_name for value in valueList">
+						<option value="">请选择</option>
+					</select>
+				</div>
+				<div class="descripation">
+					{{module4formData.value.value_description}}
+				</div>
+			</div>
+			<div class="tab-right">
+				<ul class="ul_drag ul_drag_1 no_select">
+					<li>
+						<span class="h2">灵活</span>
+						<div zero-drag-scale
+							zero-drag-scale-min=0
+							zero-drag-scale-max=10
+							zero-drag-scale-step=1
+							ng-model = "module4formData.value.flexible_value"
+							fun="getMotivationValue()"
+							>
+						</div>
+					</li>
+					<li>
+						<span class="h2">结构</span>
+						<div zero-drag-scale
+							zero-drag-scale-min=0
+							zero-drag-scale-max=10
+							zero-drag-scale-step=1
+							ng-model = "module4formData.value.structure_value"
+							fun="getMotivationValue()"
+							>
+						</div>
+					</li>
+					<li>
+						<span class="h2">绩效</span>
+						<div zero-drag-scale
+							zero-drag-scale-min=0
+							zero-drag-scale-max=10
+							zero-drag-scale-step=1
+							ng-model = "module4formData.value.performance_value"
+							fun="getMotivationValue()"
+							>
+						</div>
+					</li>
+					<li>
+						<span class="h2">关系</span>
+						<div zero-drag-scale
+							zero-drag-scale-min=0
+							zero-drag-scale-max=10
+							zero-drag-scale-step=1
+							ng-model = "module4formData.value.relationship_value"
+							fun="getMotivationValue()"
+							>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!--价值观 end-->
+
+<!--<pre>
+	{{ module4formData }}
+</pre>-->
+
+<!--保存按钮-->
+<button class="save_but" type="submit" ng-show="( !job_id || updateForm.$dirty)">
+	<span class="h2 b">保存</span>
+</button>
+<!--下一页-->
+<div class="save_but" ng-show="( job_id && updateForm.$pristine )"  ui-sref="^.IQ_thinking">
+	<span class="h2 b">下一步</span>
+</div>
+
+
+</form>
+
+
+
+

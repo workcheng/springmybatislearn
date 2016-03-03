@@ -1,0 +1,237 @@
+<!--  =======================================  -->
+<!--  ========== joho 行为模式&EQ =============  -->
+<!--  =======================================  -->
+	
+<!--******************************show 行为模式&EQ begin ***************************-->
+<div class="tab-0gmi-group-2" class="tab-0gmi-group-2" ng-show="editModuleTag != 'EQ' && editModuleTag != 'behavior_style'" style="background:none;">
+	<!-- 行为模式 -->
+	<div class="tab tab-0gmi-thinkingbehavior viewport-flip" ng-class="{'maskLayer': editModuleTag}">
+		<div class="flipper-container" ng-class="{'transFormFilp':transformTag_behavior_style==1}">
+			<!-- IQ 正面-->
+			<div class="filp front">
+				<!--编辑图标-->
+				<div ng-show="!(behavior_style|isEmptyFilter) && johoStatus==1" class="tab-tag tab-top ico_img_edit" title="编辑行为模式" ng-click="openEditModuleTag('behavior_style')"></div>
+			
+				<div class="tab-header">
+					<div class="tab-title">行为模式</div>
+				</div>
+				<!--no data-->
+				<div class="tab-content" ng-show="behavior_style|isEmptyFilter">
+					<div class="nothing_prompt mt60" ng-show="johoStatus==1">还未添加</div>
+					<div class="nothing_prompt mt60" ng-show="johoStatus!=1">无条件要求</div>
+					<div class="but_plus" ng-show="johoStatus==1" ng-click="openEditModuleTag('behavior_style')">+</div>
+				</div>
+				<!--has data-->
+				<div class="tab-content" ng-show="!(behavior_style|isEmptyFilter)">
+					<div class="tab-img">
+						<img ng-src="{{behavior_style.behavior_style_picture}}">
+					</div>
+					<h1 class="b text_color_redSauce">{{behavior_style.behavior_style_name}}</h1>
+					<p class="mb20">{{behavior_style.behavior_style_description}}</p>
+				</div>
+				<div class="ico_img_information tab-tag tab-footer"></div>
+				<div class="ico_img_information tab-footer tab-tag" ng-click="transformTag_behavior_style=1"></div>
+			</div>
+		
+			<!-- IQ 反面-->
+			<div class="filp back">
+				<div class="tab-tag tab-top" ng-hide="transformTag_behavior_style==0" ng-click="transformTag_behavior_style=0">X</div>
+				<div class="tab-header">
+					<div class="tab-title">行为模式</div>
+				</div>
+				<div class="tab-content">
+					行为模式是人们在工作场合中扮演的角色和工作方式的倾向性。它会决定人们做出决定后以什么样的方式和角色来执行。
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- EQ -->
+	<div class="tab tab-0gmi-IQEQ viewport-flip" ng-class="{'maskLayer': editModuleTag}">
+		<div class="flipper-container" ng-class="{'transFormFilp Filpborder':transformTag_EQ==1}">
+			<!-- IQ 正面-->
+			<div class="filp front">
+				<!--编辑图标-->
+				<div ng-show="!(EQ|isEmptyFilter) && johoStatus==1" class="tab-tag tab-top ico_img_edit" title="编辑EQ信息" ng-click="openEditModuleTag('EQ')"></div>
+				
+				<div class="tab-header">
+					<div class="tab-title">EQ</div>
+				</div>
+				<!--no data-->
+				<div class="tab-content" ng-show="EQ|isEmptyFilter">
+					<div class="nothing_prompt mt60" ng-show="johoStatus==1">还未添加</div>
+					<div class="nothing_prompt mt60" ng-show="johoStatus!=1">无条件要求</div>
+					<div class="but_plus" ng-show="johoStatus==1" ng-click="openEditModuleTag('EQ')">+</div>
+				</div>
+				<!--has data-->
+				<div class="tab-content" ng-show="!(EQ|isEmptyFilter)">
+					<div class="tab-left">
+						<div class="round">
+							<span class="text_color_redSauce">{{EQ.eq_value}}</span>
+							<br/>
+							<span class="text_color_redSauce">EQ</span>
+						</div>
+					</div>
+					<div class="tab-right">
+						<h1 class="text_color_redSauce b">{{EQ.eq_level}}</h1>
+						<p class="text_color_grey marketing">{{EQ.eq_description}}</p>
+					</div>
+				</div>
+				<div class="ico_img_information tab-tag tab-footer" ng-click="transformTag_EQ=1"></div>
+			</div>
+			<!-- IQ 反面-->
+			<div class="filp back">
+				<div class="tab-tag tab-top" ng-hide="transformTag_EQ==0" ng-click="transformTag_EQ=0">X</div>
+				<div class="tab-header">
+					<div class="tab-title">EQ</div>
+				</div>
+				<div class="tab-content">
+					情商反应的是人们在工作环境中与人做出情绪互动并保持良好关系的能力，包括情绪识别、情绪控制、同理心等。高情商的人更适合从事情绪劳动型工作或在团队中扮演领导的角色。
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	
+	
+</div>
+<!--******************************show 行为模式&EQ end ***************************-->
+	
+<!--******************************edit 行为模式&EQ show ***************************-->	
+<!--行为模式 begin-->
+<div id="behavior_style" class="tab-0gmi-group-1" ng-if="editModuleTag == 'behavior_style'" ng-controller="johoBehaviourStyleController">
+  <form name="formData" ng-submit="submitForm(formData.$valid,formData.$dirty)" novalidate autocomplete="off">
+  <div class="tab tab-0gmi-create-vt">
+  		<div class="but_cancel tab-tag tab-top" title="取消行为模式编辑" ng-click="openEditModuleTag('')">x</div>
+		<div class="tab-header">
+			<div class="tab-title">行为模式</div>
+		</div>
+		<div class="tab-content">
+			<div class="tab-left">
+				<div class="tab-img">
+					<img ng-show="behaviourStyleModule.behavior_style_picture" ng-src="{{behaviourStyleModule.behavior_style_picture}}">
+				</div>
+				<div class="ui-select">
+					<input  type="text" ng-disabled="true" ng-model="behaviourStyleModule.behavior_style_name" placeholder="请选择"/>
+					<select ng-model="select_id" ng-change="selectItem()" 
+						ng-options="behaviorStyleItem.behavior_style_id as behaviorStyleItem.behavior_style_name for behaviorStyleItem in behaviorStylesList">
+						<option value="">请选择</option>
+					</select>
+					<div class="descripation" ng-show="behaviourStyleModule.behavior_style_description">
+					{{behaviourStyleModule.behavior_style_description}}
+					</div>
+					<div class="descripation" ng-hide="behaviourStyleModule.behavior_style_description">
+						行为模式是人们在工作场合中扮演的角色和工作方式的倾向性。它会决定人们做出决定后以什么样的方式和角色来执行。
+					</div>
+				</div>
+				
+			</div>
+			<div class="tab-right">
+				<ul class="ul_drag no_select">
+					<li>
+						<span class="h2">团队角色</span>
+						<div zero-drag-scale
+							zero-drag-scale-min=1
+							zero-drag-left-name="领导者"
+							zero-drag-scale-max=10
+							zero-drag-right-name="跟随者"
+							zero-drag-scale-step=0.1
+							default-value =5.5
+							ng-model = "behaviourStyleModule.roles_in_a_team"
+							fun="getBehaviorStyleValue()"
+							>
+						</div>
+					</li>
+					<li>
+						<span class="h2">人际距离</span>
+						<div zero-drag-scale
+							zero-drag-scale-min=1
+							zero-drag-left-name="亲密"
+							zero-drag-scale-max=10
+							zero-drag-right-name="疏远"
+							zero-drag-scale-step=0.1
+							default-value =5.5
+							ng-model = "behaviourStyleModule.mind_distance"
+							fun="getBehaviorStyleValue()"
+							>
+						</div>
+					</li>
+					<li>
+						<span class="h2">工作导向</span>
+						<div zero-drag-scale
+							zero-drag-scale-min=1
+							zero-drag-left-name="注重流程"
+							zero-drag-scale-max=10
+							zero-drag-right-name="注重结果"
+							zero-drag-scale-step=0.1
+							default-value =5.5
+							ng-model = "behaviourStyleModule.working_orientation"
+							fun="getBehaviorStyleValue()"
+							>
+						</div>
+					</li>
+					<li>
+						<span class="h2">工作结果</span>
+						<div zero-drag-scale
+							zero-drag-scale-min=1
+							zero-drag-left-name="注重质量"
+							zero-drag-scale-max=10
+							zero-drag-right-name="注重效率"
+							zero-drag-scale-step=0.1
+							default-value =5.5
+							ng-model = "behaviourStyleModule.working_result"
+							fun="getBehaviorStyleValue()"
+							>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="form_but_group">
+		<input type="submit" class="form_but form_but_submit" value="完成"/>
+		<div class="form_but form_but_cancel" ng-click="openEditModuleTag('')">取消</div>
+	</div>
+	</form>
+</div>
+<!--行为模式 end-->
+
+<!--EQ begin-->
+<div id="EQ" class="tab-0gmi-group-1" ng-if="editModuleTag == 'EQ'" ng-controller="johoEQController">
+	<form name="formData" ng-submit="submitForm(formData.$valid,formData.$dirty)" novalidate autocomplete="off">
+	<div class="tab tab-0gmi-create-IQ">
+		<div class="but_cancel tab-tag tab-top" title="取消EQ编辑" ng-click="openEditModuleTag('')">x</div>
+		<div class="tab-header">
+			<div class="tab-title">EQ</div>
+		</div>
+		<div class="tab-content">
+			<div class="tab-left">
+				<div class="round">
+					<input class="no_out_line" type="text" 
+					 ng-model="EQModule.eq_value"
+					 name="value"
+					 ng-pattern="/^([8-9][0-9]|1[0-3][0-9]|140)$/"
+					 ng-change="setEqValue(formData.value.$valid)"
+					 maxlength="3"/>
+					<br/>
+					<span class="b">EQ</span>
+				</div>
+				<span class="error" ng-show="formData.value.$dirty && formData.value.$invalid">请输入80~140中的值</span>
+			</div>
+			<div class="tab-right" ng-show="EQModule.eq_value">
+				<h1 class="text_color_redSauce b">{{EQModule.eq_level}}</h1>
+				<p class="text_color_grey marketing">{{EQModule.eq_description}}</p>
+			</div>
+			<div class="tab-right" ng-hide="EQModule.eq_value">
+				<p class="text_color_grey marketing">情商反应的是人们在工作环境中与人做出情绪互动并保持良好关系的能力，包括情绪识别、情绪控制、同理心等。高情商的人更适合从事情绪劳动型工作或在团队中扮演领导的角色。</p>
+			</div>
+		</div>
+	</div>
+	<div class="form_but_group">
+		<input type="submit" class="form_but form_but_submit" value="完成"/>
+		<div class="form_but form_but_cancel" ng-click="openEditModuleTag('')">取消</div>
+	</div>
+	</form>
+</div>
+<!--******************************edit 行为模式&EQ end ***************************-->	
+

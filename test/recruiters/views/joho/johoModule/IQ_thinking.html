@@ -1,0 +1,178 @@
+<!--  =======================================  -->
+<!--  ======== joho IQ&思维模式========  -->
+<!--  =======================================  -->
+	
+<!--******************************show IQ&思维倾向 begin ***************************-->
+<div class="tab-0gmi-group-2" ng-show="editModuleTag != 'IQ' && editModuleTag != 'thinking_pattern' " style="background:none;">
+	
+	<div class="tab tab-0gmi-IQEQ viewport-flip" ng-class="{'maskLayer': editModuleTag}">
+		<div class="flipper-container" ng-class="{'transFormFilp':transformTag_iq==1}">
+			<!-- IQ 正面-->
+			<div class="filp front">
+				<!--编辑图标-->
+				<div ng-show="!(IQ|isEmptyFilter) && johoStatus==1" class="tab-tag tab-top ico_img_edit" title="编辑IQ信息" ng-click="openEditModuleTag('IQ')"></div>
+				
+				<div class="tab-header">
+					<div class="tab-title">IQ</div>
+				</div>
+				<!--no data-->
+				<div class="tab-content" ng-show="IQ|isEmptyFilter">
+					<div class="nothing_prompt mt60" ng-show="johoStatus==1">还未添加</div>
+					<div class="nothing_prompt mt60" ng-show="johoStatus!=1">无条件要求</div>
+					<div class="but_plus" ng-show="johoStatus==1"  ng-click="openEditModuleTag('IQ')">+</div>
+				</div>
+				<!--has data-->
+				<div class="tab-content" ng-show="!(IQ|isEmptyFilter)">
+					<div class="tab-left">
+						<div class="round">
+							<span class="text_color_redSauce">{{IQ.iq_value}}</span>
+							<br/>
+							<span class="text_color_redSauce">IQ</span>
+						</div>
+					</div>
+					<div class="tab-right">
+						<h1 class="b text_color_redSauce">{{IQ.iq_level}}</h1>
+						<p class="text_color_grey marketing">{{IQ.iq_description}}</p>
+					</div>
+				</div>
+				<div class="ico_img_information tab-tag tab-footer" ng-click="transformTag_iq=1"></div>
+			</div>
+		
+			<!-- IQ 反面-->
+			<div class="filp back">
+				<div class="tab-tag tab-top" ng-hide="transformTag_iq==0" ng-click="transformTag_iq=0">X</div>
+				<div class="tab-header">
+					<div class="tab-title">IQ</div>
+				</div>
+				<div class="tab-content">
+					智商是人们认识客观事物并运用不同知识解决实际问题的能力，因此常被用于预测偏脑力劳动岗位的工作绩效。
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 思维倾向 -->
+	<div class="tab tab-0gmi-thinkingbehavior viewport-flip" ng-class="{'maskLayer': editModuleTag}">
+		<div class="flipper-container" ng-class="{'transFormFilp Filpborder':transformTag_thinking_pattern==1}">
+			<!-- IQ 正面-->
+			<div class="filp front">
+				<!--编辑图标-->
+				<div ng-show="!(thinking_pattern|isEmptyFilter) && johoStatus==1" class="tab-tag tab-top ico_img_edit" title="编辑思维模式" ng-click="openEditModuleTag('thinking_pattern')"></div>
+
+				<div class="tab-header">
+					<div class="tab-title">思维模式</div>
+				</div>
+				<!--no data-->
+				<div class="tab-content" ng-show="thinking_pattern|isEmptyFilter">
+					<div class="nothing_prompt mt60" ng-show="johoStatus==1">还未添加</div>
+					<div class="nothing_prompt mt60" ng-show="johoStatus!=1">无条件要求</div>
+					<div class="but_plus" ng-show="johoStatus==1"  ng-click="openEditModuleTag('thinking_pattern')">+</div>
+				</div>
+				<!--has data-->
+				<div class="tab-content" ng-show="!(thinking_pattern|isEmptyFilter)">
+					<div class="tab-img">
+						<img ng-src="{{thinking_pattern.thinking_pattern_picture}}">
+					</div>
+					<h1 class="b text_color_redSauce">{{ thinking_pattern | showThinkingPatternName }}</h1>
+					<p class="mb20">{{thinking_pattern.thinking_pattern_description}}</p>
+				</div>
+				<div class="ico_img_information tab-tag tab-footer" ng-click="transformTag_thinking_pattern=1"></div>
+			</div>
+			<!-- IQ 反面-->
+			<div class="filp back">
+				<div class="tab-tag tab-top" ng-hide="transformTag_thinking_pattern==0" ng-click="transformTag_thinking_pattern=0">X</div>
+				<div class="tab-header">
+					<div class="tab-title">思维模式</div>
+				</div>
+				<div class="tab-content">
+					思维倾向反应了人们在接收，加工，推理和判断等过程中固有的倾向。不同的思维倾向会影响员工处理每一件事情的决定。
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--**************************************show IQ&思维倾向  end ******************************-->
+	
+	
+	
+	
+<!--**************************************edit IQ&思维倾向  begin ****************************-->
+<!--IQ begin-->
+<div id="IQ" class="tab-0gmi-group-1" ng-if="editModuleTag == 'IQ'"  ng-controller="johoIQController">
+	<form name="formData" ng-submit="submitForm(formData.$valid,formData.$dirty)" novalidate autocomplete="off">
+	<div class="tab tab-0gmi-create-IQ">
+		<div class="but_cancel tab-tag tab-top" title="取消IQ编辑" ng-click="openEditModuleTag('')">x</div>
+		<div class="tab-header">
+			<div class="tab-title">IQ</div>
+		</div>
+		<div class="tab-content">
+			<div class="tab-left">
+				<div class="round">
+					<input class="no_out_line no_out_line" type="text" 
+					 ng-model="IQModule.iq_value"
+					 name = 'value'
+					 ng-change="setIqValue(formData.value.$valid)"
+					 ng-pattern="/^([8-9][0-9]|1[0-3][0-9]|140)$/"
+					 maxlength="3"/>
+					<br/>
+					<span class="b">IQ</span>
+				</div>
+				<span class="error" ng-show="formData.value.$dirty && formData.value.$invalid">请输入80~140中的值</span>
+			</div>
+			<div class="tab-right" ng-show="IQModule.iq_value">
+				<h2 class="text_color_redSauce b mb10">{{IQModule.iq_level}}&nbsp;</h2>
+				<span class="text_color_grey f13">{{IQModule.iq_description}}</span>
+			</div>
+			<div class="tab-right" ng-hide="IQModule.iq_value">
+				<p class="text_color_grey marketing">智商是人们认识客观事物并运用不同知识解决实际问题的能力，因此常被用于预测偏脑力劳动岗位的工作绩效。</p>
+			</div>
+		</div>
+	</div>
+	<div class="form_but_group">
+		<input type="submit" class="form_but form_but_submit" value="完成"/>
+		<div class="form_but form_but_cancel" ng-click="openEditModuleTag('')">取消</div>
+	</div>
+	</form>
+</div>
+<!--IQ end-->
+	
+<!--思维倾向 begin-->
+<div id="thinking_pattern" class="tab-0gmi-group-1" ng-if="editModuleTag == 'thinking_pattern'" ng-controller="johoThinkingPatternController">
+  <form name="formData" ng-submit="submitForm(formData.$valid,formData.$dirty)" novalidate autocomplete="off">
+  	 <div class="tab tab-0gmi-create-vt">
+  		<div class="but_cancel tab-tag tab-top" title="取消思维模式编辑" ng-click="openEditModuleTag('')">x</div>
+		<div class="tab-header">
+			<div class="tab-title">思维模式</div>
+		</div>
+		<div class="tab-content">
+			<div class="tab-left">
+				<div class="tab-img">
+					<img ng-show="thinkingPatternModule.thinking_pattern_picture" ng-src="{{thinkingPatternModule.thinking_pattern_picture}}">
+				</div>
+				<div class="ui-select">
+					<input type="text" ng-disabled="true" ng-model="thinkingPatternModule.thinking_pattern_name" placeholder="请选择"/>
+					<select ng-model="thinking_pattern_id" ng-change="selectItem()" 
+						ng-options="thinkingPatternItem.thinking_pattern_id as thinkingPatternItem.thinking_pattern_name for thinkingPatternItem in thinkingPatternsList">
+						<option value="">请选择</option>
+					</select>
+					
+				</div>
+			</div>
+			<div class="tab-right">
+				<div class="descripation">
+					{{thinkingPatternModule.thinking_pattern_description}}
+				</div>
+				<div ng-show="thinkingPatternModule|isEmptyFilter" class="descripation">
+					思维倾向反应了人们在接收，加工，推理和判断等过程中固有的倾向。不同的思维倾向会影响员工处理每一件事情的决定。
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="form_but_group">
+		<input type="submit" class="form_but form_but_submit" value="完成"/>
+		<div class="form_but form_but_cancel" ng-click="openEditModuleTag('')">取消</div>
+	</div>
+	</form>
+</div>
+<!--思维倾向 end-->
+<!--**************************************edit IQ&思维倾向  end ****************************-->	

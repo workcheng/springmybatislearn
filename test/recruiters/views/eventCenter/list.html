@@ -1,0 +1,48 @@
+<p class="f16 text_color_grey loading_data ta_c mt30" ng-if="inculdeHtml.loading">数据加载中...</p>
+<div class="tab-0gmi-group-1 no_data" ng-show="(eventList|isEmptyFilter)&&!inculdeHtml.loading">
+	<span class="notice">暂无相关的JOHO事件！</span><br/>
+</div>
+
+<div id="joho_event_center_list" ng-show="eventList&&!inculdeHtml.loading">
+	<!--事件中心-->
+	<p class="text_color_grey f15 b">{{now|date:'yyyy-MM-dd'}}</p>
+	<ul class="joho_mamage_list release_joho_list mt10">
+		<li class="tab-0gmi-group-1" ng-repeat="joho in eventList"  ui-sref="^.detail({'job_id':joho.jobId})">
+			<div class="jml_l">
+				<div class="title">{{joho.joHoName}}</div>
+				<p class="text_color_grey mt10 f16 b">{{joho.address}}</p>
+			</div>
+			<div class="jml_r">
+				<div class="click_tag">
+					<div class="circle circle_img_4"><div class="tag" ng-class="{'bg_red':joho.unCheckedComment}">{{joho.unCheckedComment}}</div></div>
+					<p>评论</p>
+				</div>
+				<div class="click_tag">
+					<div class="circle circle_img_2"><div class="tag" ng-class="{'bg_red':joho.unCheckedVideo}">{{joho.unCheckedVideo}}</div></div>
+					<p>未查看的视频</p>
+				</div>
+				<div class="click_tag">
+					<div class="circle circle_img_3"><div class="tag" ng-class="{'bg_red':joho.unCheckedMessage}">{{joho.unCheckedMessage}}</div></div>
+					<p>未回复的留言</p>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</li>
+	</ul>
+</div>
+
+<!--<div ng-show="!inculdeHtml.loading" class="event_center_notice">
+	<p class="text_color_grey f15 b">系统提示</p>
+	<div class="tab-0gmi-group-1 tab">
+		<div class="tab-content">
+			<div class="tab-left">
+				<div class="tab-img">
+					<img src="./recruiters/style/img/joho_img.jpg">
+				</div>
+			</div>
+			<div class="tab-right">
+				<h2>添加完整的JOHO信息</h2>
+			</div>
+		</div>
+	</div>
+</div>-->
