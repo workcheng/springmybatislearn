@@ -1,0 +1,157 @@
+@charset "utf-8";
+/* CSS Document */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "微软雅黑", "宋体", "黑体";
+  font-size: 18sp;
+  background-color: #EEEEEE;
+  overflow: scroll;
+}
+
+
+.piece_sample {
+	width: 160px;
+	height: 160px;
+	margin-top: 6px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 12px;
+ 	background-repeat : no-repeat;
+ 	background-size: cover;
+
+	border: 3px solid rgba(247, 185, 144, 0.9);
+}
+
+.piece_choose_image {
+	width: 220px;
+	height: 220px;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
+ 	background-repeat : no-repeat;
+ 	background-size: cover;
+
+	border: 5px solid rgba(255, 255, 255, 0.35);
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 2px;
+}
+
+.settingButton {
+	font-size: 15px;
+	color: orange;
+	background-color: rgba(0, 0, 0, 1);
+	padding: 10px 30px;
+	border-radius:5px;
+	border: 3px solid rgba(247, 185, 144, 0.9);
+}
+
+.piece_choose_image_title {
+	text-align:center;
+/*	margin-top: 12px;*/
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 15px;
+	font-size: 15px;
+	color: orange;
+	background-color: rgba(0, 0, 0, 1);
+	padding: 10px 30px;
+}
+
+.piece_container {
+  width: 320px;
+  height: 320px;
+  margin: auto;
+  text-align: center;
+}
+.piece_container div {
+  float: left;
+  border: 2px solid rgba(247, 185, 144, 0.8);
+}
+
+.cover {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 999;
+  background-color: #EEEEEE;
+}
+
+.cover_inner {
+  position: absolute;
+  z-index: 1000;
+}
+
+.chooseImg {
+  z-index: 1001;
+}
+
+
+.countDown {
+  width: 360px;
+  margin: auto;
+}
+
+.pauseGame {
+  border: none;
+  width: 30px;
+  height: 30px;
+  margin: 4px;
+  background: url(../img/pause.png);
+  background-size: cover;
+}
+
+#countDownProgressBar {
+  position:relative;
+  width:  240px;
+  height:  6px;
+  background-color: #F7B990;
+  border: none;
+  margin-bottom:12px;
+  display: inline-block;
+}
+/*i5*/
+@media (device-height : 568px) and (-webkit-min-device-pixel-ratio:2) {
+	  .countDown {
+		  width: 320px;
+		}
+		#countDownProgressBar {
+		  width:  210px;
+		}
+		.piece_container {
+			margin: 0 2px;
+		}
+}
+/*i6*/
+@media (device-height:627px) and (-webkit-min-device-pixel-ratio:2) {
+	  .countDown {
+		  width: 320px;
+		}
+		#countDownProgressBar {
+		  width:  210px;
+		}
+}
+/*i6p*/
+@media (device-height:736px) and (-webkit-min-device-pixel-ratio:2) {
+	  .countDown {
+		  width: 320px;
+		}
+		#countDownProgressBar {
+		  width:  210px;
+		}
+}
+#countDownText {
+	margin-top:9px;
+	margin-right:8px;
+}
+
+#countDownText {
+  position:relative;
+  bottom: 0px;
+  right: 0px;
+  float: right;
+  color: #F7B990;
+}

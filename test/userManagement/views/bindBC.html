@@ -1,0 +1,14 @@
+<div class="content_header c_header"></div>
+<div class="content_notice" ng-show="type=='begin'">
+   	<span class="notice_title">登录个人用户绑定企业账号，{{time}}s后将跳转到个人登录页！</span><br/>
+    <a href="javascript:void(0);" class="notice_url" ng-click="goB()">立即跳转</a>
+</div>
+
+<div class="content_notice" ng-show="type=='end'">
+	<div ng-show="loading=='end'">
+    	<span class="notice_title">恭喜您，你已经绑定企业用户，{{time}}s后将跳转到企业登录页！</span><br/>
+    	<a href="javascript:void(0);" class="notice_url"ng-click="goC()">立即跳转</a>
+    </div>
+    <span ng-show="loading=='begin'" class="notice_title">正在绑定，请等待片刻...</span>
+	<span ng-show="loading=='error'" class="notice_title">{{errorInfo}}</span>
+</div>
