@@ -1,0 +1,108 @@
+<div class="tab-0gmi-group-2 pt20 pb20" ng-hide="setting.editModule == 'weiXin' || setting.editModule == 'weiBo'"  ng-class="{'maskLayer': setting.editModule}">
+	
+	<div class="tab tab-0gmi-module">
+		<div class="tab-header mt-20">
+			<div class="tab-title">微信公众号</div>
+		</div>
+		<div ng-hide="weiXin|objParamsIsNone" class="tab-tag tab-top ico_img_edit no_select mt-20" title="编辑微信二维码" ng-click="setting.editModule ='weiXin'"></div>
+		<!--no data-->
+		<div class="tab-content" ng-show="weiXin|objParamsIsNone" style="height: 140px;">
+			<div class="nothing_prompt mt60">还未添加微信二维码</div>
+			<div id="toho_id_basic_but_plus" class="but_plus"  ng-click="setting.editModule ='weiXin'">+</div>
+		</div>
+		<div class="tab-content" ng-hide="weiXin|objParamsIsNone">
+			<div class="tab-img QRCode" style="width:140px;height: 140px;">
+				<img ng-src="{{weiXin.wechat_image}}" onerror="javascript:this.src='./company/style/img/error.png';this.onerror=null;"/>
+			</div>
+			<div class="ta_c text_color_grey">{{weiXin.wechat_text|isEmptyFilter:"扫一扫，加微信"}}</div>
+		</div>
+	</div>
+	
+	<div class="tab tab-0gmi-module">
+		<div class="tab-header mt-20">
+			<div class="tab-title">微博</div>
+		</div>
+		<div ng-hide="weiBo|objParamsIsNone" class="tab-tag tab-top ico_img_edit no_select mt-20" title="编辑微博" ng-click="setting.editModule ='weiBo'"></div>
+		<!--no data-->
+		<div class="tab-content" ng-show="weiBo|objParamsIsNone" style="height: 140px;">
+			<div class="nothing_prompt mt60">还未添加微博二维码</div>
+			<div id="toho_id_basic_but_plus" class="but_plus"  ng-click="setting.editModule ='weiBo'">+</div>
+		</div>
+		<div class="tab-content" ng-hide="weiBo|objParamsIsNone">
+			<div class="tab-img QRCode" style="width:140px;height: 140px;">
+				<img ng-src="{{weiBo.weibo_image}}" onerror="javascript:this.src='./company/style/img/error.png';this.onerror=null;"/>
+			</div>
+			<div class="ta_c text_color_grey">{{weiBo.weibo_text|isEmptyFilter:"扫一扫，加微信"}}</div>
+		</div>
+	</div>
+</div>
+
+<!--*****************edit begin***********************-->
+<div class="tab-0gmi-group-1" ng-if="setting.editModule == 'weiXin'" ng-controller="cohoEditWeiXinController">
+	<form name="formData" ng-submit="submitForm( formData.$valid,formData.$dirty )" novalidate  autocomplete="off">
+	  <!-- 职位讯息 -->
+	  <div class="tab tab-0gmi-create-position">
+	  		<div class="but_cancel tab-tag tab-top no_select" title="取消微信模块编辑" ng-click="setting.editModule = ''">&#10006;</div>
+			<div class="tab-header">
+				<div class="tab-title">微信信息编辑</div>
+			</div>
+			<div class="tab-content">
+				<table class="coho_edit_qrcode">
+					<tr>
+						<td class="tagName">上传二维码：</td>
+						<td class="input_img">
+							<div select-pic="editWeiXin.wechat_image"></div>
+							<input type="hidden" name="wechat_image" ng-model="editWeiXin.wechat_image" required/>
+							<span class="error" ng-show="showError && formData.wechat_image.$invalid">请上传二维码</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="tagName">二维码文字：</td>
+						<td><input type="text" ng-model="editWeiXin.wechat_text" name="wechat_text" placeholder="扫一扫，加微信"/></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<!--职位讯息 end-->
+		<div class="form_but_group">
+			<input type="submit" id="toho_id_basic_but_submit" class="form_but form_but_submit" value="完成"/>
+			<div class="form_but form_but_cancel" ng-click="setting.editModule = ''">取消</div>
+		</div>
+	</form>
+</div>
+<!--**********************************edit end***********************************-->
+	
+	<!--*****************edit begin***********************-->
+<div class="tab-0gmi-group-1" ng-if="setting.editModule == 'weiBo'" ng-controller="cohoEditweiBoController">
+	<form name="formData" ng-submit="submitForm( formData.$valid,formData.$dirty )" novalidate  autocomplete="off">
+	  <!-- 职位讯息 -->
+	  <div class="tab tab-0gmi-create-position">
+	  		<div class="but_cancel tab-tag tab-top no_select" title="取消微博模块编辑" ng-click="setting.editModule = ''">&#10006;</div>
+			<div class="tab-header">
+				<div class="tab-title">微博模块编辑</div>
+			</div>
+			<div class="tab-content">
+				<table class="coho_edit_qrcode">
+					<tr>
+						<td class="tagName">上传二维码：</td>
+						<td class="input_img">
+							<div select-pic="editWeiBo.weibo_image"></div>
+							<input type="hidden" name="weibo_image" ng-model="editWeiBo.weibo_image" required/>
+							<span class="error" ng-show="showError && formData.weibo_image.$invalid">请上传二维码</span>
+						</td>
+					</tr>
+					<tr>
+						<td class="tagName">二维码文字：</td>
+						<td><input type="text" ng-model="editWeiBo.weibo_text" name="weibo_text" placeholder="扫一扫，加微博"/></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<!--职位讯息 end-->
+		<div class="form_but_group">
+			<input type="submit" id="toho_id_basic_but_submit" class="form_but form_but_submit" value="完成"/>
+			<div class="form_but form_but_cancel" ng-click="setting.editModule = ''">取消</div>
+		</div>
+	</form>
+</div>
+<!--**********************************edit end***********************************-->

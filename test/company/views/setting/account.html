@@ -1,0 +1,132 @@
+<div class="tab-0gmi-group-1 tab">
+	<div class="tab-header">
+		<div class="tab-title">
+			<h2 class="b">账户设置</h2>
+			<p>以下是您的账户信息，您可以修改联系人、联系电话、联系邮箱和密码。</p>
+		</div>
+	</div>
+	<ul class="tab-content setting_ul">
+		
+		<li ng-show="setting.editSetting != 'linkname'">
+			<div class='li_l'>联系人</div>
+			<div class='li_r pl5'>
+				<span ng-show="defalutData.linkname">{{defalutData.linkname}}</span>
+				<span ng-hide="defalutData.linkname" class="text_color_grey">还未添加联系人</span>
+			</div>
+			<div class="clear"></div>
+			<div class="edit" ng-click="setting.editSetting = 'linkname'"></div>
+		</li>
+		<li class="special"  ng-if="setting.editSetting == 'linkname'">
+			<div class='li_l'>联系人</div>
+			<div class='li_r'>
+				<form name="formData" ng-submit="submitForm( formData.$valid )" novalidate  autocomplete="off">
+					<div class="posrel">
+						<input type="text" ng-model="editData.linkname" name='editName' zero-focus required placeholder="请输入联系人" ng-maxlength="20"/>
+						<div class='error' ng-show="formData.editName.$dirty && formData.editName.$error.required && !formData.editName.$focused">请输入联系人</div>
+						<div class='error' ng-show="formData.editName.$dirty && formData.editName.$error.maxlength && !formData.editName.$focused">不超过20个字</div>
+		        	</div>
+					<div class="form_but_group">
+						<input type="submit" id="toho_id_basic_but_submit" class="form_but form_but_submit" value="确认"/>
+						<div class="form_but form_but_cancel" ng-click="cancelForm(formData)">取消</div>
+					</div>
+				</form>
+			</div>
+			<div class="clear"></div>
+		</li>
+		
+		
+		<li ng-show="setting.editSetting != 'mobile_number'">
+			<div class='li_l'>联系电话</div>
+			<div class='li_r pl5'>
+				<span ng-show="defalutData.mobile_number">{{defalutData.mobile_number}}</span>
+				<span ng-hide="defalutData.mobile_number" class="text_color_grey">还未添加联系电话</span>
+			</div>
+			<div class="clear"></div>
+			<div class="edit" ng-click="setting.editSetting = 'mobile_number'"></div>
+		</li>
+		<li class="special"  ng-if="setting.editSetting == 'mobile_number'">
+			<div class='li_l'>联系电话</div>
+			<div class='li_r'>
+				<form name="formData" ng-submit="submitForm( formData.$valid )" novalidate  autocomplete="off">
+					<div class="posrel mb15">
+						<input type="text" name="mobile_number" ng-model="editData.mobile_number" placeholder="请输入新手机号" 
+							ng-pattern="/^(1[3|4|5|8][0-9]\d{8})$/" zero-focus="errorInfo"  zero-focus-code="6011" required/>
+						<div class='error' ng-show="formData.mobile_number.$dirty && formData.mobile_number.$error.pattern && !formData.mobile_number.$focused">手机号码输入错误</div>
+						<div class='error' ng-show="formData.mobile_number.$zeroError.code == '6011' && !formData.mobile_number.$focused">
+		    				{{formData.mobile_number.$zeroError.message}}
+		    			</div>
+					</div>
+					<div class="form_but_group">
+						<input type="submit" id="toho_id_basic_but_submit" class="form_but form_but_submit" value="确认" />
+						<div class="form_but form_but_cancel" ng-click="cancelForm(formData)">取消</div>
+					</div>
+				</form>
+			</div>
+			<div class="clear"></div>
+		</li>
+		<li ng-show="setting.editSetting != 'email'">
+			<div class='li_l'>联系邮箱</div>
+			<div class='li_r pl5'>
+				<span ng-show="defalutData.email">{{defalutData.email}}</span>
+				<span ng-hide="defalutData.email" class="text_color_grey">还未添加联系邮箱</span>
+			</div>
+			<div class="clear"></div>
+			<div class="edit" ng-click="setting.editSetting = 'email'"></div>
+		</li>
+		<li class="special" ng-if="setting.editSetting == 'email'">
+			<div class='li_l'>联系邮箱</div>
+			<div class='li_r'>
+				<form name="formData" ng-submit="submitForm( formData.$valid )" novalidate  autocomplete="off">
+					<div class="posrel mb15">
+						<input type="text" name="email" ng-model="editData.email" placeholder="请输入新的邮箱号" 
+							ng-pattern="/^([^@\s]+@[^@\.\s]+(\.[^@\.\s]+)+)$/" zero-focus="errorInfo"  zero-focus-code="6004" required/>
+						<div class='error' ng-show="formData.email.$dirty && formData.email.$error.pattern && !formData.email.$focused">邮箱输入错误</div>
+						<div class='error' ng-show="formData.email.$zeroError.code == '6004' && !formData.email.$focused">
+		    				{{formData.email.$zeroError.message}}
+		    			</div>
+					</div>
+					<div class="form_but_group">
+						<input type="submit" id="toho_id_basic_but_submit" class="form_but form_but_submit" value="确认" />
+						<div class="form_but form_but_cancel" ng-click="cancelForm(formData)">取消</div>
+					</div>
+				</form>
+			</div>
+			<div class="clear"></div>
+		</li>
+		<li ng-show="setting.editSetting != 'change_password'">
+			<div class='li_l'>密码修改</div>
+			<div class='li_r ml5 f12 text_color_6A'>&#10033;&#10033;&#10033;&#10033;&#10033;&#10033;</div>
+			<div class="clear"></div>
+			<div class="edit" ng-click="setting.editSetting = 'change_password'"></div>
+		</li>
+		<li class="special" ng-if="setting.editSetting == 'change_password'">
+			<div class='li_l'>密码修改</div>
+			<div class='li_r'>
+				<form name="formData" ng-submit="submitForm( formData.$valid && editData.rePwd == editData.newPwd  )" novalidate  autocomplete="off">
+					<div class="posrel">
+						<input type="password" name="oldPwd" ng-model="editData.oldPwd"  placeholder="请输入原密码" zero-focus="errorInfo" zero-focus-code="6016" required />
+						<div class='error' ng-show="formData.oldPwd.$dirty && formData.oldPwd.$error.required && !formData.oldPwd.$focused">请输入密码</div>
+			    		<div class='error' ng-show="formData.oldPwd.$zeroError.code == '6016' && !formData.oldPwd.$focused && editData.oldPwd">
+		    				{{formData.oldPwd.$zeroError.message}}
+		    			</div>
+					</div>
+					<div class="posrel mt10">
+						<input name="newPwd" type="password" ng-model="editData.newPwd"  placeholder="请输入新密码" ng-pattern="/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/" zero-focus required />
+						<div class='error' ng-show="formData.newPwd.$dirty && formData.newPwd.$error.required && !formData.newPwd.$focused">请输入密码</div>
+			    		<div class='error' ng-show="formData.newPwd.$dirty && formData.newPwd.$error.pattern && !formData.newPwd.$focused">密码需6~20位字母与数字</div>
+					</div>
+					<div class="posrel mt10">
+						<input name="rePwd" type="password" ng-model="editData.rePwd"  placeholder="请确认新密码" zero-focus required />
+						<div class='error' ng-show="formData.rePwd.$dirty && formData.rePwd.$error.required && !formData.rePwd.$focused">请输入确认密码</div>
+			    		<div class='error' ng-show="formData.rePwd.$dirty && editData.rePwd != editData.newPwd && !formData.rePwd.$focused">密码不一致</div>
+					</div>
+					<div class="form_but_group">
+						<input type="submit" id="toho_id_basic_but_submit" class="form_but form_but_submit" value="确认"/>
+						<div class="form_but form_but_cancel" ng-click="cancelForm(formData)">取消</div>
+					</div>
+				</form>
+			</div>
+			<div class="clear"></div>
+		</li>
+	</ul>
+</div>

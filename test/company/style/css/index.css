@@ -1,0 +1,125 @@
+
+/****************************coho***********************/
+#cohoEdit{}
+
+#cohoEdit .input_div{position: relative;}
+#cohoEdit .input_div .error{right: -160px;top:6px;left: auto;}
+
+#cohoEdit .input_img{position: relative;}
+#cohoEdit .input_img .error{left: 0px;top:auto;bottom:-8px;}
+
+#cohoEdit .hoverStatus{position: relative;}
+#cohoEdit .hoverStatus .ico_img_edit{
+	width: 17px;
+    height: 17px;
+    top: 8px;
+    right: 10px;
+    line-height: 17px;
+    position: absolute;
+    cursor: pointer;
+    z-index: 10;
+    text-align: center;
+}
+#cohoEdit .hoverStatus:hover .ico_img_edit{display: block;}
+#cohoEdit .mt-20{margin-top:-10px !important;}
+#cohoEdit .tab-title{font-size: 14px;padding-top:5px;}
+
+/*coho_edit*/
+#cohoEdit .tagName{width:90px;color:#777;}
+#cohoEdit .coho_edit_basic{width: 95%;margin: 0 auto;}
+.coho_edit_basic td{padding:10px 0px;}
+.coho_edit_basic input{width: 100%;height: 30px;}
+.coho_edit_basic textarea{
+	width: 100%;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	min-height: 100px;
+	resize : none;
+}
+
+#cohoEdit .coho_edit_information{width: 60%;margin-left: 40px;margin-bottom: 20px;}
+.coho_edit_information li{margin-bottom: 15px;}
+.coho_edit_information input{width: 80%;height: 30px;}
+.coho_edit_information select{width: 80%;height: 30px;}
+
+#cohoEdit .coho_edit_qrcode{width: 60%;margin-left: 40px;margin-bottom: 20px;}
+.coho_edit_qrcode td{padding: 15px 0px;}
+.coho_edit_qrcode input{width: 80%;height: 30px;}
+
+#cohoEdit .coho_edit_introduce{width: 95%;margin: 0px auto;padding:20px 0px;}
+#cohoEdit .coho_edit_introduce .uploadBorder{width: 100%;position: relative; overflow: hidden;}
+.coho_edit_introduce .uploadBorder .uploadBorder_title{position: absolute;bottom: 10px;width: 100%;text-align: center;}
+.coho_edit_introduce .uploadBorder .video_file{
+	position: absolute;
+	height: 100%;
+	width:120%;
+	top: 0px;right: 0px;
+	opacity: 0;
+	-moz-opacity: 0;
+	-webkit-opacity: 0;
+	cursor: pointer;
+}
+
+.company_create_time{
+	width: 80%;
+    height: 30px;
+    padding: 0px 6px;
+    background-color: #f7f7f7;
+    border-radius: 3px;
+    border-width: 1px;
+    border-color: transparent;
+    line-height: 26px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/****************************团队管理***********************/
+#team_management{}
+
+/*list & detail*/
+#team_management_list{}
+#team_management_detail{}
+
+.team_management_ul>li{padding:20px 10px;}
+.team_management_ul .team_user_info{width: 43%;}
+.team_user_info .user_avatar{ width:90px;height: 90px;margin-left: 10px;}
+.team_user_info .user_avatar img{width: 100%;border-radius: 50%;}
+
+.team_management_ul .team_joho_count{width:37%;padding-top: 15px;}
+.team_joho_count .joho_avatar{
+	position: relative;width: 60px;height: 60px;border-radius: 50%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-image: url(../img/banner.jpg);
+	background-color: #EEEEEE;
+}
+.team_joho_count .joho_avatar label{width: 22px; height: 22px;
+	position: absolute;right: 0px;top: 0px;
+	background: #E24F00;color: #FFFFFF;line-height: 22px;
+	text-align: center;border-radius: 50%;
+	margin: 0px;
+	padding: 0px;
+}
+.team_joho_count .pointer:hover{color: #E24F00;}
+
+.team_management_ul .team_user_bind{width:20%;color: #A2A2A2;font-weight: bold;font-size: 15px; }
+.team_user_bind .team_bind{padding-left:25px;background-size: contain !important;height: 90px; line-height: 90px;cursor: pointer;}
+.team_user_bind .done_bind{background: url(../img/icon2.png) left center no-repeat;}
+.team_user_bind .cancel_bind{background: url(../img/icon1.png) left center no-repeat;}
+.team_user_bind .team_bind:hover{color: #E24F00;}
+
+.team_management_joho_list{width: 100%;}
+.team_management_joho_list>li{padding:20px;}
+.team_management_joho_list .odd{float: left;width: 48.5%;}
+.team_management_joho_list .even{float:right;width: 48.5%;}
+.team_management_joho_list .team_joho_count{ width: 45%; text-align: center;}
+.team_management_joho_list .team_joho_count .joho_avatar{margin: 0px auto 10px;
+	background-color: #EEEEEE;
+	background-size: 50%;
+}
+
+/*解除绑定 绑定用户弹出框*/
+#team_bind_style{width: 500px;margin-left: -250px;padding:20px 80px;}
+#team_bind_style .decline_style{width: 100%;}
+#team_bind_style .error{top:40px;}

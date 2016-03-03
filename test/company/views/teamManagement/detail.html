@@ -1,0 +1,58 @@
+<p class="f16 text_color_grey loading_data ta_c mt30" ng-show="inculdeHtml.loading">数据加载中...</p>
+
+<div ng-hide="inculdeHtml.loading">
+	<ul id="team_management_detail" class="team_management_ul">
+		<li class="tab-0gmi-group-1">
+			<div class="team_user_info fl">
+				<div class="user_avatar fl">
+					<img ng-hide="basic.avatar" src="./candidates/style/img/default.png"/>
+					<img ng-show="basic.avatar" ng-src="{{basic.avatar}}" onerror="javascript:this.src='./candidates/style/img/default.png';this.onerror=null;"/>
+				</div>
+				<div class="fl ml10" ng-show="basic.user_id" style="padding-top:30px;">
+					<p class="text_color_grey f16 b">{{basic.business_user_name}}</p>
+					<p class="text_color_grey mt5 f13">{{basic.role_name}}</p>
+				</div>
+				<div class="fl ml10 text_color_grey f15 b"
+					ng-hide="basic.user_id" style="padding-top:35px;">{{basic.business_user_name}}(待绑定)</div>
+				<div class="clear"></div>
+			</div>
+			<div class="team_joho_count fl">
+				<div class="joho_avatar fl">
+					<label>{{basic.joho_count|isEmptyFilter:"0"}}</label>
+				</div>
+				<div class="fl ml10 text_color_grey f15 b" style="padding-top:20px;">创建的JOHO</div>
+				<div class="clear"></div>
+			</div>
+			<div class="team_user_bind fl">
+				<span class="team_bind done_bind" ng-hide="basic.user_id" team-unbind="{{basic.business_user_id}}" team-bind-style="toBind" team-unbind-fun="loadData()">绑定新用户</span>
+				<span class="team_bind cancel_bind" ng-show="basic.user_id" team-unbind-count="{{basic.joho_count|isEmptyFilter:'0'}}" team-unbind="{{basic.business_user_id}}" team-unbind-fun="loadData()">解除绑定</span>
+			</div>
+			<div class="clear"></div>
+		</li>
+	</ul>
+	
+	<h2 class="b text_color_grey">发布中的JOHO</h2>
+
+	<div class="tab-0gmi-group-1 no_data pt20" ng-show="johoList|isEmptyFilter">
+		<span class="notice">该企业账号未创建任何JOHO！</span><br/>
+	</div>
+	
+	<ul class="team_management_joho_list mt20">
+		<li class="tab-0gmi-group-1" ng-repeat="joho in johoList" ng-class-odd="'odd'" ng-class-even="'even'">
+			<h2 class="text_color_redSauce b">{{joho.joho_name}}</h2>
+			<div class="team_joho_count fl mt20">
+				<div class="joho_avatar basic_btn_img_8">
+					<label>{{joho.video_count|isEmptyFilter:"0"}}</label>
+				</div>
+				<span class="text_color_grey">视频面试人次</span>
+			</div>
+			<div class="team_joho_count fr mt20">
+				<div class="joho_avatar basic_btn_img_11">
+					<label>{{joho.recommend_count|isEmptyFilter:"0"}}</label>
+				</div>
+				<span class="text_color_grey">推荐人数</span>
+			</div>
+			<div class="clear"></div>
+		</li>
+	</ul>
+</div>

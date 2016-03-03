@@ -1,0 +1,19 @@
+<!-- 主体  左侧-->
+<div class="width_scale70 fl">
+	<div id="cohoEdit"  ng-hide="setting.loading">
+		<!--基本信息-->
+		<div ui-view="basic"></div>
+		<!--公司介绍视频-->
+		<div ui-view="introduce"></div>
+		<!--公司介绍-->
+		<div ui-view="information"></div>
+		<!--微信-->
+		<div ui-view="weiXin"></div>
+	</div>
+	<p class="f16 text_color_grey loading_data ta_c mt30" ng-show="setting.loading">数据加载中...</p>
+</div>
+
+
+<!-- 主体  右侧-->
+<div class="fr width_scale30 right_module" ng-controller="companyCohoRightController" ng-hide="setting.loading">
+</div>
