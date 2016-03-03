@@ -1,0 +1,97 @@
+<!-- 
+      c_welcome.html
+      <c用户注册成功后欢迎的邮箱>
+     
+      Created by 0gmi on 2015-09-28.
+      Copyright 2015 0gmi. All rights reserved.
+ -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	
+	<body>
+		<style>
+			body, div, ul, li, h1, h2, h3, h4, h5, h6, form, fieldset, input, button,textarea, p, blockquote,th,td {margin: 0;padding: 0;}
+			fieldset, img {	border: 0;}
+			:focus {outline: 0;}
+			/* 核心常用样式 */
+			body{font-size:14px;}
+			body {line-height: 1.5;}/*定义行高为字号的1.5倍,过小时可能削掉一部分汉字，且不便于阅读*/
+			a{text-decoration: none;}
+			ul {list-style: none;}
+			.c_e24f00{color: #E24F00;}
+			.c_a2a2a2{color: #A2A2A2;}
+			.c_666666{color: #666666;}
+			.fl{float:left}
+			.fr{float:right}
+			.clear{clear:both;height:0px;overflow:hidden}
+			.ta_c{text-align: center;}
+			.f16{font-size: 16px;}.f17{font-size: 17px;}.f18{font-size: 18px;}
+			.mt20{margin-top:20px;}
+			.mt5{margin-top:5px;}
+		
+			body{background:#f7f7f7;font-family: "微软雅黑";word-break: break-all;word-wrap: break-word;}
+			
+			header{width:630px;margin: 30px auto 10px;line-height: 40px;}
+			.bglogo{background:url(./style/img/header_logo.png) left center no-repeat;background-size: 98%;width:100px;height: 40px;}
+			.homeUrl:hover{text-decoration: underline;color:#E24F00;}
+			.submit_button{text-align:center;background:#E24F00;border:transparent 1px solid;width:160px;height: 40px;line-height: 40px;color:#F1F1F1;border-radius: 8px;margin:25px auto;display: block;font-size: 15px;cursor: pointer;}
+			.submit_button:hover{box-shadow: 0px 0px 3px 0px #E24F00;}
+			
+			.main{width:650px;margin:0 auto 20px;border-radius: 8px;background:#ffffff;overflow: hidden;}
+			.main .content{width:80%;margin:20px auto 40px;}
+			
+			.footer{background:#f1f1f1; color: #A2A2A2;padding:20px 20px;}
+			.footer .foot_left{float: left;width:460px;}
+			.footer .foot_QR_code{float: right;width:150px;text-align: center;}
+			.footer .foot_QR_code img{width:50%;}
+			.footer .footer_ul li{float: left;padding-right:4px;margin-right: 4px;border-right: #A2A2A2 1px solid;}
+			.footer .footer_ul li:last-child{border-right: none;}
+		</style>
+		<header>
+			<div class="fl bglogo"></div>
+			<div class="fr"><a class="homeUrl c_a2a2a2" href="http://www.0gmi.com">去首页</a></div>
+			<div class="clear"></div>
+		</header>
+		<div class="main">
+			<div style="height: 227px;">
+				<img src="http://www.0gmi.com/mail/style/img/c_header.jpg" />
+			</div>
+			<div class="content">
+				<div class="f18 c_e24f00 ta_c">{5}邀请</div>
+				<!--<h3>"Hi! 亲爱的 *******(*********)"</h3>-->
+			<!--	<h4 class="mt20 c_666666" style="margin-left:-10px;">"Hi! 亲爱的 Mr.King(350764263)"</h4>-->
+				<div class="c_a2a2a2 mt20">
+					您好，<br>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{0}HR{3}{0}HR{3}就{4}一职。邀请您完成{5}。请您在{6}前下载零克米APP完成{5}。App下载地址：http://t.cn/R4l7pcC。您的账号是{7}，密码是{8}。请妥善保管您的密码。
+				</div>
+				<div class="mt20 c_a2a2a2" style="text-align: right;">苏州零克米信息科技有限公司</div>
+			</div>
+			<div class="footer">
+				<div class="foot_left">
+					<div class="mt20">此邮件为系统邮件，请勿回复</div>
+					<!--<ul class="footer_ul mt20">
+						<li>关于我们</li>
+						<li>服务声明</li>
+						<li>网站导航</li>
+						<li>帮助</li>
+						<li>隐私协议</li>
+						<li>联系我们</li>
+						<li>意见反馈</li>
+					</ul>-->
+					<div class="clear"></div>
+					<div>Copyright(c)2015 0gmi.com All Rights Reserved 苏ICP备 15034175 </div>
+				</div>
+				<div class="foot_QR_code">
+					<img src="http://www.0gmi.com/mail/style/img/qrcode.png"/><!--暂时使用的二维码-->
+					<div>扫一扫，下载APP</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</body>
+</html>
+
