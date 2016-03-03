@@ -1,0 +1,588 @@
+/*-----------------通用简单样式----------------------*/
+
+ul{list-style: none;margin:0px;padding:0px;}
+ul.clearUl:after{content:".";display:block;clear:both;height:0px;visibility:hidden;}
+li{margin:0px;padding:0px;}
+
+.text_center{text-align: center;}
+
+.none{margin:0px;padding:0px;}
+
+body{ overflow-y:scroll; }
+
+/*三角型*/
+.triangle{
+	height: 0px;
+	width:0px;
+	border-color:transparent;
+	border-style: solid;
+	border-width: 8px 5px;
+	display: inline-block;
+	margin-left:15px;
+}
+.up{border-bottom-color: #E24F00;}
+.down{border-top-color: #E24F00;}
+/* ----------------　通用小部件 begin ---------------- */
+
+
+.no_out_line{outline: medium;}
+
+.no_first_label span:first-child label{
+	display: none;
+}
+
+
+
+/*ul_infor 相关信息选择框*/
+.ul_infor{ 
+	position: absolute;
+	top:0;
+	left:0;
+	background: #1fbce0;
+	border-radius: 0 0 5px 5px;
+	display: none;
+	height:130px;
+	overflow-y: auto;
+	padding:4px !important;
+}
+.ul_infor li{
+	width:90% !important;
+	margin:5px auto;
+	color:#FFFFFF;
+	font-size: 12px;
+	float: none;
+	white-space:nowrap;
+	overflow: hidden;
+	cursor: pointer;
+}
+.ul_infor li:hover{
+	color:#E24F00;
+}
+
+
+/*====================================================================*/
+/*==============================taho.css==============================*/
+/*====================================================================*/
+
+/*-----------------------------taho 编辑模块-----------------------------*/
+/**右侧编辑状态栏**/
+#team_member{}
+#team_member .team_member_show{margin-bottom: 20px;}
+.team_member_show .team_member_title{font-size: 12px;text-align: center;color:#bbb;font-weight: bold;}
+
+
+/*图标*/
+.ico_img_editing:after{background-image: url(../img/ico_editing.png) !important;}
+.ico_img_hasEdited:after{background-image: url(../img/ico_hasEdited.png);}
+/*编辑状态*/
+.taho_editing{
+	color:#E24F00 !important;
+	position: relative;
+}
+.taho_editing:after{
+	position: absolute;
+	right: 0px;
+	top:0px;
+	content: "";
+	display: block;
+	width:20px;
+	height:20px;
+}
+.taho_edit_status{color:#666; width:240px;}
+.taho_edit_status_h1{
+	width:90%;
+	color:#E24F00;
+	font-size: 16px;
+	margin:0px auto 10px;
+	letter-spacing: 2px;
+}
+.taho_edit_status_ul{
+	width:88%;
+	margin:6px auto 0px;
+	font-size: 13px;
+}
+.taho_edit_status_ul li{
+	margin:12px 0px;
+	cursor: pointer;
+	letter-spacing: 1px;
+}
+.taho_edit_status_ul li:hover{
+	color: #E24F00;
+}
+.taho_edit_but{
+	color:#fff !important;
+	background: #E24F00 !important;
+	font-weight: normal;
+	letter-spacing: 3px;
+}
+.taho_cancel_but{
+	color:#E24F00 !important;
+	background: #fff !important;
+	font-weight: normal;
+}
+/*添加视频按钮*/
+.taho_show_introduction{
+	width: 33%;
+	margin: 20px auto;
+}
+
+
+/*上传头像框*/
+.img_edit_box{
+	width: 70px;
+	height:70px;
+	border-radius: 40px;
+	background:#f7f7f7;
+	display: inline-block;
+	text-align: center;
+	line-height: 70px;
+	margin-right: 10px;
+	font-size: 20px;
+	color:#A2A2A2;
+	font-weight: bold;
+}
+
+
+
+/**********edit taho***********/
+
+/*dd dt dl 表单模型*/
+.edit_taho_dl {
+  width: 92%;
+  margin: 15px auto 25px;
+}
+.edit_taho_dl:after{
+	content: "";
+	display: block;
+	height:0px;
+	clear: both;
+	visibility: hidden;
+}
+.edit_taho_dl dt{
+	width:10%;
+	display: inline-block;
+	font-size: 12px;
+}
+.edit_taho_dl dd{
+	vertical-align: top;
+	width:33%;
+	display: inline-block;
+}
+.edit_taho_dl .but_plus_hasback{
+	width:28px;
+	height:28px;
+	border-radius: 14px;
+	line-height: 26px;
+	font-size: 26px;
+	vertical-align: middle;
+}
+.edit_taho_dl .edit_taho_dl_br{
+	width:100%;
+	height:1px;
+	display: block;
+	margin-bottom: 6px;
+}
+.edit_taho_dl .dd_colspan_3{
+	width:78%;
+}
+
+/*完成取消按钮*/
+.form_but_group{width:100%;text-align: center;}
+.form_but_group .form_but{
+	text-align: center;
+  	height: 40px;
+  	line-height: 40px;
+  	margin: 0px auto 30px;
+  	width: 150px;
+  	border-radius: 8px;
+  	cursor: pointer;
+  	font-size: 17px;
+  	font-weight: bold;
+  	padding: 0px;
+  	display: inline-block;
+  	border:none;
+}
+.form_but_group .form_but_submit{
+	color:#fff !important;
+	background: #E24F00 !important;
+	letter-spacing: 3px;
+}
+.form_but_group .form_but_cancel{
+	margin-left: 30px;
+	color:#E24F00 !important;
+	background: #fbfbfb !important;
+}
+
+
+
+/*edit basic*/
+.tab-0gmi-create-position{}
+.tab-0gmi-create-position .table_ul{margin-bottom: 0px;}
+.tab-0gmi-create-position .table_ul>li{width:50%;height:26px;float: left;}
+.tab-0gmi-create-position .table_ul .span1{margin-left:10px;padding-left:15px;}
+.tab-0gmi-create-position .drag{
+	width: 100px;
+	margin-right: 10px;
+	float: left;
+	margin-top:4px;
+}
+.tab-0gmi-create-position .ul_drag_1{
+	width: 100%;
+	margin: 0;
+}
+.tab-0gmi-create-position .special{width:100% !important;height:auto !important;margin-bottom: 20px;position: relative;}
+.tab-0gmi-create-position .special .span1{vertical-align: top;margin-top:5px;}
+.tab-0gmi-create-position .special textarea{min-height:80px;width:480px;max-width: 480px;padding-bottom:16px;overflow-y: hidden;}
+.tab-0gmi-create-position .special .wordwrap{position: absolute;bottom: 5px;left:515px;font-size: 12px;}
+
+.tab-0gmi-create-position .table_ul>li.fileShow{height:70px;line-height:70px}
+.tab-0gmi-create-position .birth_select{
+	display: inline-block;
+	vertical-align: middle;
+	padding: 0px 6px;
+    background:url(../../../style/lib/laydate/skins/default/icon.png) right center no-repeat #F7F7F7;
+    border-radius: 3px;
+    border-width: 1px;
+    border-color: transparent;
+    line-height: 26px;
+    height: 26px;
+    width: 160px;
+}
+.tab-0gmi-create-position .radio{}
+.tab-0gmi-create-position .radio label{margin-right:10px;padding-left:4px;vertical-align: middle;cursor:pointer;}
+
+.tab-0gmi-create-position .input_child{ width:40px;text-align: center;}
+.tab-0gmi-create-position .expect{
+	display: inline-block;
+	background:#fff2eb;
+	border-radius: 8px;
+	padding-top:10px;
+	margin: 0 auto;
+}
+
+/*edit language skill certificate*/
+.tab-0gmi-edit-taho-lsc{}
+.tab-0gmi-edit-taho-lsc dl dd{
+	position: relative;
+}
+.tab-0gmi-edit-taho-lsc dl dd .error{
+	left: 0px;
+}
+
+/*edit education and workexpersion*/
+.tab-0gmi-create-edu{}
+.tab-0gmi-create-edu .title_no_select{
+	cursor: pointer;
+}
+.tab-0gmi-create-edu .title_no_select:hover{
+	color:#888;
+}
+.tab-0gmi-create-edu .title_select{
+	cursor:default;
+	color: #E24F00;
+}
+
+.tab-0gmi-create-edu dl+dl{
+	margin-top:40px;
+}
+.tab-0gmi-create-edu .edit_taho_dl_br{
+	height:10px;
+}
+.tab-0gmi-create-edu .tab-content input[type="checkbox"]+label{
+	margin-right: 6px;
+	min-width: 40px;
+	display: inline-block;
+}
+
+
+/******************************directives 插件样式 begin******************************/
+
+/*dateToDate*/
+.dateToDate{
+	width: 100%;
+}
+.dateToDate .select_module{
+	width:66px;
+	float: left;
+}
+.dateToDate .tag{
+	float: left;
+	padding:0px 3px;
+	margin: 0px;
+}
+.dateToDate .toTag{
+	margin:5px !important;
+	font-size: 13px;
+	display: inline-block;
+}
+.dateToDate .fromYear,
+.dateToDate .toYear{
+	width:75px;
+}
+.dateToDate .fromMonth,
+.dateToDate .toMonth{
+	width:57px;
+}
+
+/***************upload file插件样式***************/
+.uploadFile{
+	position: relative;
+	width:70px;
+	height:70px;
+	border-radius: 35px;
+	overflow: hidden;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.uploadFile .img_show{width: 100%;height: 100%;}
+
+.uploadFile .img_span{
+	display: inline-block;
+	position: absolute;
+	top:0px;
+	left:0px;
+	height:100%;
+	line-height: 70px;
+	width:100%;
+	color:#A2A2A2;
+	background:#F7F7F7;
+	border-radius: 35px;
+	text-align: center;
+	font-weight: bold;
+	font-size:20px;
+	z-index: 10;
+	cursor: pointer;
+	margin: 0px;
+	filter:alpha(opacity=40);
+	-moz-opacity: 0.4;
+	opacity: 0.4;
+}
+
+.uploadFile .img_span:hover{
+	color:#E24F00;
+	background:#f1f1f1;
+}
+
+.uploadFile .img_input{
+	position: absolute;
+	top:0px;
+	left:0px;
+	height:100%;
+	width:100%;
+	filter:alpha(opacity=0);
+	-moz-opacity: 0;
+	opacity: 0;
+	z-index: 5;
+	cursor: pointer;
+}
+
+/*已经上传了图片*/
+.uploadFile.hasValue{}
+
+.uploadFile.hasValue .img_span{
+	display:none;
+}
+
+
+
+
+
+/******************************directives 插件样式 end******************************/
+
+
+/**********************应聘者    右侧样式*****************/
+.right_standrad{}
+.right_standrad .tab-header{}
+.right_standrad .tab-header .tab-title{margin:10px 15px;color:#666;font-size: 15px; background-size: contain;}
+.right_standrad .tab-header .tab-more{margin:10px 15px 0px 0px; color:#999;}
+#interval_message .tab-title{padding-left: 26px;background: url(../img/icon_interval.png) left center no-repeat;}
+#information_message .tab-title{padding-left: 26px;background: url(../img/icon_information.png) left center no-repeat;}
+
+.ul_member{margin:10px 15px;}
+.ul_member li{ width:25%;cursor: pointer;margin-bottom: 15px; display: inline-block;margin-right: 25px;vertical-align: top;}
+.ul_member li:nth-child(3n){margin-right: 0px;}
+.ul_member img{width:100%;border-radius: 30px;height: 53px;}
+.ul_member li p{
+	width:100%;
+	text-align:center;
+	font-size: 13px;
+}
+
+/**********************应聘者    工作机会页面*****************/
+
+/*匹配的joho列表*/
+#match_ul{width:98%;margin:20px auto;}
+#match_ul li{
+	width:100%;
+	margin-bottom:20px;
+	border-radius: 6px;
+	border:#e8e8e8 1px solid;
+	height:200px;
+	background: #fbfafa;
+	padding:30px;
+	position: relative;
+	overflow: hidden;
+}
+#match_ul li:hover{border-color: #E24F00;}
+#match_ul .match_li_img{width:140px;height:140px;border-radius: 6px;border:#e8e8e8 1px solid;background: #FFFFFF;}
+#match_ul .match_li_img img{width:100%;display: inline-block;}
+#match_ul .match_li_info{width:300px;margin-left: 20px;}
+#match_ul .match_li_info dl{margin-top:15px;font-size: 15px;}
+#match_ul .match_li_info dt{ clear: both;float: left;width:80px; margin-bottom: 5px;color:#999;}
+#match_ul .match_li_info dd{margin-bottom: 5px; color:#000;}
+#match_ul .match_li_score{width:180px;text-align: center;}
+#match_ul .match_li_score .show_score{font-family: 'myNumberFont';font-size: 90px;line-height: 100px;color: #E24F00;}
+
+#match_ul .div_transform_rotate{
+	border:1px solid #FF0000;
+	transform:rotate(45deg);
+	-ms-transform:rotate(45deg);
+	-moz-transform:rotate(45deg); 
+	-webkit-transform:rotate(45deg); 
+	-o-transform:rotate(45deg); 
+	width:100px;
+	height:22px;
+	line-height: 22px;
+	background:#E24F00;
+	color:#fff;
+	position: absolute;
+	right:-25px;
+	top:14px;
+	text-align: center;
+}
+
+#match_ul .matchList{background:#fff2eb;}
+
+/*-----------------------------*/
+/*----------视频面试引导--------*/
+/*-----------------------------*/
+#interview_guide{}
+#interview_guide .interview_div{margin-top: 30px;}
+
+#interview_guide .interview_message{width: 50%;float: left;}
+#interview_guide .interview_message li{width: 95%;background: #f5f5f5;margin-top:40px;padding: 5px 20px;border-radius: 8px;cursor: pointer;position: relative;}
+#interview_guide .interview_message li>span{width: 100%;display: inline-block;line-height: 25px;color: #666666;}
+#interview_guide .interview_message li>h2{color: #999;font-style: oblique;line-height: 40px;}
+#interview_guide .interview_message li.active>h2{color: #E24F00;font-weight: bold;}
+#interview_guide .interview_message li:hover>h2{color: #E24F00;font-weight: bold;}
+#interview_guide .interview_message li.active:after{position: absolute;top:15px;right: -45px;content: "";display: block;background: url(../img/interview/chat.png);width: 45px;height: 50px;}
+
+#interview_guide .interview_image{width: 50%;float: right;text-align: right;}
+#interview_guide .interview_image li>img{height: 518px;}
+#interview_guide .interview_image .posrel .qrcode{position: absolute;height: 120px;width: 120px;top: 195px;right: 70px;}
+#interview_guide .interview_image .posrel .qrcode img{width: 100%;height: 100%;}
+
+
+/*--------------------------*/
+/*----------事件中心--------*/
+/*--------------------------*/
+#cand_notice_ul{width:98%;margin:20px auto;}
+#cand_notice_ul>li{
+	width:100%;
+	margin-bottom:20px;
+	border-radius: 6px;
+	border:#e8e8e8 1px solid;
+	height:200px;
+	background: #fff2eb;
+	padding:30px;
+	cursor: pointer;
+}
+#cand_notice_ul>li:hover{border-color: #E24F00;}
+#cand_notice_ul .notice_li_img{width:70px;height:70px;border-radius: 6px;border:#e8e8e8 1px solid;background: #FFFFFF;}
+#cand_notice_ul .notice_li_img img{width:100%;display: inline-block;}
+#cand_notice_ul .notice_li_info{width:300px;margin-left: 20px;}
+#cand_notice_ul .notice_li_score{width:90px;text-align: center;}
+#cand_notice_ul .notice_li_score .show_score{font-family: 'myNumberFont';font-size: 40px;color: #E24F00;line-height: 40px;}
+
+#cand_notice_ul .notice_informations{margin-left:100px;}
+#cand_notice_ul .notice_informations li{margin-top: 10px;}
+#cand_notice_ul .notice_informations .notice_li_img{display: inline-block;width:40px;height:40px;border-radius: 20px;border:#e8e8e8 1px solid;background: #FFFFFF;vertical-align: middle;}
+#cand_notice_ul .notice_informations .notice_li_img img{vertical-align: middle;display: inline-block;}
+#cand_notice_ul .notice_informations .notice_info{vertical-align: middle;display: inline-block;margin-top:10px}
+
+/*======andy message======*/
+#cand_message_ul{width:98%;margin:20px auto;}
+#cand_message_ul>li{
+	width:100%;
+	margin-bottom:20px;
+	border-radius: 6px;
+	border:#e8e8e8 1px solid;
+	height:200px;
+	/*background: #fff2eb;*/
+	padding:30px 0 30px 30px;
+	/*cursor: pointer;*/
+}
+#cand_message_ul .message_li_img{width:110px;height:110px;border-radius: 6px;border:#e8e8e8 1px solid;background: #FFFFFF;}
+#cand_message_ul .message_li_img img{width:100%;display: inline-block;}
+#cand_message_ul .message_informations{width: 82%;}
+
+
+
+/*--------------------------*/
+/*------------挑战-----------*/
+/*--------------------------*/
+#challenge{overflow: hidden;}
+#challenge .chall_bg{height: 400px;background: url(../img/challenge/banner.jpg) center center no-repeat #FF811A;background-size: contain;position: relative;}
+#challenge .chall_bg .chall_pic{z-index:10;position: absolute;width: 58px;height: 58px;background:url(../img/challenge/tz_jt.png) center center no-repeat;left: 50%;margin-left:-29px;bottom: -29px;}
+#challenge .chall_bg img{width:90px;height: 90px;position: absolute;top:205px;left:50%;margin-left:-45px;display: block;}
+
+#challenge .chall_ul{}
+#challenge .chall_ul li{height: 400px;position: relative;}
+#challenge .chall_ul li>div{position: absolute;width: 450px;height: 400px;transition: all 1s;}
+#challenge .chall_ul li>div:first-child{top:0px;left:0px;margin-left: -450px;}
+#challenge .chall_ul li>div:last-child{top:0px;left:100%;}
+#challenge .chall_ul li:nth-child(2n){background: #F6F6F6;}
+#challenge .chall_ul li:nth-child(2n+1){background: #fafafa;}
+
+#challenge .chall_ul li>div.special{
+	left:50%;
+}
+
+#challenge .content_text{
+	padding:100px 150px 0px;
+	background-position: center center;
+	background-size: 34%;
+	background-repeat: no-repeat;
+}
+
+#challenge .content_icon_1{background-image: url(../img/challenge/icon1.png);}
+#challenge .content_icon_2{background-image: url(../img/challenge/icon2.png);}
+#challenge .content_icon_3{background-image: url(../img/challenge/icon3.png);}
+#challenge .content_icon_4{background-image: url(../img/challenge/icon4.png);}
+
+#challenge .content_pic{
+	background-position: bottom center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	margin-top:30px;
+	height: 370px !important;
+}
+#challenge .content_pic_1{background-image: url(../img/challenge/pic1.png);}
+#challenge .content_pic_2{background-image: url(../img/challenge/pic2.png);}
+#challenge .content_pic_3{background-image: url(../img/challenge/pic3.png);}
+#challenge .content_pic_4{background-image: url(../img/challenge/pic4.png);}
+
+/*--------------------------*/
+/*------------taho-----------*/
+/*--------------------------*/
+/*simpleTaho*/
+#simpleTaho{}
+#simpleTaho .clock{background: url(../img/clock.png) center center no-repeat;}
+#simpleTaho .tab-0gmi-group-1 .clock{background-size: 20% !important;}
+#simpleTaho .tab-0gmi-group-3 .clock{background-size: 50% !important;}
+
+
+/*taho中教育和工作经验的切换*/
+#work_and_experience{ float: none;margin:0px auto;width: 180px;padding: 30px 0px 20px;font-size: 13px;}
+#work_and_experience span{width: 50%;line-height: 32px;text-align: center;display: block;cursor: pointer;background: #E24F00;color:#FFF;}
+#work_and_experience span:first-child{border-top-left-radius: 10px;border-bottom-left-radius: 10px;float: left;}
+#work_and_experience span:nth-of-type(2){border-top-right-radius: 10px;border-bottom-right-radius: 10px;float:right;}
+#work_and_experience span.active{background: #F1F1F1;color:#999;}
+#work_and_experience span.active:hover{color:#E24F00;font-weight: bold;}
+
+
+
+
+
+

@@ -1,0 +1,225 @@
+<!--  ==================================== -->
+<!--  ======== 工作经历&教育 module  ========  -->
+<!--  ==================================== -->
+<!--*********show begin ***********-->
+<!--教育&理想工作经验 begin-->
+<div class="tab-0gmi-group-1" ng-if="editModuleTag != 'educations' && editModuleTag != 'work_experiences' ">
+	
+  <!-- 理想工作经验 -->
+  <div class="tab tab-0gmi-education" ng-class="{'maskLayer': editModuleTag}">
+  	<!--编辑图标-->
+		<div id="toho_id_education_work_ico_img_edit" ng-show="!((educations|isEmptyFilter) && (work_experiences|isEmptyFilter))" class="tab-tag tab-top ico_img_edit" title="编辑教育及工作经验" ng-click="openEditModuleTag('educations')"></div>
+		
+		<div class="tab-header">
+			<div class="tab-title">教育及工作经验</div>
+		</div>
+		
+		<!--no data-->
+		<div class="tab-content" ng-show="(educations|isEmptyFilter) && (work_experiences|isEmptyFilter)">
+			<div class="nothing_prompt mt60">还未添加教育及工作经验</div>
+			<div id="toho_id_education_work_nothing_prompt" class="but_plus"  ng-click="openEditModuleTag('educations')">+</div>
+		</div>
+		
+		<!--has data-->
+		<div class="tab-content" ng-show="!((educations|isEmptyFilter) && (work_experiences|isEmptyFilter))">
+			<div class="switch work_switch">
+				<input type="checkbox" name="toggle" checked="checked" ng-model="selectGraphTag" ng-true-value="list_line" ng-false-value="time_line">
+				<label for="toggle"><i></i></label>
+				<span class="switch_span switch_left">时间表</span>
+				<span class="switch_span switch_right">列表</span>
+			</div>
+			<div class="ta_c" 
+				work-experience-show 
+				canvas-data="canvasData" 
+				select-graph-tag="selectGraphTag">
+			</div>
+		</div>
+		
+	</div>
+</div>
+<!--教育&理想工作经验 end-->
+<!--*********show end ***********-->
+	
+<!--*********edit begin ***********-->
+<!--教育 begin-->
+<div id="educations" class="tab-0gmi-group-1" ng-if="editModuleTag == 'educations'" ng-controller="tahoEducationsController">
+	<form name="formData" ng-submit="submitForm()" novalidate  autocomplete="off">
+	<div class="tab tab-0gmi-create-edu">
+		<div class="but_cancel tab-tag tab-top" title="取消教育编辑" ng-click="openEditModuleTag('')">x</div>
+		<div class="tab-header ta_c pt10">
+			<div id="work_and_experience">
+				<span>教育背景</span>
+				<span class="active" ng-click="openEditModuleTag('work_experiences')">工作经验</span>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="tab-content">
+			<dl class="edit_taho_dl posrel" ng-repeat="education in educationsModule">
+				<dt>大学</dt>
+				<dd class="dd_colspan_3">
+					<div pre-search-school = "university" style="display: inline-block;" class="mb10"
+					ng-model = "education.university_id"
+					ng-name = "education.university_name"
+					show-tag = "false">
+					</div>
+				</dd>
+				<dt ng-hide="$last" class="but_plus_hasback" ng-click="removeEducation($index)">-</dt>
+				<dt ng-show="$last" class="but_plus_hasback" ng-click="addEducation()">+</dt>
+				<dt ng-hide="education.pref_edu_level_id">最高学位</dt>
+				<dd ng-hide="education.pref_edu_level_id" class="dd_colspan_3">
+					<input type="checkbox" name="edu_level_id" id="edu_level_id_1_{{$index}}"
+					ng-model="education.edu_level_id" ng-checked="education.edu_level_id==5" ng-true-value="5" ng-false-value=""/>
+					<label for="edu_level_id_1_{{$index}}">博士</label>
+					
+					<input type="checkbox" name="edu_level_id" id="edu_level_id_2_{{$index}}"
+					ng-model="education.edu_level_id" ng-checked="education.edu_level_id==4" ng-true-value="4" ng-false-value=""/>
+					<label for="edu_level_id_2_{{$index}}">硕士</label>
+					
+					<input type="checkbox" name="edu_level_id" id="edu_level_id_3_{{$index}}"
+					ng-model="education.edu_level_id" ng-checked="education.edu_level_id==3" ng-true-value="3" ng-false-value=""/>
+					<label for="edu_level_id_3_{{$index}}">本科</label>
+					
+					<input type="checkbox" name="edu_level_id" id="edu_level_id_4_{{$index}}"
+					ng-model="education.edu_level_id" ng-checked="education.edu_level_id==2" ng-true-value="2" ng-false-value=""/>
+					<label for="edu_level_id_4_{{$index}}">大专</label>
+					
+					<input type="checkbox" name="edu_level_id" id="edu_level_id_5_{{$index}}"
+					ng-model="education.edu_level_id" ng-checked="education.edu_level_id==1" ng-true-value="1" ng-false-value=""/>
+					<label for="edu_level_id_5_{{$index}}">大专以下</label>
+				</dd>
+				<dd ng-hide="education.pref_edu_level_id || education.edu_level_id" class="edit_taho_dl_br"></dd>
+				<dt ng-hide="education.edu_level_id">商务学位</dt>
+				<dd ng-hide="education.edu_level_id" class="dd_colspan_3">
+					<input type="checkbox" name="pref_edu_level_id" id="pref_edu_level_1_{{$index}}"
+					ng-model="education.pref_edu_level_id" ng-checked="education.pref_edu_level_id==1" ng-true-value="1" ng-false-value=""/>
+					<label for="pref_edu_level_1_{{$index}}">MBA</label>
+					<input type="checkbox" name="pref_edu_level_id" id="pref_edu_level_2_{{$index}}"
+					ng-model="education.pref_edu_level_id" ng-checked="education.pref_edu_level_id==2" ng-true-value="2" ng-false-value=""/>
+					<label for="pref_edu_level_2_{{$index}}">EMBA</label>
+					<input type="checkbox" name="pref_edu_level_id" id="pref_edu_level_3_{{$index}}"
+					ng-model="education.pref_edu_level_id" ng-checked="education.pref_edu_level_id==3" ng-true-value="3" ng-false-value=""/>
+					<label for="pref_edu_level_3_{{$index}}">DBA</label>
+				</dd>
+				<dd class="edit_taho_dl_br"></dd>
+				<dt>上学时间</dt>
+				<dd>
+					<div date-to-date class="dateToDate" ng-model="education.start_time"
+					start-time="education.start_time" end-time="education.end_time"></div>
+					<input type="hidden" ng-model="education.start_time"/>
+					<input type="hidden" ng-model="education.end_time"/>
+				</dd>
+				<dt ng-show="education.edu_level_id">专业</dt>
+				<dd ng-show="education.edu_level_id">
+					<div pre-search-custom = "major" style="display: inline-block;" class="mb10"
+					ng-model = "education.majors[0].major_id"
+					ng-name = "education.majors[0].major_name"
+					show-tag = "false"
+					show-from-level  = 1
+					click-from-level = 1>
+					</div>
+					
+				</dd>
+				<dd class="error" style="bottom:-25px;top:auto;height:18px;overflow: hidden;left:70px;" ng-show="educationIsDisable(education) && showError">
+					<p ng-show="educationIsDisable(education,'style_1') && showError">请输入大学</p>
+					<p ng-show="educationIsDisable(education,'style_2') && showError">请选择商务学历或学位学历</p>
+					<p ng-show="educationIsDisable(education,'style_3') && showError">请选择开始时间和结束时间</p>
+					<p ng-show="educationIsDisable(education,'style_6') && showError">请选择开始时间和结束时间</p>
+					<p ng-show="educationIsDisable(education,'style_4') && showError">开始时间应早于结束时间</p>
+					<p ng-show="educationIsDisable(education,'style_5') && showError">请选择专业</p>
+				</dd>
+			</dl>
+		</div>
+	</div>
+	<div class="form_but_group cl" style="margin-top:50px;">
+		<input type="submit" class="form_but form_but_submit" value="完成"/>
+		<div class="form_but form_but_cancel" ng-click="openEditModuleTag()">取消</div>
+	</div>
+	</form>
+	<!-- 遮罩层 -->
+	<div ng-if="editPluaginName" class="pop_up_bg"></div>
+	<!-- 专业选择  -->
+</div>
+<!--教育 end-->
+
+<!--工作经验 begin-->
+<div id='work_experiences' class="tab-0gmi-group-1" ng-if="editModuleTag == 'work_experiences'" ng-controller="tahoWorkExperiencesController">
+	<form name="formData" ng-submit="submitForm()" novalidate autocomplete="off">
+		<!-- 职位讯息 -->
+		<div class="tab tab-0gmi-create-edu">
+			<div class="but_cancel tab-tag tab-top" title="取消工作经验编辑" ng-click="openEditModuleTag('')">x</div>
+			
+			<div class="tab-header">
+				<div  id="work_and_experience">
+					<span class="active" ng-click="openEditModuleTag('educations')">教育背景</span>
+					<span>工作经验</span>
+					<div class="clear"></div>
+				</div>
+			</div>
+			
+			<div class="tab-content">
+				<dl class="edit_taho_dl posrel" ng-repeat="work_experience in workExperiencesModule">
+					<dt>公司名称</dt>
+					<dd class="posrel">
+						<input id="toho_id_education_work_company_name" type="text" ng-model="work_experience.company_name" maxlength="30" ng-maxlength="30"/>
+					</dd>
+					<dt>行业类型</dt>
+					<dd>
+						<select class="input_text" ng-model="work_experience.industry_id" title="{{industyList|selectObjFromObjArr:'industry_id':work_experience.industry_id:'industry_name'}}"
+							ng-options="industry.industry_id as industry.industry_name for industry in industyList">
+							<option value=""></option> 
+						</select>
+					</dd>
+					<dt ng-hide="$last" class="but_plus_hasback" ng-click="removeWorkExperience($index)">-</dt>
+					<dt ng-show="$last" class="but_plus_hasback" ng-click="addWorkExperience()">+</dt>
+					<dd class="edit_taho_dl_br">
+					<dt>工作日期</dt>
+					<dd>
+						<div date-to-date class="dateToDate" ng-model="work_experience.start_time"
+						start-time="work_experience.start_time" end-time="work_experience.end_time"></div>
+					</dd>
+					<dt>工作职位{{positionType}}</dt>
+					<dd>
+						<div class="input_text" style="display: inline-block;width: 170px;"
+							pre-search = "position"
+							ng-model = "work_experience.position_id"
+							show-tag = "false"
+							show-from-level  = 2
+							click-from-level = 3
+						></div>
+						
+						
+						<!-- 职位选择  -->
+						<!--<div class="position_pop_up"
+						 ng-if="editPluaginName=='position_'+$index"
+						 pop-up-layer = "position"
+						 ng-model = "work_experience.position_id"
+						 edit-pluagin="editPluagin('')"
+						 show-name = "职位"
+						 click-level = 2
+						></div>-->
+					</dd>
+					<dd class="error" style="bottom:-25px;top:auto;height:18px;overflow: hidden;left:70px;" ng-show="workIsDisable(work_experience) && showError">
+						<p ng-show="workIsDisable(work_experience,'style_1') && showError">请输入公司名称</p>
+						<p ng-show="workIsDisable(work_experience,'style_2') && showError">请选择行业类型</p>
+						<p ng-show="workIsDisable(work_experience,'style_3') && showError">请选择开始时间和结束时间</p>
+						<p ng-show="workIsDisable(work_experience,'style_6') && showError">请选择开始时间和结束时间</p>
+						<p ng-show="workIsDisable(work_experience,'style_4') && showError">开始时间应小于结束时间</p>
+						<p ng-show="workIsDisable(work_experience,'style_5') && showError">请选择工作职位</p>
+					</dd>
+				</dl>
+			</div>
+		</div>
+		<div class="form_but_group" style="margin-top:50px;">
+			<input type="submit" class="form_but form_but_submit" value="完成"/>
+			<div class="form_but form_but_cancel" ng-click="openEditModuleTag()">取消</div>
+		</div>
+	</form>
+	<!-- 遮罩层 -->
+	<div ng-if="editPluaginName" class="pop_up_bg"></div>
+	
+	
+</div>
+<!--工作经验 end-->
+	
+	
+	

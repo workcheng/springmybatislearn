@@ -1,0 +1,36 @@
+<h2 class="text_color_6A mt15 ml20">搜索的结果<small class="ml20">关键字:{{keywords}}</small></h2>
+
+<p class="f16 text_color_grey ta_c mt30" ng-if="inculdeHtml.loading">数据加载中...</p>
+<div class="tab-0gmi-group-1 no_data" ng-show="(searchList|isEmptyFilter)&&!inculdeHtml.loading" style="height: 150px;">
+	<span class="notice f16" style="font-size: 18px !important;color: #888;">抱歉，还没找到您要的内容！</span>
+</div>
+
+<div class="tab-0gmi-group-1">
+	<ul id="match_ul">
+		<li ng-repeat="searchJoho in searchList" ui-sref="^.detail({'job_id':searchJoho.job_id})" ng-class="{'matchList':searchJoho.recommonded}">
+			<div class="match_li_img fl">
+				<img ng-hide="searchJoho.company_logo" src="./recruiters/style/img/default.png"/>
+				<img ng-show="searchJoho.company_logo" ng-src="{{searchJoho.company_logo}}" 
+					onerror="javascript:this.src='./recruiters/style/img/default.png';this.onerror=null;"/>
+			</div>
+			<div class="match_li_info fl">
+				<h1 class="text_color_redSauce none">{{searchJoho.joho_name}}</h1>
+				<dl>
+					<dt>年薪:</dt>
+					<dd>{{searchJoho.salary | addTagFilter:'万'}}&nbsp;</dd>
+					<dt class="cr">工作地点:</dt>
+					<dd>{{searchJoho.location_name}}</dd>
+					<dd class="clear"></dd>
+				</dl>
+				<div class="mt15 f16 c_black">{{searchJoho.company_name}}</div>
+			</div>
+			<div class="match_li_score fl">
+				<div class="show_score">{{ searchJoho.totalScore|percentFilter }}</div>
+				<span class="f16 text_color_c0">匹配度</span>
+			</div>
+			<div class="div_transform_rotate" ng-show="searchJoho.recommonded">被推荐</div>
+		</li>
+	</ul>
+	
+	<div class="clear"></div>
+</div>

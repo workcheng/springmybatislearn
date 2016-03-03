@@ -1,0 +1,54 @@
+<div ng-controller="matchCohoRightPlugin">
+	<div id="coho_user_list" class="basic_block tab right_standrad">
+		<div class="tab-header">
+			<div class="tab-title">人脉关系</div>
+			<div class="tab-more">{{cohoUserList.count|isEmptyFilter:"0"}}位员工</div>
+		</div>
+		<div class="tab-content" ng-show="cohoUserList.count|isEmptyFilter">
+			<div class="nothing_prompt m10">暂无公司成员</div>
+		</div>
+		<ul class="ul_member" ng-show="!(cohoUserList.count|isEmptyFilter)">
+			<li ng-repeat="cohoUser in cohoUserList.users"  ui-sref="^.simpleTaho({'user_id':cohoUser.user_id})">
+				<img class="bradius_50" ng-hide="cohoUser.avatar" src="./candidates/style/img/default.png"/>
+				<img class="bradius_50" ng-show="cohoUser.avatar" ng-src="{{cohoUser.avatar}}" 
+						onerror="javascript:this.src='./candidates/style/img/default.png';this.onerror=null;"/>
+				<p>{{cohoUser.name}}</p>
+			</li>
+		</ul>
+	</div>
+	
+	<div id="coho_joho_list" class="basic_block tab right_standrad">
+		<div class="tab-header">
+			<div class="tab-title">工作机会</div>
+		</div>
+		<div class="tab-content" ng-show="cohoJohoList.count|isEmptyFilter">
+			<div class="nothing_prompt m10">暂无公司JOHO</div>
+		</div>
+		<ul class="ul_member" ng-show="!(cohoJohoList.count|isEmptyFilter)">
+			<li ng-repeat="cohoJoho in cohoJohoList"  ui-sref="^.simpleTaho({'user_id':cohoUser.business_user_id})">
+				<img ng-hide="cohoUser.avatar" src="./candidates/style/img/default.png"/>
+				<img ng-show="cohoUser.avatar" ng-src="{{cohoUser.avatar}}" 
+						onerror="javascript:this.src='./candidates/style/img/default.png';this.onerror=null;"/>
+				<p>{{cohoUser.name}}</p>
+			</li>
+		</ul>
+	</div>
+	
+	<div id="coho_same_list" class="basic_block tab right_standrad">
+		<div class="tab-header">
+			<div class="tab-title">您可能感兴趣的COHO</div>
+		</div>
+		<div class="tab-content" ng-show="viewTahos|isEmptyFilter">
+			<div class="nothing_prompt m10">暂无相关类型的企业</div>
+		</div>
+		<ul class="ul_member" ng-show="!(viewTahos|isEmptyFilter)">
+			<li ng-repeat="viewTaho in viewTahos"  ui-sref="^.simpleTaho({'user_id':viewTaho.personal_user_id})">
+				<img ng-hide="viewTaho.avatar" src="./candidates/style/img/default.png"/>
+				<img ng-show="viewTaho.avatar" ng-src="{{viewTaho.avatar}}" 
+						onerror="javascript:this.src='./candidates/style/img/default.png';this.onerror=null;"/>
+				<p>{{viewTaho.name}}</p>
+			</li>
+		</ul>
+	</div>
+	
+</div>	

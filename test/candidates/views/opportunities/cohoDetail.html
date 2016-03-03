@@ -1,0 +1,89 @@
+<div id="match_detail">
+
+	<div class="tab-0gmi-group-1">
+		<!-- 展示个人信息 begin -->
+		<div class="tab tab-0gmi-position">
+			<div class="tab-content">
+				<div class="tab-left mt20">
+					<div class="tab-img">
+						<img ng-hide="cohoInfo.company_logo" src="./recruiters/style/img/default.png"/>
+						<img ng-show="cohoInfo.company_logo" ng-src="{{cohoInfo.company_logo}}" 
+								onerror="javascript:this.src='./recruiters/style/img/default.png';this.onerror=null;"/>
+					</div>
+				</div>
+				<div class="tab-right mt20">
+					<h2 class='b'>{{cohoInfo.company_name}}</h2>
+					<p class="text_color_grey cl">{{cohoInfo.company_details}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="tab-0gmi-group-1">
+		<div class="tab tab-0gmi-position">
+			<div class="tab-header">
+				<div class="tab-title">公司视频</div>
+			</div>
+			<div class="tab-content">
+				<video id="video_id" class="video_show">
+					<source src="{{cohoInfo.company_video}}" type="video/mp4" />
+				</video>
+			</div>
+		</div>
+	</div>
+	
+	<div class="tab-0gmi-group-2 pt20 pb20">
+		<div class="tab tab-0gmi-module">
+			<dl class="basic_dl">
+				<dt>公司类型：</dt>
+				<dd>{{cohoInfo.company_type_name}}</dd>
+				<dt class="cboth">所属行业：</dt>
+				<dd>{{cohoInfo.industry_name}}</dd>
+				<dt class="cboth">公司地址：</dt>
+				<dd>{{cohoInfo.company_address}}</dd>
+				<dt class="cboth">公司电话：</dt>
+				<dd>{{cohoInfo.company_phone}}</dd>
+			</dl>
+		</div>
+		
+		<div class="tab tab-0gmi-module">
+			<dl class="basic_dl">
+				<dt>公司网站：</dt>
+				<dd>{{cohoInfo.company_website}}</dd>
+				<dt class="cboth">公司邮箱：</dt>
+				<dd>{{cohoInfo.company_email}}</dd>
+				<dt class="cboth">公司规模：</dt>
+				<dd>{{cohoInfo.company_size_type}}</dd>
+				<dt class="cboth">创建年份：</dt>
+				<dd>{{cohoInfo.company_create_time|date:'yyyy年MM月'}}</dd>
+			</dl>
+		</div>
+	</div>
+	
+	<div class="tab-0gmi-group-2 pt20 pb20">
+		<div class="tab tab-0gmi-module">
+			<div class="tab-header">
+				<div class="tab-title">微信公众号</div>
+			</div>
+			<div class="tab-content">
+				<div class="tab-img QRCode" style="width:140px">
+					<img src="./temp/u=1529440876,987321757&fm=21&gp=0.jpg" />
+				</div>
+				<div class="ta_c text_color_grey">扫一扫，加微信</div>
+			</div>
+		</div>
+		
+		<div class="tab tab-0gmi-module">
+			<div class="tab-header">
+				<div class="tab-title">微博</div>
+			</div>
+			<div class="tab-content">
+				<div class="tab-img QRCode" style="width:140px">
+					<img src="./temp/u=1529440876,987321757&fm=21&gp=0.jpg" />
+				</div>
+				<div class="ta_c text_color_grey">扫一扫，加微博</div>
+			</div>
+		</div>
+	</div>
+
+</div>

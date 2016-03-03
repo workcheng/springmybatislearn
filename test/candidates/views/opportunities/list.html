@@ -1,0 +1,63 @@
+<h2 class="text_color_redSauce b fl" style="border-bottom: 2px solid #e24f00;">匹配的机会</h2>
+<h2 class="text_color_grey b" style="margin-left: 100px;" ui-sref="^.selfList">我的自荐</h2>
+
+<p class="f16 text_color_grey ta_c mt30" ng-if="inculdeHtml.loading">数据加载中...</p>
+<div class="tab-0gmi-group-1 no_data" ng-show="(matchJoHos|isEmptyFilter)&&(potentialJoHos|isEmptyFilter)&&!inculdeHtml.loading">
+	<span class="notice">暂无匹配机会，完善TAHO信息即可推送匹配机会</span><br/>
+	<h2 class="common_tag create_tag" ui-sref="candidates.taho">完善TAHO信息</h2>
+</div>
+
+<div class="tab-0gmi-group-1">
+	<ul id="match_ul">
+		<li class="matchList" ng-repeat="matchJoho in matchJoHos" ui-sref="^.detail({'job_id':matchJoho.job_id})">
+			<div class="match_li_img fl">
+				<img ng-hide="matchJoho.company_logo" src="./recruiters/style/img/default.png"/>
+				<img ng-show="matchJoho.company_logo" ng-src="{{matchJoho.company_logo}}" 
+					onerror="javascript:this.src='./recruiters/style/img/default.png';this.onerror=null;"/>
+			</div>
+			<div class="match_li_info fl">
+				<h1 class="text_color_redSauce none">{{matchJoho.joho_name}}</h1>
+				<dl>
+					<dt>年薪:</dt>
+					<dd>{{matchJoho.salary | addTagFilter:'万'}}&nbsp;</dd>
+					<dt class="cr">工作地点:</dt>
+					<dd>{{matchJoho.location_name}}</dd>
+					<dd class="clear"></dd>
+				</dl>
+				<div class="mt15 f16 c_black">{{matchJoho.company_name}}</div>
+			</div>
+			<div class="match_li_score fl">
+				<div class="show_score">{{ matchJoho.totalScore|percentFilter }}</div>
+				<span class="f16 text_color_c0">匹配度</span>
+			</div>
+			<div class="div_transform_rotate">被推荐</div>
+		</li>
+	</ul>
+	
+	<ul id="match_ul">
+		<li ng-repeat="potentialJoho in potentialJoHos" ui-sref="^.detail({'job_id':potentialJoho.job_id})">
+			<div class="match_li_img fl">
+				<img ng-hide="potentialJoho.company_logo" src="./recruiters/style/img/default.png"/>
+				<img ng-show="potentialJoho.company_logo" ng-src="{{potentialJoho.company_logo}}" 
+					onerror="javascript:this.src='./recruiters/style/img/default.png';this.onerror=null;"/>
+			</div>
+			<div class="match_li_info fl">
+				<h1 class="text_color_redSauce none">{{potentialJoho.joho_name}}</h1>
+				<dl>
+					<dt>年薪:</dt>
+					<dd>{{potentialJoho.salary | addTagFilter:'万'}}&nbsp;</dd>
+					<dt class="cr">工作地点:</dt>
+					<dd>{{potentialJoho.location_name}}</dd>
+					<dd class="clear"></dd>
+				</dl>
+				<div class="mt15 f16 c_black">{{potentialJoho.company_name}}</div>
+			</div>
+			<div class="match_li_score fl">
+				<div class="show_score">{{ potentialJoho.totalScore|percentFilter }}</div>
+				<span class="f16 text_color_c0">匹配度</span>
+			</div>
+		</li>
+	</ul>
+	
+	<div class="clear"></div>
+</div>

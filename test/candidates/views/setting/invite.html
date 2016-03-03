@@ -1,0 +1,30 @@
+<div class="tab-0gmi-group-1 tab">
+	<div class="tab-header">
+		<div class="tab-title">
+			<h2 class="b">推送设置</h2>
+			<p>以下是您的推送设置，您可以设置您屏蔽的公司和推送媒介。</p>
+		</div>
+	</div>
+	<ul class="tab-content setting_ul">
+		<li class="special">
+			<div class='li_l'>邀请码</div>
+			<div class='li_r'>
+				<input type="text" ng-model="userInfo.invitation_code" readonly="readonly"/>
+				<div class="form_but_group">
+					<input type="button" class="form_but form_but_submit" 
+						ng-click="copyToClipBoard( userInfo.invitation_code )" 
+						ng-show="userInfo.invitation_code" value="复制邀请码"/>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</li>
+	</ul>
+</div>
+
+
+
+
+
+
+
+

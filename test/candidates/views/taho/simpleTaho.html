@@ -1,0 +1,195 @@
+<!-- 主体  左侧-->
+<div class="width_scale70 fl" id="simpleTaho">
+	
+		<!--coho begin-->
+		<div class="tab-0gmi-group-1">
+			<!-- coho -->
+			<div class="tab tab-0gmi-CoHo">
+				<div class="tab-header">
+					<div class="tab-title">COHO</div>
+				</div>
+				<div class="tab-content">
+					<div class="tab-left">
+						<div class="tab-img">
+							<img ng-hide="company.company_logo" src="./recruiters/style/img/default.png"/>
+							<img ng-show="company.company_logo" ng-src="{{company.company_logo}}" 
+								onerror="javascript:this.src='./recruiters/style/img/default.png';this.onerror=null;"/>
+						</div>
+						<h2 class="b pl20 pr20">{{company.company_name}}<br/>
+							<small>{{comany.comany_industry}}</small>
+						</h2>
+					</div>
+					<ul class="tab-right table_ul">
+						<li>
+							<span>类型:</span>
+							<span>{{company.company_type_name}}</span>
+						</li>
+						<li>
+							<span>大小:</span>
+							<span>{{company.company_size_type}}</span>
+						</li>
+						<li>
+							<span>产品与服务:</span>
+							<span>{{company.company_introduce}}</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	
+		<!--  ====================================  -->
+		<!--  ======== joho 基本信息 module  ========  -->
+		<!--  ====================================  -->
+		<div class="tab-0gmi-group-1">
+			<!-- 展示个人信息 begin -->
+			<div class="tab tab-0gmi-position"  ng-class="{'clock':(privacySetting.basic==0)}">
+			
+				<div class="tab-header">
+					<div class="tab-title">个人信息</div>
+				</div>
+				
+				<!--no data-->
+				<div class="tab-content" ng-show="(basic|isEmptyFilter)&&privacySetting.basic">
+					<div class="nothing_prompt mt60">还未添加个人信息</div>
+				</div>
+				
+				<!--has data-->
+				<div class="tab-content" ng-show="(!(basic|isEmptyFilter))&&privacySetting.basic">
+					<div class="tab-left">
+						<div class="tab-img">
+							<img class="bradius_50" ng-hide="basic.avatar_url" src="./candidates/style/img/default.png"/>
+							<img class="bradius_50" ng-show="basic.avatar_url" ng-src="{{basic.avatar_url}}" 
+								onerror="javascript:this.src='./candidates/style/img/default.png';this.onerror=null;"/>
+						</div>
+						<p class="h2">{{basic.name}}</p>
+					</div>
+					<div class="tab-right">
+						<h1 class="postion_title text_color_redSauce">{{basic.positions[0].position_name}}</h1>
+						<ul class="position_tag clearUl">
+							<li ng-show="basic.gender">性别：{{basic.gender|genderShowFromTag}}</li>
+							<li ng-show="basic.email">邮箱：{{basic.email}}</li>
+						</ul>
+						<p class="text_color_grey mt10">{{basic.description}}</p>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+
+		<!--  ==================================== -->
+		<!--  ======== 工作经历&教育 module  ========  -->
+		<!--  ==================================== -->
+		<div class="tab-0gmi-group-1">
+		    <!-- 理想工作经验 -->
+		    <div class="tab tab-0gmi-education"  ng-class="{'clock':(privacySetting.educations_work_experiences==0)}">
+		  	<!--编辑图标-->
+				<div class="tab-header">
+					<div class="tab-title">工作经验及教育</div>
+				</div>
+				
+				<!--no data-->
+				<div class="tab-content" ng-show="(educations|isEmptyFilter) && (work_experiences|isEmptyFilter) && privacySetting.educations_work_experiences">
+					<div class="nothing_prompt mt60">还未添加工作经验及教育</div>
+				</div>
+				
+				<!--has data-->
+				<div class="tab-content" ng-show="(!((educations|isEmptyFilter) && (work_experiences|isEmptyFilter))) && privacySetting.educations_work_experiences">
+					<div class="switch work_switch">
+						<input type="checkbox" name="toggle" checked="checked" ng-model="selectGraphTag"  ng-true-value="list_line" ng-false-value="time_line">
+						<label for="toggle"><i></i></label>
+						<span class="switch_span switch_left">时间表</span>
+						<span class="switch_span switch_right">列表</span>
+					</div>
+							
+					<div class="ta_c" 
+						work-experience-show 
+						canvas-data="canvasData" 
+						select-graph-tag="selectGraphTag">
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--  =======================================  -->
+		<!--  ======== 语言能力&技能&证书 module  ========  -->
+		<!--  =======================================  -->
+		<!--*********show begin ***********-->
+		<div class="tab-0gmi-group-3">
+		    
+		    <!-- 语言能力 -->
+		  	<div class="tab tab-0gmi-language" ng-class="{'clock':(privacySetting.languages==0)}">
+				
+				<div class="tab-header">
+					<div class="tab-title">语言能力</div>
+				</div>
+				<!--no data-->
+				<div class="tab-content" ng-show="(languages|isEmptyFilter) && privacySetting.languages">
+					<div class="img_style_prompt ico_img_language"></div>
+					<div class="nothing_prompt">还未添加语言能力</div>
+				</div>
+				<!--has data-->
+				<div class="tab-content" ng-show="(!(languages|isEmptyFilter)) && privacySetting.languages">
+					<ul item="2">
+						<li ng-repeat="language in languages">
+							<h2>{{language.language_name}}<br/>
+								<small>{{language.language_level_name}}</small>
+							</h2>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+		  	<!-- 技能 -->
+		  	<div class="tab tab-0gmi-skill" ng-class="{'clock':(privacySetting.skills==0)}">
+		
+				<div class="tab-header">
+					<div class="tab-title">技能</div>
+				</div>
+				<!--no data-->
+				<div class="tab-content" ng-show="(skills|isEmptyFilter) && privacySetting.skills">
+					<div class="img_style_prompt ico_img_skill"></div>
+					<div class="nothing_prompt">还未添加任何技能</div>
+				</div>
+				<!--has data-->
+				<div class="tab-content" ng-show="(!(skills|isEmptyFilter)) && privacySetting.skills">
+					<ul class="ul_list">
+						<li ng-repeat="skill in skills">{{skill.skill_name}}</li>
+					</ul>
+				</div>
+			</div>
+			
+			<!-- 证书 -->
+		  	<div class="tab tab-0gmi-certificate" ng-class="{'clock':(privacySetting.certificates==0)}">
+		  		
+				<div class="tab-header">
+					<div class="tab-title">证书</div>
+				</div>
+				<!--no data-->
+				<div class="tab-content" ng-show="(certificates|isEmptyFilter) && privacySetting.certificates">
+					<div class="img_style_prompt ico_img_certificate"></div>
+					<div class="nothing_prompt">还未添加任何证书</div>
+				</div>
+				<!--has data-->
+				<div class="tab-content" ng-show="(!(certificates|isEmptyFilter)) && privacySetting.certificates">
+					<ul class="ul_list ul_ico">
+						<li ng-repeat="certificate in certificates">
+							<div class="li_ico"><img ng-src="{{certificate.certificate_logo}}"/></div>
+							<span>{{certificate.certificate_name}}</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+</div>
+
+
+<!-- 主体  右侧-->
+<div class="fr width_scale30" ng-controller="simpleTahoEditStautsController">
+
+</div>
+
+
+
+
+

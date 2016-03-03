@@ -1,0 +1,72 @@
+
+<div class="tab-0gmi-group-1 tab">
+	<div class="tab-header">
+		<div class="tab-title">
+			<h2 class="b">推送设置</h2>
+			<p>以下是您的推送设置，您可以设置您屏蔽的公司和推送媒介。</p>
+		</div>
+	</div>
+	<ul class="tab-content setting_ul">
+		<li ng-show="setting.editSetting != 'unwanted_company'">
+			<div class='li_l'>屏蔽公司</div>
+			<div class='li_r pl5 text_color_grey' ng-show="userInfo.unwanted_company|isEmptyFilter">暂无屏蔽的公司</div>
+			<ul class='li_r pl5' ng-hide="userInfo.unwanted_company|isEmptyFilter">
+				<li ng-repeat="company in userInfo.unwanted_company">{{company}}</li>
+			</ul>
+			<div class="clear"></div>
+			<div class="edit" ng-click="setting.editSetting = 'unwanted_company'"></div>
+		</li>
+		<li class="special"  ng-if="setting.editSetting == 'unwanted_company'">
+			<div class='li_l'>屏蔽公司</div>
+			<div class='li_r'>
+				<form name="formData" ng-submit="submitForm( true)" novalidate  autocomplete="off">
+					<ul>
+						<li class="pb10" ng-repeat="company in update.unwanted_company_info">
+							<input type="text" ng-model="company.content"/>
+							<span class="button_tag addTag" ng-click = "addNewUnwanted()"></span>
+							<span class="button_tag removeTag" ng-click = "removeNewUnwanted(company)" ng-hide="$index==0"></span>
+						</li>
+					</ul>
+					<div class="form_but_group">
+						<input type="submit" id="toho_id_basic_but_submit" class="form_but form_but_submit" value="确认"/>
+						<div class="form_but form_but_cancel" ng-click="cancelForm(formData)">取消</div>
+					</div>
+				</form>
+			</div>
+			<div class="clear"></div>
+		</li>
+		<li ng-show="setting.editSetting != 'push_mode'">
+			<div class='li_l'>职位推送方式</div>
+			<ul class='li_r ml5'>
+				<li ng-show="inString(userInfo.push_mode,1)">短信通知</li>
+				<li ng-show="inString(userInfo.push_mode,2)">邮件通知</li>
+				<li ng-show="inString(userInfo.push_mode,3)">即时消息</li>
+			</ul>
+			<div class="clear"></div>
+			<div class="edit" ng-click="setting.editSetting = 'push_mode'"></div>
+		</li>
+		<li class="special" ng-if="setting.editSetting == 'push_mode'">
+			<div class='li_l'>职位推送方式</div>
+			<div class='li_r'>
+				<form name="formData" ng-submit="submitForm(true)" novalidate  autocomplete="off">
+					<input type="checkbox" ng-model="push_mode_id.type_1" id="sms_notice"/><label for='sms_notice'>短信通知</label></br>
+					<input type="checkbox" ng-model="push_mode_id.type_2" id="mail_notice"/><label for="mail_notice">邮件通知</label></br>
+					<input type="checkbox" ng-model="push_mode_id.type_3" id="mess_notice"/><label for="mess_notice">即时消息</label>
+					<div class="form_but_group">
+						<input type="submit" id="toho_id_basic_but_submit" class="form_but form_but_submit" value="确认"/>
+						<div class="form_but form_but_cancel" ng-click="cancelForm(formData)">取消</div>
+					</div>
+				</form>
+			</div>
+			<div class="clear"></div>
+		</li>
+	</ul>
+</div>
+
+
+
+
+
+
+
+

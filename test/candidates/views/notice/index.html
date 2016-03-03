@@ -1,0 +1,54 @@
+<!-- 主体  左侧-->
+<div class="width_scale70 fl">
+	<div ui-view="">
+	</div>
+</div>
+
+
+<!-- 主体  右侧-->
+<div class="fr width_scale30 right_module">
+	
+	<div id="interval_message" class="basic_block tab right_standrad">
+		<div class="tab-header">
+			<div class="tab-title">面试邀请</div>
+		</div>
+		<div class="tab-content" ng-show="internalMessageList|isEmptyFilter">
+			<div class="nothing_prompt m10">暂无面试邀请</div>
+		</div>
+		<ul class="ul_member" ng-show="!(internalMessageList|isEmptyFilter)">
+			<li ng-repeat="internalMessage in internalMessageList"  ui-sref="^.detail({'job_id':internalMessage.job_id})">
+				<img ng-hide="internalMessage.avatar" src="./candidates/style/img/default.png"/>
+				<img ng-show="internalMessage.avatar" ng-src="{{internalMessage.avatar}}" 
+						onerror="javascript:this.src='./candidates/style/img/default.png';this.onerror=null;"/>
+				<p>{{internalMessage.company_name}}</p>
+			</li>
+		</ul>
+	</div>
+	
+	<div id="information_message" class="basic_block tab right_standrad">
+		<div class="tab-header">
+			<div class="tab-title">即时消息</div>
+		</div>
+		<div class="tab-content">
+			<div class="nothing_prompt m10">暂无即时消息</div>
+		</div>
+	</div>
+	
+	<div class="basic_block tab right_standrad">
+		<div class="tab-header">
+			<div class="tab-title">您的访客</div>
+		</div>
+		<div class="tab-content" ng-show="viewTahos|isEmptyFilter">
+			<div class="nothing_prompt m10">暂无访客</div>
+		</div>
+		<ul class="ul_member" ng-show="!(viewTahos|isEmptyFilter)">
+			<li ng-repeat="viewTaho in viewTahos"  ui-sref="^.simpleTaho({'user_id':viewTaho.personal_user_id})">
+				<img ng-hide="viewTaho.avatar" src="./candidates/style/img/default.png"/>
+				<img ng-show="viewTaho.avatar" class="bradius_50" src="{{viewTaho.avatar}}" 
+						onerror="javascript:this.src='./candidates/style/img/default.png';this.onerror=null;"/>
+				<p>{{viewTaho.name}}</p>
+			</li>
+		</ul>
+	</div>
+	
+</div>

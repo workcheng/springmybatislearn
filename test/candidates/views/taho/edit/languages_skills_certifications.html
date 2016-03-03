@@ -1,0 +1,194 @@
+<!--  =======================================  -->
+<!--  ======== 语言能力&技能&证书 module  ========  -->
+<!--  =======================================  -->
+<!--*********show begin ***********-->
+<div class="tab-0gmi-group-3" ng-if=" editModuleTag != 'languages' && editModuleTag != 'skills' && editModuleTag != 'certificates' ">
+
+	<!-- 语言能力 -->
+	<div class="tab tab-0gmi-language" ng-class="{'maskLayer': editModuleTag}">
+		<!--编辑图标-->
+		<div id="toho_id_languages_ico_img_edit" ng-show="!(languages|isEmptyFilter)" class="tab-tag tab-top ico_img_edit" title="编辑语言能力" ng-click="openEditModuleTag('languages')"></div>
+
+		<div class="tab-header">
+			<div class="tab-title">语言能力</div>
+		</div>
+		<!--no data-->
+		<div class="tab-content" ng-show="languages|isEmptyFilter">
+			<div class="img_style_prompt ico_img_language"></div>
+			<div class="nothing_prompt">还未添加语言能力</div>
+			<div id="toho_id_languages_nothing_prompt" class="but_plus" ng-click="openEditModuleTag('languages')">+</div>
+		</div>
+		<!--has data-->
+		<div class="tab-content" ng-show="!(languages|isEmptyFilter)">
+			<ul item="2">
+				<li ng-repeat="language in languages">
+					<h2 id="toho_id_language_language_name">{{language.language_name}}<br/>
+						<small>{{language.language_level_name}}</small>
+					</h2>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- 技能 -->
+	<div class="tab tab-0gmi-skill" ng-class="{'maskLayer': editModuleTag}">
+		<!--编辑图标-->
+		<div id="toho_id_skills_ico_img_edit" ng-show="!(skills|isEmptyFilter)" class="tab-tag tab-top ico_img_edit" title="编辑技能" ng-click="openEditModuleTag('skills')"></div>
+
+		<div class="tab-header">
+			<div class="tab-title">技能</div>
+		</div>
+		<!--no data-->
+		<div class="tab-content" ng-show="skills|isEmptyFilter">
+			<div class="img_style_prompt ico_img_skill"></div>
+			<div class="nothing_prompt">还未添加任何技能</div>
+			<div id="toho_id_skills_nothing_prompt" class="but_plus" ng-click="openEditModuleTag('skills')">+</div>
+		</div>
+		<!--has data-->
+		<div class="tab-content" ng-show="!(skills|isEmptyFilter)">
+			<ul class="ul_list">
+				<li id="toho_id_skills_skill_name" ng-repeat="skill in skills">{{skill.skill_name}}</li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- 证书 -->
+	<div class="tab tab-0gmi-certificate" ng-class="{'maskLayer': editModuleTag}">
+		<!--编辑图标-->
+		<div id="toho_id_certificates_ico_img_edit" ng-show="!(certificates|isEmptyFilter)" class="tab-tag tab-top ico_img_edit" title="编辑证书" ng-click="openEditModuleTag('certificates')"></div>
+
+		<div class="tab-header">
+			<div class="tab-title">证书</div>
+		</div>
+		<!--no data-->
+		<div class="tab-content" ng-show="certificates|isEmptyFilter">
+			<div class="img_style_prompt ico_img_certificate"></div>
+			<div class="nothing_prompt">还未添加任何证书</div>
+			<div id="toho_id_certificates_nothing_prompt" class="but_plus" ng-click="openEditModuleTag('certificates')">+</div>
+		</div>
+		<!--has data-->
+		<div class="tab-content" ng-show="!(certificates|isEmptyFilter)">
+			<ul class="ul_list ul_ico">
+				<li ng-repeat="certificate in certificates">
+					<div class="li_ico"><img ng-src="{{certificate.certificate_logo}}" /></div>
+					<span id="toho_id_certificates_certificate_name">{{certificate.certificate_name}}</span>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<!--*********show end ***********-->
+
+<!--*********edit begin ***********-->
+
+<!-- edit语言能力 -->
+<div id="languages" class="tab-0gmi-group-1" ng-if="editModuleTag == 'languages'" ng-controller="tahoLanguagesController">
+	<form name="formData" ng-submit="submitForm(formData.$valid,formData.$dirty)" novalidate autocomplete="off">
+		<div class="tab tab-0gmi-edit-taho-lsc">
+			<div class="but_cancel tab-tag tab-top" title="取消语言编辑" ng-click="openEditModuleTag('')">x</div>
+			<div class="tab-header">
+				<div class="tab-title">语言能力</div>
+			</div>
+			<input type="hidden" ng-model="languagesModule" />
+			<div class="tab-content">
+				<input type="hidden" ng-model="languagesModule" />
+				<dl class="edit_taho_dl" ng-repeat="language in languagesModule">
+					<dt>语言</dt>
+					<dd>
+						<select class="input_text" ng-model="language.language_id" ng-options="languagesItem.language_id as languagesItem.language_name for languagesItem in languagesList | filterSelect:'language_id':languagesModule:language.language_id">
+							<option value="">请选择语言</option>
+						</select>
+						<input type="hidden" ng-model="language.language_id" />
+						<span class="error" ng-show="!language.language_id && language.language_level_id">请选择语言</span>
+					</dd>
+					<dt>流利性</dt>
+					<dd>
+						<select class="second" ng-model="language.language_level_id" value="0" ng-options="languageLevel.language_level_id as languageLevel.language_level_name for languageLevel in languageLevelsList">
+							<option value="">请选择流利度</option>
+						</select>
+						<input type="hidden" ng-model="language.language_id" />
+						<span class="error" ng-show="language.language_id && !language.language_level_id">请选择熟练度</span>
+					</dd>
+					<dt ng-hide="$last" class="but_plus_hasback" ng-click="removeLanguage($index)">-</dt>
+					<dt ng-show="$last" class="but_plus_hasback" ng-click="addLanguage()">+</dt>
+				</dl>
+			</div>
+		</div>
+
+		<div class="form_but_group mt60">
+			<input type="submit" class="form_but form_but_submit" value="完成" />
+			<div class="form_but form_but_cancel" ng-click="openEditModuleTag('')">取消</div>
+		</div>
+
+	</form>
+</div>
+
+<!-- edit技能 -->
+<div id="skills" class="tab-0gmi-group-1" ng-if="editModuleTag == 'skills'" ng-controller="tahoSkillsController">
+	<form name="formData" ng-submit="submitForm(formData.$valid,formData.$dirty)" novalidate autocomplete="off">
+		<div class="tab tab-0gmi-create-lsc">
+			<div class="but_cancel tab-tag tab-top" title="取消技能编辑" ng-click="openEditModuleTag('')">x</div>
+			<div class="tab-header">
+				<div class="tab-title">技能</div>
+			</div>
+			<div class="tab-content">
+				<dl class="edit_taho_dl" ng-repeat="skill in skillsModule">
+					<dt>技能</dt>
+					<dd>
+						<span class="input_text" pre-search-custom="skill" ng-model="skill.skill_id" ng-name="skill.skill_name" show-tag="false" show-from-level=1 click-from-level=1>
+						</span>
+					</dd>
+					<dt></dt>
+					<dd></dd>
+					<dt ng-hide="$last" class="but_plus_hasback" ng-click="removeSkill($index)">-</dt>
+					<dt ng-show="$last" class="but_plus_hasback" ng-click="addSkill()">+</dt>
+				</dl>
+			</div>
+		</div>
+		<div class="form_but_group">
+			<input type="submit" class="form_but form_but_submit" value="完成" />
+			<div class="form_but form_but_cancel" ng-click="openEditModuleTag('')">取消</div>
+		</div>
+
+		<!-- 遮罩层 -->
+		<div ng-if="editPluaginName" class="pop_up_bg"></div>
+		<!-- 工作地点选择  -->
+
+	</form>
+</div>
+
+<!-- edit证书 -->
+<div id="certificates" class="tab-0gmi-group-1" ng-if="editModuleTag == 'certificates'" ng-controller="tahoCertificationsController">
+	<form name="formData" ng-submit="submitForm(formData.$valid,formData.$dirty)" novalidate autocomplete="off">
+		<div class="tab tab-0gmi-create-lsc">
+			<div class="but_cancel tab-tag tab-top" title="取消证书编辑" ng-click="openEditModuleTag('')">x</div>
+			<div class="tab-header">
+				<div class="tab-title">证书</div>
+			</div>
+			<div class="tab-content">
+				<dl class="edit_taho_dl" ng-repeat="certificate in certificatesModule">
+					<dt>证书</dt>
+					<dd>
+						<span class="input_text" pre-search="certificate" ng-model="certificate.certificate_id" edit-pluagin="editPluagin('certificate'+$index)" show-from-level=1 click-from-level=2>
+					</span>
+
+						<div ng-show="editPluaginName=='certificate'+$index" class="skill_pop_up" pop-up-layer="certificate" ng-model="certificate.certificate_id" edit-pluagin="editPluagin('')" hide-ng-model=t rue show-name="证书" click-level=2></div>
+
+					</dd>
+					<dt></dt>
+					<dd></dd>
+					<dt ng-hide="$last" class="but_plus_hasback" ng-click="removeCertificate($index)">-</dt>
+					<dt ng-show="$last" class="but_plus_hasback" ng-click="addCertificate()">+</dt>
+				</dl>
+			</div>
+		</div>
+		<div class="form_but_group">
+			<input type="submit" class="form_but form_but_submit" value="完成" />
+			<div class="form_but form_but_cancel" ng-click="openEditModuleTag('')">取消</div>
+		</div>
+	</form>
+	<!-- 遮罩层 -->
+	<div ng-if="editPluaginName" class="pop_up_bg"></div>
+</div>
+<!--*********edit edit ***********-->

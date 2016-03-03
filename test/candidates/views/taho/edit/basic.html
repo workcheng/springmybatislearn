@@ -1,0 +1,194 @@
+<!--  ====================================  -->
+<!--  ======== taho 基本信息 module  ========  -->
+<!--  ====================================  -->
+<!--**********************show begin************************-->
+<div class="tab-0gmi-group-1" ng-if="editModuleTag != 'basic'">
+	<!-- 展示个人信息 begin -->
+	<div class="tab tab-0gmi-position" ng-class="{'maskLayer': editModuleTag}">
+		<!--编辑图标-->
+		<div ng-show="!(basic|isEmptyFilter)" id="toho_id_basic_ico_img_edit" class="tab-tag tab-top ico_img_edit" title="编辑个人信息" ng-click="openEditModuleTag('basic')"></div>
+			
+		<div class="tab-header">
+			<div class="tab-title">个人信息</div>
+		</div>
+		
+		<!--no data-->
+		<div class="tab-content" ng-show="basic|isEmptyFilter">
+			<div class="nothing_prompt mt60">还未添加个人信息</div>
+			<div id="toho_id_basic_but_plus" class="but_plus"  ng-click="openEditModuleTag('basic')">+</div>
+		</div>
+		
+		<!--has data-->
+		<div class="tab-content" ng-show="!(basic|isEmptyFilter)">
+			<div class="tab-left">
+				<div class="tab-img">
+					<img class="bradius_50" ng-hide="basic.avatar_url" src="./candidates/style/img/default.png"/>
+					<img class="bradius_50" ng-show="basic.avatar_url" ng-src="{{basic.avatar_url}}" 
+						onerror="javascript:this.src='./candidates/style/img/default.png';this.onerror=null;"/>
+				</div>
+				<p id="toho_id_basic_show_name_and_gender" class="text_color_grey f16">{{basic.name}}<span ng-show="basic.gender==1||basic.gender==2">{{basic.gender|genderShowFromTag}}</span></p>
+			</div>
+			<div class="tab-right">
+				<h2 id="toho_id_basic_show_position_name"class="postion_title text_color_redSauce">{{basic.position_name}}</h2>
+				<ul class="position_tag clearUl">
+					<li class="h3" id="toho_id_basic_show_birth_year" ng-if="basic.birth|dateToAgeFilter">{{basic.birth|dateToAgeFilter|addTagFilter:'岁' }}</li>
+					<li class="h3" id="toho_id_basic_show_address_name" ng-if="basic.address_name">{{basic.address_name}}</li>
+					<li class="h3" id="toho_id_basic_show_mobile_number" ng-if="basic.mobile_number">{{basic.mobile_number }}</li>
+				</ul>
+				<div class="mt10" ng-show="basic.email">
+					<span class="text_color_grey">电子邮箱：</span>
+					<span id="toho_id_basic_show_email">{{basic.email}}</span>
+				</div>
+				<div class="mt10">
+					<span ng-show="basic.email" class="mr20">
+						<span class="text_color_grey">婚姻状况：</span>
+						<span id="toho_id_basic_show_marriage">{{basic.marriage|marriageFilter}}</span>
+					</span>
+				</div>
+				<div ng-show="basic.description" class="mt10">
+					<span class="text_color_grey">自我描述：</span>
+					<span style="line-height: 25px;" id="toho_id_basic_show_description">{{basic.description}}</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</div>
+<!--*******************show end***********************-->
+
+
+
+<!--*****************edit begin***********************-->
+<div id="basic" class="tab-0gmi-group-1" ng-if="editModuleTag == 'basic'" ng-controller="tahoBasicController">
+	<form name="formData" ng-submit="submitForm( formData.$valid,formData.$dirty )" novalidate  autocomplete="off">
+	  <!-- 职位讯息 -->
+	  <div class="tab tab-0gmi-create-position">
+	  		<div class="but_cancel tab-tag tab-top" title="取消个人信息编辑" ng-click="openEditModuleTag('')">x</div>
+			<div class="tab-header">
+				<div class="tab-title">个人信息编辑</div>
+			</div>
+			<div class="tab-content">
+				<ul class="table_ul">
+					
+					<li class="fileShow">
+						<span class="span1">头像</span>
+						<span class="span2">
+							<span upload-file-img ng-model="basicModule.avatar_data" avater-url="basicModule.avatar_url" edit-pluagin="editPluagin(tag)"></span>
+							<input type="hidden" name="avatar_data" ng-model="basicModule.avatar_data"/>
+						</span>
+					</li>
+					
+					<li class="fileShow">
+						<span class="span1"><!--自我介绍--></span>
+						<span class="span2">
+							<!--<span upload-file-video avater-url="basicModule.introduce_video"></span>-->
+						</span>
+					</li>
+					
+					<li>
+						<span class="span1 must">姓名</span>
+						<span class="span2">
+							<input type="text" ng-model="basicModule.name" title="{{basicModule.name}}" name="username" placeholder="请输入姓名" maxlength="20" required/>
+							<span class="error" ng-show="(showError || formData.username.$dirty) && formData.username.$error.required">姓名为必填项</span>
+						</span>
+					</li>
+					
+					<li>
+						<span class="span1">出生年份</span>
+						<span class="span2 input_div">
+							<span lay-date class="birth_select laydate-icon"  ng-model="basicModule.birth">{{basicModule.birth|date:'yyyy年MM月dd日'}}</span>
+						</span>
+					</li>
+					
+					<li>
+						<span class="span1">性别</span>
+						<span class="span2 radio">
+							<input id="sex_men"   type="radio" ng-model="basicModule.gender" value="1"><label for="sex_men">男</label>
+  							<input id="sex_women" type="radio" ng-model="basicModule.gender" value="2"><label for="sex_women">女</label>
+						</span>
+					</li>
+					
+					<li>
+						<span class="span1">婚姻状态</span>
+						<span class="span2 radio">
+							<input type="radio" id="marriage_1" name="marriage" ng-model="basicModule.marriage" value="1"/><label for="marriage_1">已婚</label>
+							<input type="radio" id="marriage_2" name="marriage" ng-model="basicModule.marriage" value="2"/><label for="marriage_2">未婚</label>
+							<input type="radio" id="marriage_3" name="marriage"	ng-model="basicModule.marriage" value="3"/><label for="marriage_3">单身</label>
+						</span>
+					</li>
+					
+					<li>
+						<span class="span1">居住地点</span>
+						<span class="span2">
+							<div
+							pre-search = "location"
+							ng-model = "basicModule.address_id"
+							edit-pluagin="editPluagin('address_id')"
+							show-from-level  = 1
+							click-from-level = 2
+							input-disable = true
+							></div>
+							<input type="hidden" name="address_id" ng-model="basicModule.address_id"/>
+						</span>
+					</li>
+					
+					<li>
+						<span class="span1">现在职位</span>
+						<span class="span2 input_div">
+							<div
+							pre-search = "position"
+							ng-model = "basicModule.position_id"
+							show-tag = "false"
+							show-from-level  = 2
+							click-from-level = 3></div>
+						</span>
+						<input type="hidden" name="position_id" ng-model="basicModule.position_id"/>
+					</li>
+				</ul>
+				
+				<ul class="table_ul">	
+					<li class="special">
+						<span class="span1">个人描述</span>
+						<span class="span2">
+							<textarea id="toho_id_basic_description" name="description" ng-model="basicModule.description" zero-auto-height maxlength="200"></textarea>
+							<span class="wordwrap"><var class="word">{{basicModule.description.length}}</var>/200</span>
+						</span>
+					</li>
+				</ul>
+				
+			</div>
+		</div>
+		<!--职位讯息 end-->
+		<div class="form_but_group">
+			<input type="submit" id="toho_id_basic_but_submit" class="form_but form_but_submit" value="完成"/>
+			<div class="form_but form_but_cancel" ng-click="openEditModuleTag('')">取消</div>
+		</div>
+		
+		<!-- 遮罩层 -->
+		<div ng-if="editPluaginName" class="pop_up_bg"></div>
+		<!-- 职位选择  -->
+		<!--<div
+		 class="position_pop_up"
+		 ng-show="editPluaginName=='position'"
+		 pop-up-layer = "position"
+		 ng-model = "basicModule.position_id"
+		 edit-pluagin="editPluagin('')"
+		 show-name = "职位"
+		 click-level = 2
+		></div>-->
+		
+		<!-- 工作地点选择  -->
+		<div
+		 ng-show="editPluaginName=='address_id'"
+		 pop-up-layer-location
+		 ng-model = "basicModule.address_id"
+		 edit-pluagin="editPluagin('')"
+		></div>
+		
+	</form>
+</div>
+<!--**********************************edit end***********************************-->
+	
+
+
+

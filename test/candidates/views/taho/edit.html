@@ -1,0 +1,57 @@
+<!-- 主体  左侧-->
+<div class="width_scale70 fl">
+	<!--工作经验-->
+	<div ui-view="basic"></div>
+	<!--期望-->
+	<div ui-view="expect"></div>
+	<!--教育及工作经历-->
+	<div ui-view="education_work_experience"></div>
+	<!--语言能力&技能&证书-->
+	<div ui-view="languages_skills_certifications"></div>
+	<!--动机&价值观-->
+	<div ui-view="motivation_value"></div>
+	<!--IQ&思维倾向-->
+	<div ui-view="IQ_thinking"></div>
+	<!--行为模式&EQ-->
+	<div ui-view="behaviour_EQ"></div>
+</div>
+
+
+<!-- 主体  右侧-->
+<div class="fr width_scale30 right_module">
+	<!--taho 编辑模块状态 -->
+	<div ng-if="editModuleTag" class="basic_block taho_edit_status" jef-fixed-directive  ng-controller="tahoEditStautsController">
+		<h1 class="taho_edit_status_h1">TaHo编辑</h1>
+		<ul class="taho_edit_status_ul">
+			<li ng-repeat="item in tahoModules"
+				ng-class="{'taho_editing ico_img_hasEdited':isEdited(item.tag),'taho_editing ico_img_editing':(editModuleTag==item.tag)}"
+				ng-click="openEditModuleTag(item.tag,true)">
+				{{item.name}}
+			</li>
+		</ul>
+	</div>
+	
+	
+	<div class="basic_block tab right_standrad" ng-if="!editModuleTag" ng-controller="tahoEditStautsController">
+		<div class="tab-header">
+			<div class="tab-title ta_c">他们查看了你的TAHO</div>
+		</div>
+		<div class="tab-content" ng-show="viewTahos|isEmptyFilter">
+			<div class="nothing_prompt m10">暂无访客</div>
+		</div>
+		<ul class="ul_member" ng-show="!(viewTahos|isEmptyFilter)">
+			<li ng-repeat="viewTaho in viewTahos"  ui-sref="^.simpleTaho({'user_id':viewTaho.personal_user_id})">
+				<img class="bradius_50" ng-hide="viewTaho.avatar" src="./candidates/style/img/default.png"/>
+				<img class="bradius_50" ng-show="viewTaho.avatar" ng-src="{{viewTaho.avatar}}" 
+						onerror="javascript:this.src='./candidates/style/img/default.png';this.onerror=null;"/>
+				<p>{{viewTaho.name}}</p>
+			</li>
+		</ul>
+	</div>
+	
+</div>
+
+
+
+
+
